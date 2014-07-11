@@ -1,0 +1,22 @@
+# OS or Editor folders
+.DS_Store
+Thumbs.db
+.cache
+.project
+.settings
+.tmproj
+*.sublime-project
+*.sublime-workspace
+.idea
+npm-debug.log
+
+# Project folders to ignore
+node_modules
+/material
+/dist
+.tmp
+.sass-cache
+/app/assets/components
+/test/assets/components
+/test/bower_components
+/TODO

@@ -1,0 +1,10 @@
+{
+  "name": "rp-app-templates",
+  "private": true,
+  "dependencies": {
+    "domready": "latest",
+    "picturePolyfill": "3.3.3",
+    "jquery.easing": "~1.3.0"
+  },
+  "devDependencies": {}
+}
