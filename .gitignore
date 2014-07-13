@@ -5,7 +5,7 @@ Thumbs.db
 .project
 .settings
 .tmproj
-*.sublime-project
+# *.sublime-project
 *.sublime-workspace
 .idea
 npm-debug.log
