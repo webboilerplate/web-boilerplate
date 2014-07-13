@@ -27,6 +27,8 @@ body
 
     background #31343c
     color #fff
+    background #f0f2f5
+    color #31343c
 
     //if in webview and needs to feel more native:
     // -webkit-touch-callout none
@@ -44,13 +46,19 @@ body
 header[role="banner"]
     // layer()
     // position fixed
-    height: 130px;
+    color white
+
+    background #31343c
     h1
-        font-size 3rem
-        line-height 130px
+        font-size 4rem
+        margin 0
+        padding 2rem 0
+
         .claim
+            position relative
             font-size 2rem
             color #767d90
+            transform: translateX(-50%)
 
     .menu
         display none

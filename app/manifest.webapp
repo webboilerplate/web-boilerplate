@@ -7,8 +7,8 @@
     "128": "/images/touch/icon-128x128.png"
   },
   "developer": {
-    "name": "",
-    "url": ""
+    "name": "Sönke Kluth",
+    "url": "http://soenkekluth.com"
   },
   "installs_allowed_from": [
     "*"

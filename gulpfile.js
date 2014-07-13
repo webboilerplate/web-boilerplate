@@ -88,7 +88,7 @@ var config = {
             'ie >= 9',
             'ie_mob >= 9',
             'ff >= 30',
-            'chrome >= 34',
+            'chrome >= 30',
             'safari >= 7',
             'opera >= 23',
             'ios >= 6',
@@ -133,6 +133,7 @@ gulp.task('clean', function() {
 *******************************************************************************/
 
 
+
 gulp.task('styles:sass', function() {
     return gulp.src(folders.src + '/assets/scss/style.scss', {
             read: false
@@ -161,6 +162,7 @@ gulp.task('styles:compass', function() {
                 /*,
                 require: ['susy', 'modular-scale']*/
         }))
+        .on('error', handleErrors)
         .pipe($.autoprefixer(config.autoprefixer.def))
         .pipe(gulp.dest(folders.tmp + '/assets/css'));
 });
@@ -180,11 +182,12 @@ gulp.task('styles:stylus', function() {
             error: true
         }))
         .on('error', handleErrors)
-        // .pipe(autoprefixer.apply(config.autoprefixer.def))
+        .pipe($.autoprefixer.apply(config.autoprefixer.def))
         .pipe(gulp.dest(folders.tmp + '/assets/css'));
-    // .pipe(browserSync.reload({
-    //     stream: true
-    // }));
+        // .pipe(browserSync.reload({
+//     stream: true
+// }));
+
 });
 
 
@@ -193,7 +196,7 @@ gulp.task('styles:stylus', function() {
 gulp.task('styles:css', function() {
     return gulp.src(folders.tmp + '/assets/css/**/*.css')
         .pipe($.changed(folders.tmp + '/assets/css/'))
-        .pipe($.autoprefixer(config.autoprefixer.def))
+        .pipe($.autoprefixer.apply(config.autoprefixer.def))
         .pipe(gulp.dest(folders.tmp + '/assets/css'));
 });
 
@@ -301,15 +304,15 @@ gulp.task('default', function() {
 var dist = function() {
 
     gulp.src(folders.tmp + '/assets/js/app.js')
-        .pipe(uglify())
-        .pipe(header(banner, {
+        .pipe($.uglify())
+        .pipe($.header(banner, {
             pkg: pkg
         }))
         .pipe(gulp.dest(folders.dest + '/assets/js'));
 
     gulp.src(folders.tmp + '/assets/css/**/*.css')
-        .pipe(minifyCSS())
-        .pipe(header(banner, {
+        .pipe($.minifyCss())
+        .pipe($.header(banner, {
             pkg: pkg
         }))
         .pipe(gulp.dest(folders.dest + '/assets/css'));
@@ -328,7 +331,7 @@ var dist = function() {
 
     gulp.src([folders.src + '/**/*.{html,shtml,php,xml,json}', '!' + folders.bower + '/**/*'])
         .pipe(gulp.dest(folders.dest))
-        .pipe(size());
+        .pipe($.size());
     // .pipe(notify('Build successfull'));
 };
 
@@ -405,10 +408,10 @@ gulp.task('watch', function() {
     gulp.watch(folders.src + '/assets/scss/**/*.scss', ['styles:sass']);
 
     // Watch .stylus files
-    gulp.watch(folders.src + '/assets/stylus/**/*.styl', ['styles:stylus']);
+    gulp.watch(folders.src + '/assets/stylus/**/*.styl', ['styles:stylus', reload]);
 
     // Watch .css files
-    gulp.watch(['{.tmp,app}/assets/css/**/*.css'], ['styles:css', reload]);
+    //gulp.watch(['{.tmp,app}/assets/css/**/*.css'], ['styles:css', reload]);
 
     // Watch .js files
     gulp.watch([folders.src + '/assets/js/**/*.js'], ['js']);

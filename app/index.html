@@ -13,6 +13,9 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <!-- <link rel="prefetch" href="/about.html" /> -->
 
+    <meta name="google-site-verification" content="">
+    <meta name="msvalidate.01" content="">
+
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" sizes="196x196" href="assets/images/touch/chrome-touch-icon-196x196.png">
@@ -31,6 +34,9 @@
     <link rel="canonical" href="http://www.example.com/">
     -->
 
+
+    <!-- TODO add Social metas from Twitter and Facebook -->
+
     <!-- This script prevents links from opening in Mobile Safari. https://gist.github.com/1042026 -->
     <!--
     <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
@@ -41,9 +47,10 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <script src="assets/js/vendor/modernizr.js"></script>
 
-    <!--[if (gte IE 6)&(lte IE 8)]>
-      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
     <![endif]-->
 
 </head>
@@ -61,7 +68,7 @@
                     <div class="logo">
                         <a rel="home" href="/">
                             <h1>
-                                Web Kickoff
+                                Web Boilerplate
                                 <span class="claim">- front-end code template</span>
                             </h1>
                         </a>
@@ -83,7 +90,7 @@
                 </ul>
             </nav>
 
-            <main>
+            <main role="main">
                 <div class="content">
                     <h1>Moin Moin</h1>
                     <p>Welcome to Web Kickoff.</p>
