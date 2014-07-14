@@ -8,27 +8,38 @@ html
 body
 .page
 .container
+    /* Positioning */
+    /* Box-model */
     width 100%
     height 100%
     margin 0
     padding 0
+    /* Typography */
+    /* Visual */
+    /* Misc */
 
 
 body
+    /* Positioning */
     position relative
-    font-family: 'Open Sans', sans-serif;
-    font-weight 400
-    background-color #FFFFFF
+
+    /* Box-model */
     min-height 100%
     min-width 320px
+    overflow-y scroll
+    -webkit-overflow-scrolling touch
 
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-
-    background #31343c
+    /* Typography */
+    font-family 'Open Sans', sans-serif
+    font-weight 400
     color #fff
-    background #f0f2f5
     color #31343c
+
+    /* Visual */
+    background #31343c
+    background #f0f2f5
+
+    /* Misc */
 
     //if in webview and needs to feel more native:
     // -webkit-touch-callout none
@@ -39,26 +50,30 @@ body
         overflow hidden
 
 .content
+    /* Box-model */
     margin: 0 auto;
     padding 0 1rem
     max-width: 940px;
 
+
 header[role="banner"]
+    /* Typography */
+    color white
+    /* Visual */
+    background #31343c
+
     // layer()
     // position fixed
-    color white
 
-    background #31343c
     h1
-        font-size 4rem
         margin 0
         padding 2rem 0
 
+        font-size 3rem
+
         .claim
-            position relative
-            font-size 2rem
+            font-size 1.5rem
             color #767d90
-            transform: translateX(-50%)
 
     .menu
         display none
@@ -66,8 +81,12 @@ header[role="banner"]
 
 
 nav[role="navigation"]
+
     display block
+
     font-weight 200
+    color white
+
     background #53b2e5
 
     ul
