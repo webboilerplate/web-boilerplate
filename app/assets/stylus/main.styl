@@ -33,11 +33,11 @@ body
     font-family 'Open Sans', sans-serif
     font-weight 400
     color #fff
-    color #31343c
+    // color #31343c
 
     /* Visual */
     background #31343c
-    background #f0f2f5
+    // background #f0f2f5
 
     /* Misc */
 
@@ -57,23 +57,34 @@ body
 
 
 header[role="banner"]
+    position relative
+    height 30%
+    min-height 140px
     /* Typography */
-    color white
+    color #31343c
     /* Visual */
     background #31343c
+    background #fff
 
     // layer()
     // position fixed
 
+    .logo
+        align()
+
     h1
         margin 0
-        padding 2rem 0
+        padding 0
 
         font-size 3rem
 
-        .claim
-            font-size 1.5rem
-            color #767d90
+    .claim
+        display block
+
+        font-size 1.2rem
+        color #767d90
+        text-align center
+
 
     .menu
         display none
