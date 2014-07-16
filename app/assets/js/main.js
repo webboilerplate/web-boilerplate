@@ -6,7 +6,7 @@ var FastClick = require('fastclick');
 
 var polyfills = require('./polyfills');
 
-var app = require('./app/core');
+var app = require('./app');
 
 
 window.onerror = function(errorMsg, url, lineNumber, column, errorObj) {
