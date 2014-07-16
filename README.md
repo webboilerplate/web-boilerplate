@@ -17,7 +17,7 @@ Web Boilerplate is a starting point for platform agnistic web development.
 [STYLEGUIDE.md](./STYLEGUIDE%0A.md)
 
 
-## Start:
+## Install Dependencies:
 ```
 npm install
 ```
