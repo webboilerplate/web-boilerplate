@@ -1,6 +1,6 @@
 {
   "version": "0.0.0",
-  "name": "Web Kickoff",
+  "name": "Web Boilerplate",
   "launch_path": "/index.html",
   "description": "A front-end template that helps you build fast, modern mobile web apps.",
   "icons": {
@@ -18,7 +18,7 @@
   },
   "locales": {
     "en": {
-      "name": "Web Kickoff",
+      "name": "Web Boilerplate",
       "description": "A front-end template that helps you build fast, modern mobile web apps."
     }
   }

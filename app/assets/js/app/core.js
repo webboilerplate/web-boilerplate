@@ -15,7 +15,7 @@ var _initialized = false;
 
 App.prototype = {
 
-  name: 'Web Kickoff',
+  name: 'Web Boilerplate',
 
   model: {},
   view: {},
