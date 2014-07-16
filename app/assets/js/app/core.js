@@ -1,6 +1,13 @@
 'use strict';
 
 
+var Backbone = require('backbone');
+var _ = require('underscore');
+var $ = Backbone.$ = require('jquery');
+
+var AppRouter = require('./routes/app-router');
+
+
 var App = function() {};
 
 var _initialized = false;
@@ -8,34 +15,43 @@ var _initialized = false;
 
 App.prototype = {
 
-    name: 'Web Kickoff',
+  name: 'Web Kickoff',
 
-    model: {},
-    view: {},
-    controller: {},
-    routes: {},
+  model: {},
+  view: {},
+  controller: {},
+  routes: {},
 
-    initialize: function() {
+  root: '/',
 
-        if (!_initialized) {
+  initialize: function() {
 
-            _initialized = true;
+    if (!_initialized) {
 
-            //TODO initialize
+      _initialized = true;
 
-        }
-    },
+      this.routes.AppRouter = new AppRouter();
 
-    start: function() {
-        if (!_initialized) {
+      Backbone.history.start({
+        pushState: (window.history && window.history.pushState),
+        root: this.root
+      });
 
-            this.initialize();
-        }
-    },
-
-    stop: function() {
+      //TODO initialize
 
     }
+  },
+
+  start: function() {
+    if (!_initialized) {
+
+      this.initialize();
+    }
+  },
+
+  stop: function() {
+
+  }
 };
 
 module.exports = new App();

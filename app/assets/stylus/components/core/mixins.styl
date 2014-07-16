@@ -1,39 +1,46 @@
+layer()
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+
 gpu()
-    -webkit-transform: translateZ(0)
-    -webkit-perspective: 1000
-    -webkit-backface-visibility: hidden
+  -webkit-transform: translateZ(0)
+  -webkit-perspective: 1000
+  -webkit-backface-visibility: hidden
+  transform-style: preserve-3d;
 
 
 gpu-reset()
-    -webkit-transform: none
-    -webkit-perspective: none
-    -webkit-backface-visibility: hidden
+  -webkit-transform: none
+  -webkit-perspective: none
+  -webkit-backface-visibility: hidden
 
 
 line-clamp($numLines = 1, $lineHeight = 1.412)
-    overflow: hidden
-    text-overflow: -o-ellipsis-lastline
-    text-overflow: ellipsis
-    display: block
-    display: -webkit-box
-    box-orient: vertical
-    -webkit-box-orient: vertical
-    -webkit-line-clamp: $numLines
-    max-height: ($numLines * $lineHeight)em
+  overflow: hidden
+  text-overflow: -o-ellipsis-lastline
+  text-overflow: ellipsis
+  display: block
+  display: -webkit-box
+  box-orient: vertical
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: $numLines
+  max-height: ($numLines * $lineHeight)em
 
 
 
     // Horizontal/Vertical/Both Alignment - Parent container needs position relative. IE9+
 align(direction = both)
-    position: absolute
-    transform-style: preserve-3d
-    if (direction == horizontal) or (direction == h)
-        left: 50%
-        transform: translateX(-50%)
-    else if (direction == vertical) or (direction == v)
-        top: 50%
-        transform: translateY(-50%)
-    else
-        top: 50%
-        left: 50%
-        transform: translate(-50%, -50%)
+  position: absolute
+  transform-style: preserve-3d
+  if (direction == horizontal) or (direction == h)
+    left: 50%
+    transform: translateX(-50%)
+  else if (direction == vertical) or (direction == v)
+    top: 50%
+    transform: translateY(-50%)
+  else
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)

@@ -4,115 +4,121 @@
 
 @import "components"
 
+/* .class */
+/* Positioning */
+/* Box-model */
+/* Typography */
+/* Visual */
+/* Misc */
+
 html
 body
 .page
 .container
-    /* Positioning */
-    /* Box-model */
-    width 100%
-    height 100%
-    margin 0
-    padding 0
-    /* Typography */
-    /* Visual */
-    /* Misc */
+
+  width 100%
+  height 100%
+  margin 0
+  padding 0
 
 
 body
-    /* Positioning */
-    position relative
+  position relative
 
-    /* Box-model */
-    min-height 100%
-    min-width 320px
+  min-height 100%
+  min-width 320px
+
+  font-family 'Open Sans', sans-serif
+  font-weight 400
+  color #fff
+
+  background #31343c
+
+  perspective 1200px
+
+  &.open
+      overflow hidden
+
+  &.no-touch
+    -webkit-touch-callout none
+    -webkit-text-size-adjust none
+    -webkit-user-select none
+
+
+
+.content
+  margin: 0 auto;
+  padding 0 1rem
+  max-width: 940px;
+
+
+.page
+  @media all and (min-width:568px)
+    z-index: -1
+    top 0
+    right 0
+    left 0
+    bottom 0
+    position absolute
+
     overflow-y scroll
     -webkit-overflow-scrolling touch
 
-    /* Typography */
-    font-family 'Open Sans', sans-serif
-    font-weight 400
-    color #fff
-    // color #31343c
-
-    /* Visual */
-    background #31343c
-    // background #f0f2f5
-
-    /* Misc */
-
-    //if in webview and needs to feel more native:
-    // -webkit-touch-callout none
-    // -webkit-text-size-adjust none
-    // -webkit-user-select none
-
-    &.open
-        overflow hidden
-
-.content
-    /* Box-model */
-    margin: 0 auto;
-    padding 0 1rem
-    max-width: 940px;
 
 
 header[role="banner"]
-    position relative
-    height 30%
-    min-height 140px
-    /* Typography */
-    color #31343c
-    /* Visual */
-    background #31343c
-    background #fff
 
-    // layer()
-    // position fixed
+  position relative
+  color #31343c
+  background #fff
 
-    .logo
-        align()
+  text-align center
 
-    h1
-        margin 0
-        padding 0
+  padding 2% 0
 
-        font-size 3rem
+  h1
+    margin 0
+    padding 0
 
-    .claim
-        display block
-
-        font-size 1.2rem
-        color #767d90
-        text-align center
+    font-size 3rem
 
 
-    .menu
-        display none
+  .claim
+
+    margin 0;
+    padding 1em;
+
+    font-size 1.2rem
+    color alpha(#31343c, 0.5)
+
+
+  .menu
+    display none
 
 
 
 nav[role="navigation"]
 
-    display block
 
-    font-weight 200
-    color white
+  font-weight 200
+  color #fff
 
-    background #53b2e5
+  background #53b2e5
 
-    ul
-        @extend .content
-        padding 0
-        list-style none
-        li
-            display inline-block
-            a
-                display block
-                padding: 17px 20px
+  ul
+    @extend .content
+    padding 0
+    list-style none
+    li
+      display inline-block
+      a
+        display block
+        padding: 17px 20px
+
 
 main
-    padding: 60px 16px 16px 16px;
-    //min-height: 100%;
+    padding: 400px 1rem 1rem;
+
 
 
 
