@@ -15,7 +15,7 @@ Web Boilerplate is a starting point for platform agnistic web development.
 
 ## Server Configs
 
-[](https://github.com/h5bp/server-configs)
+[https://github.com/h5bp/server-configs](https://github.com/h5bp/server-configs)
 
 
 ## Code Styleguides:
