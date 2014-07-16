@@ -21,7 +21,28 @@ Web Boilerplate is a starting point for platform agnistic web development.
 ```
 npm install
 ```
-
+###start development:
 ```
 npm start
+```
+or:
+```
+gulp default
+gulp watch
+```
+###distribute:
+```
+npm run-script dist
+```
+or:
+```
+gulp dist
+```
+###deploy:
+```
+npm run-script deploy
+```
+or:
+```
+gulp deploy
 ```
