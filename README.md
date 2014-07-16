@@ -1,13 +1,7 @@
 Web Boilerplate
 ===============
 
-a Starting Point for Web Font-end development
-
-
-## Overview
-
 Web Boilerplate is a starting point for platform agnistic web development.   
-
 
 ## Tooling
 
