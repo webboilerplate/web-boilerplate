@@ -1,8 +1,13 @@
-
 .layer {
-    @include layer();
+    @include layer;
 }
 
-.gpu{
-  @include gpu();
+.gpu {
+    @include gpu;
+}
+
+.perspective {
+    perspective: 1200px;
+    -webkit-perspective: 1200px;
+    transform-style: preserve-3d;
 }

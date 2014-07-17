@@ -20,8 +20,7 @@ body
   padding 0
 
 body
-  @extends .perspective;
-
+  @extend .perspective;
   position relative
 
   min-height 100%
@@ -43,18 +42,24 @@ body
 
 
 .content
-  margin: 0 auto;
+  margin: 0 auto
   padding 0 1rem
-  max-width: 940px;
-  min-height 100%;
+  max-width: 940px
+  min-height 100%
 
 
 .page
 
-  min-height 100%;
-  width:100%
+  min-height 100%
+  width 100%
 
-  @media all and (min-width:568px)
+  &.page-current, .no-js &
+    visibility: visible;
+
+  &.page-ontop
+    z-index 999
+
+  @media all and (min-width: 568px)
     position absolute
 
     top 0
@@ -66,14 +71,7 @@ body
     overflow-y scroll
     -webkit-overflow-scrolling touch
 
-    visibility: hidden;
-
-    &.page-current, no-js &
-      visibility: visible;
-
-    &.page-ontop
-      z-index 999
-
+    visibility hidden
 
 
 
@@ -85,7 +83,7 @@ header[role="banner"]
     z-index 99999
     layer()
 
-  width: 100%
+  width 100%
 
   padding 2rem 0 0
 
@@ -111,11 +109,11 @@ header[role="banner"]
     font-size 1.2rem
     color alpha(#31343c, 0.5)
 
-  @media all and (max-width:568px)
+  @media all and (max-width:567px)
     h1
       font-size 1.6rem
     .claim
-      ont-size 1rem
+      font-size 1rem
 
   .menu
     display none

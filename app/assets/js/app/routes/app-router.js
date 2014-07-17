@@ -98,8 +98,8 @@ var AppRouter = module.exports = Backbone.Router.extend({
 
         lastPage.on(animEndEventName, function(event) {
             $('head').find('title').text(title);
-            // $(this).off(animEndEventName).removeClass(outClass + ' page-current');
-            $(this).off(animEndEventName).removeClass(outClass + ' page-current').remove();
+            $(this).off(animEndEventName).removeClass(outClass + ' page-current');
+            // $(this).off(animEndEventName).removeClass(outClass + ' page-current').remove();
           })
           .addClass(outClass);
 

@@ -5,15 +5,15 @@
 }
 
 @mixin gpu() {
-    -webkit-transform: translateZ(0);
-    -webkit-perspective: 1000;
-    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    backface-visibility: hidden;
     transform-style: preserve-3d;
 }
+
 @mixin gpu-reset() {
-    -webkit-transform: none;
-    -webkit-perspective: none;
-    -webkit-backface-visibility: hidden;
+    transform: none;
+    perspective: none;
+    backface-visibility: hidden;
 }
 
 @mixin line-clamp($numLines:1, $lineHeight:1.412) {
@@ -27,6 +27,7 @@
     -webkit-line-clamp: $numLines;
     max-height: ($numLines * $lineHeight)+unquote("em");
 }
+
 // Horizontal/Vertical/Both Alignment - Parent container needs position relative. IE9+
 @mixin align($direction:both) {
     position: absolute;
