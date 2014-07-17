@@ -1,4 +1,4 @@
 # Roadmap
 
 * implement touch features
-** swipe through the pages
+* swipe through the pages
