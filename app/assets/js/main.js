@@ -1,24 +1,21 @@
 'use strict';
 
+require('./app/util/error')();
+
 var domReady = require('domready');
 var fastdom = require('fastdom');
 var FastClick = require('fastclick');
-
 var polyfills = require('./polyfills');
 
 var app = require('./app');
 
 
-window.onerror = function(errorMsg, url, lineNumber, column, errorObj) {
-  document.body.classList.add('loaded');
-  console.log('Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber + ' Column: ' + column + ' StackTrace: ' + errorObj);
-  document.body.style.background = '#990000';
-};
-
 console.log('Moin Moin and welcome to ' + app.name);
 
+//TODO wech damit.
 var page = document.body.getElementsByClassName('page')[0];
 page.classList.add('page-current');
+
 
 var onLoad = function() {
 
