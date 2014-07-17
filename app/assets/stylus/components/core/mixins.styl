@@ -6,9 +6,11 @@ layer()
 
 gpu()
   -webkit-transform: translateZ(0)
-  -webkit-perspective: 1000
   -webkit-backface-visibility: hidden
+  transform: translateZ(0)
+  backface-visibility: hidden
   transform-style: preserve-3d;
+  //-webkit-perspective: 1000
 
 
 gpu-reset()

@@ -4,8 +4,10 @@ var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = Backbone.$ = require('jquery');
 
-var delegate = require('delegatejs');
 var fastdom = require('fastdom');
+
+var Cache = require('../util/simple-cache');
+
 
 var animEndEventNames = {
   'WebkitAnimation': 'webkitAnimationEnd',
@@ -14,29 +16,22 @@ var animEndEventNames = {
   'animation': 'animationend'
 };
 
-var outClass = 'gpu pt-page-moveToLeftEasing';
-var inClass = 'gpu pt-page-moveFromRight';
-
-// var outClass = 'gpu pt-page-flipOutLeft';
-// var inClass = 'gpu pt-page-flipInRight pt-page-delay500';
-
-
-//gpu pt-page-flipInRight pt-page-ontop
-
-var animEndEventName = animEndEventNames[ Modernizr.prefixed('animation') ];
-
-
+var outClass = 'layer page-scaleDown';
+var inClass = 'layer page-moveFromRight page-ontop';
 
 //var cssTweenEvent = 'transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd';
+var animEndEventName = animEndEventNames[window.Modernizr.prefixed('animation')];
 
+var cache = new Cache();
 
 var AppRouter = module.exports = Backbone.Router.extend({
 
-  $currentPage: null,
-  currentPathname: '',
+  currentPage: null,
+
   currentRoute: 'index',
 
   routes: {
+    'index.html': 'index',
     '': 'index',
     'about.html': 'about',
     'about': 'about'
@@ -45,30 +40,78 @@ var AppRouter = module.exports = Backbone.Router.extend({
 
   initialize: function() {
 
+    console.log(window.location.pathname);
+
     var ctx = this;
 
     this.on('route', this.onRoute.bind(this));
 
-    $(document).on('click', 'a[href^="/"]', function(event) {
+    $(document).on('click', 'a[href^="/"]', this.onRequestNavigation.bind(this));
 
-      var $target = $(event.currentTarget);
-      var passThrough = $target.attr('data-external-link');
+  },
 
-      if (!passThrough && !event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) {
-        event.preventDefault();
-        var href = $target.attr('href');
-        var url = href.replace(/^\//, '').replace('\#\!\/', '');
+  onRoute: function(name) {
+    this.currentRoute = name;
+  },
 
-        ctx.navigate(url, {
-          trigger: true,
-          replace: false
-        });
+  onRequestNavigation: function(event) {
 
-        return false;
+    var $target = $(event.currentTarget);
+    var passThrough = $target.attr('data-external-link');
+
+    if (!passThrough && !event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) {
+      event.preventDefault();
+      var href = $target.attr('href');
+      var url = href.replace(/^\//, '').replace('\#\!\/', '');
+
+      this.navigate(url, {
+        trigger: true,
+        replace: false
+      });
+
+      return false;
+    }
+
+  },
+
+  showPage: function(url) {
+
+    if (!cache.has(url)) {
+      this.loadPage(url);
+    } else {
+
+      if (this.currentPage === cache.get(url).page) {
+        return;
       }
 
-    });
+      var ctx = this;
 
+      var lastPage = ctx.currentPage ||  $('.page').first();
+      var title = cache.get(url).title;
+      ctx.currentPage = cache.get(url).page;
+
+      if (ctx.currentPage.parent().length === 0) {
+        ctx.currentPage.appendTo(document.body);
+      }
+
+      fastdom.write(function() {
+
+        lastPage.on(animEndEventName, function(event) {
+            $('head').find('title').text(title);
+            // $(this).off(animEndEventName).removeClass(outClass + ' page-current');
+            $(this).off(animEndEventName).removeClass(outClass + ' page-current').remove();
+          })
+          .addClass(outClass);
+
+        ctx.currentPage.removeClass(outClass).addClass(inClass + ' page-current')
+          .on(animEndEventName, function(event) {
+            $(this).off(animEndEventName).removeClass(inClass);
+          });
+
+      });
+
+
+    }
   },
 
 
@@ -76,69 +119,42 @@ var AppRouter = module.exports = Backbone.Router.extend({
 
     var ctx = this;
 
-
     $.ajax({
-      url: url,
-      processData: false,
-      dataType: 'html',
-      // context: document.body,
-      success: function(data) {
+        url: url,
+        processData: false,
+        dataType: 'html',
+        context: document.body,
+      })
+      .done(function(data) {
+        var $content = $('<html>').append($.parseHTML(data));
+        var page = $content.find('.page').first().clone();
 
-        fastdom.read(function() {
-          var $content = $('<html>').append($.parseHTML(data));
+        var nextPage = {
+          page: page,
+          title: $content.find('title').text()
+        };
 
-          var $lastPage = ctx.$currentPage ||  $('.page').first();
-          var $nextPage = $content.find('.page').first();
+        cache.set(url, nextPage);
+        ctx.showPage(url);
 
-          $lastPage.on(animEndEventName, function(event) {
-            $lastPage.off().remove();
-            $lastPage = null;
-            $('head').find('title').text($content.find('title').text());
-          });
+        $content = null;
 
-          fastdom.write(function() {
-            $lastPage.removeClass(inClass)
-              .addClass(outClass);
-
-            $nextPage.addClass(inClass);
-            $('body').append($nextPage);
-          });
-        });
-      }
-    });
+      })
+      .error(function(e) {
+        console.error(e);
+      });
   },
-
-  getUrlSegments: function() {
-    var pathname = window.location.pathname;
-    if (pathname.charAt(0) === '/') {
-      pathname = pathname.substring(1, (pathname.charAt(pathname.length - 1) === '/') ? pathname.length - 1 : pathname.length);
-    }
-    if (pathname !== '' && pathname !== '/') {
-      return pathname.split('/');
-    }
-    return [''];
-  },
-
-  onRoute: function(name) {
-    this.currentRoute = name;
-  },
-
 
 
   index: function() {
-    console.log('index');
     if (this.currentRoute !== 'index') {
-      console.log('load index');
-      this.loadPage('/index.html');
+      this.showPage('/index.html');
     }
   },
 
   about: function() {
-    console.log('about');
     if (this.currentRoute !== 'about') {
-      this.loadPage('/about.html');
-      console.log('load about');
-
+      this.showPage('/about.html');
     }
   }
 

@@ -2,7 +2,7 @@
 @import "vendor/necolas/normalize.styl"
 // @import "vendor/meyerweb/reset.styl"
 
-
+@import "components"
 
 /* .class */
 /* Positioning */
@@ -13,16 +13,15 @@
 
 html
 body
-.page
 .container
-
   width 100%
   height 100%
   margin 0
   padding 0
 
-
 body
+  @extends .perspective;
+
   position relative
 
   min-height 100%
@@ -32,7 +31,7 @@ body
   font-weight 400
   color #fff
 
-  perspective 1200px
+  background #53b2e5
 
   &.no-touch
     -webkit-touch-callout none
@@ -40,7 +39,6 @@ body
     -webkit-user-select none
 
   &.nav-open
-    .page
       overflow hidden
 
 
@@ -48,36 +46,53 @@ body
   margin: 0 auto;
   padding 0 1rem
   max-width: 940px;
+  min-height 100%;
 
 
 .page
-  background #31343c
-  background #22313F
+
+  min-height 100%;
+  width:100%
 
   @media all and (min-width:568px)
-    z-index: -1
+    position absolute
+
     top 0
     right 0
     left 0
     bottom 0
-    position absolute
 
+    overflow hidden
     overflow-y scroll
     -webkit-overflow-scrolling touch
+
+    visibility: hidden;
+
+    &.page-current, no-js &
+      visibility: visible;
+
+    &.page-ontop
+      z-index 999
+
+
 
 
 
 header[role="banner"]
 
-  position relative
+  @media all and (min-width:568px)
+    position fixed
+    z-index 99999
+    layer()
 
-  padding 2rem 0
+  width: 100%
+
+  padding 2rem 0 0
 
   color #31343c
   text-align center
 
   background #fff
-
 
 
   h1
@@ -91,6 +106,7 @@ header[role="banner"]
 
     margin 0
     padding-top 0.5rem
+    padding-bottom 2rem
 
     font-size 1.2rem
     color alpha(#31343c, 0.5)
@@ -108,12 +124,10 @@ header[role="banner"]
 
 nav[role="navigation"]
 
-
   font-weight 200
   color #fff
 
   background #53b2e5
-  background #52B3D9
 
   ul
     @extend .content
@@ -127,9 +141,6 @@ nav[role="navigation"]
 
 
 main
-    padding: 260px 1rem 1rem
-
-
-
-@import "components"
-
+  padding: 260px 1rem 1rem
+  @media all and (max-width:568px)
+    padding: 1rem

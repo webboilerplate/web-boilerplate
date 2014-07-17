@@ -17,6 +17,9 @@ window.onerror = function(errorMsg, url, lineNumber, column, errorObj) {
 
 console.log('Moin Moin and welcome to ' + app.name);
 
+var page = document.body.getElementsByClassName('page')[0];
+page.classList.add('page-current');
+
 var onLoad = function() {
 
   app.start();
