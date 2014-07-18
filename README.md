@@ -5,7 +5,7 @@ Web Boilerplate is a starting point for platform agnistic web development.
 
 ## Tooling
 
-[Node.js](http://nodejs.org), [gulp.js](http://gulpjs.com),  [Sass](http://sass-lang.com/install),  [Stylus](http://learnboost.github.io/stylus/),  [Bower](http://bower.io/) 
+If you would like to use the optional tooling we provide, make sure your system has [Node.js](http://nodejs.org), [gulp.js](http://gulpjs.com),  [Sass](http://sass-lang.com/install),  [Stylus](http://learnboost.github.io/stylus/) installed
 
 ## Server Configs
 

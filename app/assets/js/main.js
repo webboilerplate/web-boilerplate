@@ -7,6 +7,10 @@ var fastdom = require('fastdom');
 var FastClick = require('fastclick');
 var polyfills = require('./polyfills');
 
+//TODO implement
+// var Ajaxify = require('./app/util/ajaxify/');
+// new Ajaxify();
+
 var app = require('./app');
 
 

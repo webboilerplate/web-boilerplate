@@ -46,7 +46,8 @@ var AppRouter = module.exports = Backbone.Router.extend({
 
     this.on('route', this.onRoute.bind(this));
 
-    $(document).on('click', 'a[href^="/"]', this.onRequestNavigation.bind(this));
+    $(document).on('click', 'a[href]', this.onRequestNavigation.bind(this));
+
 
   },
 
@@ -54,23 +55,55 @@ var AppRouter = module.exports = Backbone.Router.extend({
     this.currentRoute = name;
   },
 
+
   onRequestNavigation: function(event) {
 
-    var $target = $(event.currentTarget);
-    var passThrough = $target.attr('data-external-link');
+    var link = event.currentTarget;
 
-    if (!passThrough && !event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) {
-      event.preventDefault();
-      var href = $target.attr('href');
-      var url = href.replace(/^\//, '').replace('\#\!\/', '');
-
-      this.navigate(url, {
-        trigger: true,
-        replace: false
-      });
-
-      return false;
+    if (link.tagName.toUpperCase() !== 'A') {
+      throw "requires an anchor element";
     }
+
+    var passThrough = link.hasAttribute('data-external-link');
+
+    // Middle click, cmd click, and ctrl click should open
+    // links in a new tab as normal.
+    if (passThrough || event.which > 1 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      return;
+    }
+
+    // Ignore cross origin links
+    if (location.protocol !== link.protocol || location.hostname !== link.hostname) {
+      return;
+    }
+
+    // Ignore anchors on the same page
+    if (link.hash && link.href.replace(link.hash, '') === location.href.replace(location.hash, '')) {
+      return;
+    }
+
+    // Ignore empty anchor "foo.html#"
+    if (link.href === location.href + '#') {
+      return;
+    }
+
+    // Ignore event with default prevented
+    if (event.isDefaultPrevented()) {
+      return;
+    }
+
+    event.preventDefault();
+
+    var href = link.getAttribute('href');
+    var url = href.replace(/^\//, '').replace('\#\!\/', '');
+
+    this.navigate(url, {
+      trigger: true,
+      replace: false
+    });
+
+
+    return false;
 
   },
 
@@ -126,7 +159,7 @@ var AppRouter = module.exports = Backbone.Router.extend({
         context: document.body,
       })
       .done(function(data) {
-        var $content = $('<html>').append($.parseHTML(data));
+        var $content = $('<html>').append($.parseHTML(data, document, true));
         var page = $content.find('.page').first().clone();
 
         var nextPage = {

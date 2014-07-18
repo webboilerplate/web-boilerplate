@@ -7,7 +7,6 @@ var $ = Backbone.$ = require('jquery');
 
 var AppRouter = require('./routes/app-router');
 
-
 var App = function() {};
 
 var _initialized = false;
