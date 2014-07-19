@@ -46,3 +46,17 @@ or:
 ```
 gulp deploy
 ```
+
+
+##Roadmap
+
+* implement touch features
+* swipe through the pages
+
+
+##Frontend Coding Guidelines
+
+* https://github.com/styleguide/css
+* https://github.com/necolas/idiomatic-css
+* http://codeguide.co/
+
