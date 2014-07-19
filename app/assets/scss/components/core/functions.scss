@@ -3,6 +3,3 @@
 }
 
 
-@function rem($value){
-    @return #{(parseInt($value)/$bs)}rem;
-}

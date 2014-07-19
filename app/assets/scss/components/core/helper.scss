@@ -11,3 +11,7 @@
     -webkit-perspective: 1200px;
     transform-style: preserve-3d;
 }
+
+.clearfix {
+  @include cf();
+}
