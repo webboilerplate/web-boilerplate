@@ -1,17 +1,13 @@
-/*
-* pushes the target to its own render layer on the gpu
-*
-*/
+//pushes the target to its own render layer on the gpu
+//
  @mixin layer() {
     -webkit-backface-visibility: hidden;
         -moz-backface-visibility: hidden;
             backface-visibility: hidden;
 }
 
-/*
-* pushes the target to its own render layer on the gpu
-*
-*/
+// pushes the target to its own render layer on the gpu
+//
 @mixin gpu() {
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -25,24 +21,69 @@
 }
 
 
+// breakpoint
+// example @include breakpoint(940) { width:80%; }
+//
+@mixin bp($size, $mobile-first : false) {
+  @if ($mobile-first == true ){
+    @media only screen and (min-width: $size + px) { @content; }
+  }
+  @else{
+    @media only screen and (max-width: $size + px) { @content; }
+  }
+}
 
-/*
-  * Outputs properties that use rem with a px fallback.
-  * It also takes px values and converts them to rem.
-  *
-  * @param property
-  * @param values
-  * @param default-font-size int optional
-  * @returns
-  *   <property>: <parsed value>px;
-  *   <property>: <parsed value>rem;
-  *
-  * @example
-  *   .selector {
-  *     @include rem(font-size, 1.3);
-  *     @include rem(padding, 20px);
-  *   }
-  */
+
+// size
+//
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+
+// placeholder
+//
+@mixin placeholder($color: $text-color, $alpha: .8) {
+  &::-webkit-input-placeholder {
+    color: rgba($color, $alpha);
+  }  /* WebKit browsers */
+
+  &:-moz-placeholder {
+    color: rgba($color, 1)
+  }  /* Mozilla Firefox 4 to 18 */
+
+  &::-moz-placeholder {
+    color: rgba($color, 1)
+  }  /* Mozilla Firefox 19+ */
+
+  &:-ms-input-placeholder {
+    color: rgba($color, $alpha)
+  } /* Internet Explorer 10+ */
+}
+
+
+
+
+
+
+//
+// Outputs properties that use rem with a px fallback.
+// It also takes px values and converts them to rem.
+//
+// @param property
+// @param values
+// @param default-font-size int optional
+// @returns
+//   <property>: <parsed value>px;
+//   <property>: <parsed value>rem;
+//
+// @example
+//   .selector {
+//     @include rem(font-size, 1.3);
+//     @include rem(padding, 20px);
+//   }
+//
 @mixin rem ($property, $values, $main-font-size: 16px) {
 
   // Empty list for all values in px
@@ -154,4 +195,82 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: $numLines;
     max-height: ($numLines * $lineHeight)+unquote("em");
+}
+
+
+
+
+
+//
+// DRAW
+//
+
+// circles
+
+@mixin circle($size: 0) {
+  border-radius: 50%;
+  height: auto;
+  padding-bottom: 0% + $size;
+  width: 0% + $size;
+}
+
+// square
+
+@mixin square($size: 0) {
+  height: auto;
+  padding-bottom: 0% + $size;
+  width: 0% + $size;
+}
+
+// rectangle
+
+@mixin rectangle($size: 0) {
+  height: 0;
+  padding-bottom: 0% + $size / 3 *2;
+  width: 0% + $size;
+}
+
+
+// arrow
+
+@mixin arrow($direction, $color, $size) {
+  $px-size: $size + px;
+  $rem-size: ($size / 10) + rem;
+
+  width: 0;
+  height: 0;
+
+  @if $direction == "left"{
+    border-top: $px-size solid transparent;
+    border-right: $px-size solid $color;
+    border-bottom: $px-size solid transparent;
+
+    border-top: $rem-size solid transparent;
+    border-right: $rem-size solid $color;
+    border-bottom: $rem-size solid transparent;
+  }@else if $direction == "right"{
+    border-top: $px-size solid transparent;
+    border-bottom: $px-size solid transparent;
+    border-left: $px-size solid $color;
+
+    border-top: $rem-size solid transparent;
+    border-bottom: $rem-size solid transparent;
+    border-left: $rem-size solid $color;
+  }@else if $direction == "up"{
+    border-left: $px-size solid transparent;
+    border-right: $px-size solid transparent;
+    border-bottom: $px-size solid $color;
+
+    border-left: $rem-size solid transparent;
+    border-right: $rem-size solid transparent;
+    border-bottom: $rem-size solid $color;
+  }@else if $direction == "down"{
+    border-left: $px-size solid transparent;
+    border-right: $px-size solid transparent;
+    border-top: $px-size solid $color;
+
+    border-left: $rem-size solid transparent;
+    border-right: $rem-size solid transparent;
+    border-top: $rem-size solid $color;
+  }
 }
