@@ -32,7 +32,7 @@ gulp watch
 ```
 ###distribute:
 ```
-npm run-script dist
+npm run dist
 ```
 or:
 ```
@@ -40,7 +40,7 @@ gulp dist
 ```
 ###deploy:
 ```
-npm run-script deploy
+npm run deploy
 ```
 or:
 ```
