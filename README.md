@@ -12,10 +12,6 @@ If you would like to use the optional tooling we provide, make sure your system 
 [https://github.com/h5bp/server-configs](https://github.com/h5bp/server-configs)
 
 
-## Code Styleguides:
-
-[STYLEGUIDE.md](./STYLEGUIDE.md)
-
 
 ## Install Dependencies:
 ```
