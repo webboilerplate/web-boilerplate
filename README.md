@@ -1,7 +1,7 @@
 Web Boilerplate
 ===============
 
-Web Boilerplate is a starting point for platform agnistic web development.   
+Web Boilerplate is a starting point for platform agnostic web development.   
 
 ## Tooling
 
