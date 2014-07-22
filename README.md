@@ -5,7 +5,7 @@ Web Boilerplate is a starting point for platform agnostic web development.
 
 ## Tooling
 
-Make sure your system has [Node.js](http://nodejs.org), [gulp.js](http://gulpjs.com) and  [Sass](http://sass-lang.com/install),
+Make sure your system has [Node.js](http://nodejs.org), [gulp.js](http://gulpjs.com) and  [Sass](http://sass-lang.com/install) installed
 
 ## Server Configs
 
