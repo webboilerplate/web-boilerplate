@@ -5,11 +5,11 @@ var ip = require('ip');
 
 
 var folders = {
-  src: 'app',
+  src: 'src',
   dest: 'dist',
-  bower: 'app/assets/components',
+  bower: 'src/assets/components',
   tmp: '.tmp',
-  componentsPath: 'app/assets/components'
+  componentsPath: 'src/assets/components'
 };
 
 
@@ -29,7 +29,7 @@ module.exports = {
   },
 
   css: {
-    preprocessor: 'stylus'
+    preprocessor: 'scss'
   },
 
   server: {

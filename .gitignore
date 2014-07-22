@@ -16,7 +16,7 @@ node_modules
 /dist
 .tmp
 .sass-cache
-/app/assets/components
+/src/assets/components
 /test/assets/components
 /test/bower_components
 /TODO

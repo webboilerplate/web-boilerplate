@@ -98,7 +98,7 @@ gulp.task('stylus', function() {
       //use: nib(),
       url: {
         name: 'embedurl',
-        paths: [__dirname + '/app/assets/images'],
+        paths: [__dirname + '/src/assets/images'],
         limit: false
       },
       error: true
@@ -377,7 +377,7 @@ gulp.task('watch', function() {
   browserSync({
     notify: false,
     server: {
-      baseDir: ['.tmp', 'app']
+      baseDir: ['.tmp', 'src']
     }
   });
 
