@@ -2,17 +2,20 @@
 
 var env = process.env.NODE_ENV ||  'development';
 var ip = require('ip');
-
+var path = require('path');
 
 var folders = {
   src: 'src',
   dest: 'dist',
-  bower: 'src/assets/components',
   tmp: '.tmp',
-  componentsPath: 'src/assets/components'
+  assets: 'assets',
+  components: 'src/assets/components',
 };
 
 
+folders.tmpAssets = path.join(folders.tmp, folders.assets);
+folders.srcAssets = path.join(folders.src, folders.assets);
+folders.destAssets = path.join(folders.dest, folders.assets);
 
 module.exports = {
 
@@ -20,30 +23,56 @@ module.exports = {
 
   js: {
 
+    folder: 'js',
+    main: 'main.js',
+    out: 'app.js',
+
     shim: {
-      // picturePolyfill: {
-      //     path: folders.bower + '/picturePolyfill/src/picturePolyfill.js',
-      //     exports: 'picturePolyfill'
-      // }
+      //example: {
+      //  path: path.join(folders.src, folders.assets, 'js/app/vendor/example.js' )
+      //  exports: 'Example',
+      //  depends: {
+      //    jquery: 'jQuery',
+      //  }
+      //}
     }
   },
 
-  css: {
-    preprocessor: 'scss'
-  },
+  styles: {
 
-  server: {
-    app: {
-      host: ip.address(),
-      port: 9000,
-      protocol: 'http://'
+    //have one or more preprocessors.
+    preprocessor: ['scss'],
+    folder: 'css',
+
+    css: {
+      folder: 'css',
+      main: 'main.css',
+      out: 'main.css',
     },
-    dist: {
-      host: ip.address(),
-      port: 9001,
-      protocol: 'http://'
+
+    stylus: {
+      folder: 'stylus',
+      main: 'main.styl',
+      out: 'main.css'
+    },
+
+    scss: {
+      folder: 'scss',
+      main: 'main.scss',
+      out: 'main.css'
     }
   },
+
+
+  images: {
+    folder: 'images',
+  },
+
+  fonts: {
+    folder: 'fonts',
+
+  },
+
 
   autoprefixer: {
     def: [
