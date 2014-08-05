@@ -61,7 +61,7 @@ var AppRouter = module.exports = Backbone.Router.extend({
     var link = event.currentTarget;
 
     if (link.tagName.toUpperCase() !== 'A') {
-      throw "requires an anchor element";
+      throw 'requires an anchor element';
     }
 
     var passThrough = link.hasAttribute('data-external-link');
@@ -82,7 +82,7 @@ var AppRouter = module.exports = Backbone.Router.extend({
       return;
     }
 
-    // Ignore empty anchor "foo.html#"
+    // Ignore empty anchor 'foo.html#'
     if (link.href === location.href + '#') {
       return;
     }
