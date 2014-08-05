@@ -1,4 +1,21 @@
-if (!window.CustomEvent) {
+/**
+ * [console Polyfill]
+ */
+if (typeof window.console === 'undefined') {
+  window.console = {
+    log: function() {},
+    info: function() {},
+    warn: function() {},
+    error: function() {},
+    dir: function() {}
+  };
+}
+
+
+/**
+ * [CustomEvent Polyfill]
+ */
+if (typeof window.CustomEvent === 'undefined') {
 
   window.CustomEvent = function(event, params) {
     'use strict';
@@ -8,7 +25,7 @@ if (!window.CustomEvent) {
       cancelable: false,
       detail: undefined
     };
-    evt = document.createEvent("CustomEvent");
+    evt = document.createEvent('CustomEvent');
     evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
     return evt;
   };
@@ -17,7 +34,10 @@ if (!window.CustomEvent) {
 }
 
 
-if (!Array.isArray) {
+/**
+ * [isArray Polyfill]
+ */
+if (typeof Array.isArray === 'undefined') {
   Array.isArray = function(arg) {
     'use strict';
     return Object.prototype.toString.call(arg) === '[object Array]';
@@ -25,7 +45,10 @@ if (!Array.isArray) {
 }
 
 
-if (!Function.prototype.bind) {
+/**
+ * [bind Polyfill]
+ */
+if (typeof Function.prototype.bind === 'undefined') {
   Function.prototype.bind = function(oThis) {
 
     'use strict';
@@ -36,21 +59,24 @@ if (!Function.prototype.bind) {
 
     var aArgs = Array.prototype.slice.call(arguments, 1),
       fToBind = this,
-      fNOP = function() {},
-      fBound = function() {
-        return fToBind.apply(this instanceof fNOP && oThis ? this : oThis,
+      FunctionNOP = function() {},
+      FunctionBound = function() {
+        return fToBind.apply(this instanceof FunctionNOP && oThis ? this : oThis,
           aArgs.concat(Array.prototype.slice.call(arguments)));
       };
 
-    fNOP.prototype = this.prototype;
-    fBound.prototype = new fNOP();
+    FunctionNOP.prototype = this.prototype;
+    FunctionBound.prototype = new FunctionNOP();
 
-    return fBound;
+    return FunctionBound;
   };
 }
 
 
-if (!window.requestAnimationFrame) {
+/**
+ * [requestAnimationFrame Polyfill]
+ */
+if (typeof window.requestAnimationFrame === 'undefined') {
 
   var lastTime = 0;
   var vendors = ['ms', 'moz', 'webkit', 'o'];
