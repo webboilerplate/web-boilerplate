@@ -9,6 +9,7 @@ var $ = require('gulp-load-plugins')();
 
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
+var scsslint = require('gulp-scss-lint');
 
 var ip = require('ip');
 var runSequence = require('run-sequence');
@@ -69,7 +70,7 @@ gulp.task('clean', function() {
     ], {
       read: false
     })
-    .pipe($.clean());
+    .pipe($.rimraf());
 });
 
 
@@ -144,11 +145,18 @@ gulp.task('csslint', function() {
 });
 
 
+gulp.task('scsslint', function() {
+  gulp.src([folders.src + '/' + folders.assets.scss + '/**/*.scss', '!' + folders.src + '/' + folders.assets.scss + '/vendor/**'])
+    .pipe(scsslint({
+      'config': folders.src + '/' + folders.assets.scss + '/.scss-lint.yml',
+    }));
+});
+
 // gulp.task('styles', function(cb) {
 //   //return gulp.start(config.styles.preprocessor);
 // });
 
-gulp.task('styles', ['scss', 'csslint']);
+gulp.task('styles', ['scsslint', 'scss', 'csslint']);
 
 
 
@@ -157,7 +165,7 @@ gulp.task('styles', ['scss', 'csslint']);
 *******************************************************************************/
 
 gulp.task('jshint', function() {
-  return gulp.src([folders.src + '/' + folders.assets.js + '/**/*.js', '!' + folders.src + '/' + folders.assets.js + '/vendor'])
+  return gulp.src([folders.src + '/' + folders.assets.js + '/**/*.js', '!' + folders.src + '/' + folders.assets.js + '/vendor/**'])
     .pipe($.jshint('.jshintrc'))
     .pipe($.jshint.reporter(stylish));
 });
