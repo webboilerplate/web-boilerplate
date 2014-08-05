@@ -19,6 +19,8 @@ var pkg = require('./package.json');
 
 var spritesmith = require('gulp.spritesmith');
 
+var stylish = require('jshint-stylish');
+
 var path = require('path');
 var config = require('./config');
 var folders = config.folders;
@@ -60,11 +62,10 @@ var handleErrors = function() {
 *******************************************************************************/
 gulp.task('clean', function() {
   return gulp.src([
-      folders.destAssets
-      // path.join(folders.destAssets, config.styles.css.folder),
-      // path.join(folders.destAssets, config.js.folder),
-      // path.join(folders.destAssets, config.fonts.folder),
-      // path.join(folders.destAssets, config.images.folder)
+      path.join(folders.dest, folders.assets.css),
+      path.join(folders.dest, folders.assets.js),
+      path.join(folders.dest, folders.assets.fonts),
+      path.join(folders.dest, folders.assets.images)
     ], {
       read: false
     })
@@ -78,7 +79,7 @@ gulp.task('clean', function() {
 
 
 gulp.task('scss', function() {
-  return gulp.src(folders.srcAssets + '/' + config.styles.scss.folder + '/' + config.styles.scss.main)
+  return gulp.src(folders.src + '/' + folders.assets.scss + '/' + config.styles.scss.main)
     .pipe($.plumber())
     .pipe($.sass({
       includePaths: folders.components,
@@ -86,7 +87,7 @@ gulp.task('scss', function() {
     }))
     .on('error', handleErrors)
     .pipe($.autoprefixer(config.autoprefixer.def))
-    .pipe(gulp.dest(folders.tmpAssets + '/css'))
+    .pipe(gulp.dest(folders.tmp + '/' + folders.assets.css))
     .pipe(reload({
       stream: true
     }));
@@ -94,20 +95,20 @@ gulp.task('scss', function() {
 
 
 gulp.task('compass', function() {
-  return gulp.src(folders.srcAssets + '/' + config.styles.scss.folder + '/' + config.styles.scss.main)
+  return gulp.src(folders.src + '/' + folders.assets.scss + '/' + config.styles.scss.main)
     .pipe($.plumber())
     .pipe($.compass({
-      css: folders.tmpAssets + '/' + config.styles.css.folder,
-      sass: folders.srcAssets + '/' + config.styles.scss.folder,
-      image: folders.srcAssets + '/' + config.images.folder,
-      javascripts: folders.srcAssets + '/' + config.js.folder,
-      fonts: folders.srcAssets + '/' + config.fonts.folder,
+      css: folders.tmp + '/' + folders.assets.css,
+      sass: folders.src + '/' + folders.assets.scss,
+      image: folders.src + '/' + folders.assets.images,
+      javascripts: folders.src + '/' + folders.assets.js,
+      fonts: folders.src + '/' + folders.assets.fonts,
       import_path: folders.components
       //, require: ['susy', 'modular-scale']
     }))
     .on('error', handleErrors)
     .pipe($.autoprefixer(config.autoprefixer.def))
-    .pipe(gulp.dest(folders.tmpAssets + '/css'))
+    .pipe(gulp.dest(folders.tmp + '/css'))
     .pipe(reload({
       stream: true
     }));
@@ -115,20 +116,20 @@ gulp.task('compass', function() {
 
 
 gulp.task('stylus', function() {
-  return gulp.src(folders.srcAssets + '/' + config.styles.stylus.folder + '/' + config.styles.stylus.main)
+  return gulp.src(folders.src + '/' + folders.assets.stylus + '/' + config.styles.stylus.main)
     .pipe($.plumber())
     .pipe($.stylus({
       //use: nib(),
       url: {
         name: 'embedurl',
-        paths: [__dirname + '/' + folders.srcAssets + '/' + config.images.folder],
+        paths: [__dirname + '/' + folders.src + '/' + folders.assets.images],
         limit: false
       },
       error: true
     }))
     .on('error', handleErrors)
     .pipe($.autoprefixer.apply(config.autoprefixer.def))
-    .pipe(gulp.dest(folders.tmpAssets + '/css'))
+    .pipe(gulp.dest(folders.tmp + '/' + folders.assets.css))
     .pipe(reload({
       stream: true
     }));
@@ -136,7 +137,7 @@ gulp.task('stylus', function() {
 
 
 gulp.task('csslint', function() {
-  return gulp.src(folders.tmp + '/assets/css/**/*.css')
+  return gulp.src(folders.tmp + '/' + folders.assets.css + '/**/*.css')
     .pipe($.csslint())
     .pipe($.csslint.reporter());
 });
@@ -153,14 +154,14 @@ gulp.task('styles', function(cb) {
 *******************************************************************************/
 
 gulp.task('jshint', function() {
-  return gulp.src(folders.src + 'assets/js/**/*.js')
+  return gulp.src([folders.src + '/' + folders.assets.js + '/**/*.js', '!' + folders.src + '/' + folders.assets.js + '/vendor'])
     .pipe($.jshint('.jshintrc'))
-    .pipe($.jshint.reporter($.stylish));
+    .pipe($.jshint.reporter(stylish));
 });
 
 
 gulp.task('js', function() {
-  return gulp.src(folders.src + '/assets/js/main.js')
+  return gulp.src(folders.src + '/' + folders.assets.js + '/' + config.js.main)
     .pipe($.plumber())
     .pipe($.browserify({
       insertGlobals: false,
@@ -168,8 +169,8 @@ gulp.task('js', function() {
       shim: config.shim
     }))
     .on('error', handleErrors)
-    .pipe($.rename('app.js'))
-    .pipe(gulp.dest(folders.tmp + '/assets/js'))
+    .pipe($.rename(config.js.out))
+    .pipe(gulp.dest(folders.tmp + '/' + folders.assets.js))
     .pipe(reload({
       stream: true,
       once: true
@@ -177,9 +178,10 @@ gulp.task('js', function() {
 });
 
 
+//TODO only needed if something gets processed
 gulp.task('vendor', function() {
-  return gulp.src(folders.src + '/assets/js/vendor/*.js')
-    .pipe(gulp.dest(folders.tmp + '/assets/js/vendor'));
+  return gulp.src(folders.src + '/' + folders.assets.js + '/vendor/*.js')
+    .pipe(gulp.dest(folders.tmp + '/' + folders.assets.js + '/vendor'));
 });
 
 
@@ -195,20 +197,20 @@ gulp.task('scripts', function(cb) {
 *******************************************************************************/
 
 gulp.task('images', function() {
-  return gulp.src(folders.src + '/assets/images/**/*')
+  return gulp.src(folders.src + '/' + folders.assets.images + '/**/*')
     .pipe($.cache($.imagemin({
       optimizationLevel: 3,
       progressive: true,
       interlaced: true
     })))
-    .pipe(gulp.dest(folders.src + '/assets/images'))
+    .pipe(gulp.dest(folders.src + '/' + folders.assets.images))
 
   .on('error', handleErrors);
 });
 
 
 gulp.task('sprites', function() {
-  var spriteData = gulp.src(folders.src + '/assets/images/sprites/*.png')
+  var spriteData = gulp.src(folders.src + '/' + folders.assets.sprites + '/' + config.images.sprites.src)
     .pipe(spritesmith({
       imgName: 'sprite.png',
       imgPath: '../images/sprite.png',
@@ -216,8 +218,8 @@ gulp.task('sprites', function() {
       cssName: 'sprites.scss'
     }));
 
-  spriteData.img.pipe(gulp.dest(folders.src + '/assets/images/'));
-  spriteData.css.pipe(gulp.dest(folders.src + '/assets/scss/components/utils/'));
+  spriteData.img.pipe(gulp.dest(folders.src + '/' + folders.assets.images));
+  spriteData.css.pipe(gulp.dest(folders.src + folders.assets.scss + '/components/utils/'));
 });
 
 
@@ -276,31 +278,33 @@ gulp.task('bump:major', function() {
 
 //TODO banner gets written in every vendor.
 gulp.task('js:dist', function() {
-  return gulp.src(folders.tmp + '/assets/js/**/*.js')
+  return gulp.src(folders.tmp + '/' + folders.assets.js + '/**/*.js')
     .pipe($.uglify())
     .pipe($.header(banner, {
       pkg: pkg
     }))
-    .pipe(gulp.dest(folders.dest + '/assets/js'));
+    .pipe(gulp.dest(folders.dest + '/' + folders.assets.js));
 });
 
 gulp.task('css:dist', function() {
-  return gulp.src(folders.tmp + '/assets/css/**/*.css')
-    .pipe($.minifyCss())
+  return gulp.src(folders.tmp + '/' + folders.assets.css + '/**/*.css')
+    .pipe($.minifyCss({
+      keepSpecialComments: 0
+    }))
     .pipe($.header(banner, {
       pkg: pkg
     }))
-    .pipe(gulp.dest(folders.dest + '/assets/css'));
+    .pipe(gulp.dest(folders.dest + '/' + folders.assets.css));
 });
 
 gulp.task('fonts:dist', function() {
-  return gulp.src(folders.src + '/assets/fonts/**/*')
+  return gulp.src(folders.src + '/' + folders.assets.fonts + '/**/*')
     .pipe(gulp.dest(folders.dest + '/assets/fonts'));
 });
 
 gulp.task('images:dist', function() {
-  return gulp.src([folders.src + '/assets/images/**/*', '!' + folders.src + '/assets/images/sprites'])
-    .pipe(gulp.dest(folders.dest + '/assets/images'));
+  return gulp.src([folders.src + '/' + folders.assets.images + '/**/*', '!' + folders.src + '/' + folders.assets.sprites])
+    .pipe(gulp.dest(folders.dest + '/' + folders.assets.images));
 });
 
 gulp.task('html:tmp:dist', function() {
@@ -309,7 +313,7 @@ gulp.task('html:tmp:dist', function() {
 });
 
 gulp.task('html:src:dist', function() {
-  return gulp.src([folders.src + '/*.*', folders.src + '/**/*.{html,shtml,php,xml,json}', '!' + folders.bower + '/**/*', '!' + folders.srcAssets + '/js/**/*'])
+  return gulp.src([folders.src + '/*.*', folders.src + '/**/*.{html,shtml,php,xml,json}', '!' + folders.bower + '/**/*', '!' + folders.src + '/' + folders.assets.js + '/**/*'])
     .pipe(gulp.dest(folders.dest));
 });
 
@@ -331,7 +335,7 @@ gulp.task('deploy', ['dist'], function(cb) {
     src: './dist/',
     exclude: ['.git', '.DS_Store', '.gitattributes', '.gitignore'],
     ssh: true,
-    dest: config.rsync.dest,
+    dest: config.deploy.ssh.dest,
     recursive: true,
     syncDestIgnoreExcl: true,
     dryRun: false
@@ -373,8 +377,11 @@ gulp.task('pagespeed', pagespeed.bind(null, {
 
 // Build and serve the output from the dist build
 gulp.task('serve:dist', ['dist'], function() {
+  var openBrowserWindow = !($.util.env.restart || false);
+
   browserSync({
     notify: false,
+    open: openBrowserWindow,
     server: {
       baseDir: folders.dest
     }
@@ -399,22 +406,22 @@ gulp.task('watch', function() {
   gulp.watch([folders.src + '/**/*.{html,shtml,php,xml,json}'], reload);
 
   // Watch .scss files
-  gulp.watch(folders.src + '/assets/scss/**/*.scss', ['scss']);
+  gulp.watch(folders.src + '/' + folders.assets.scss + '/**/*.scss', ['scss']);
 
   // Watch .stylus files
-  gulp.watch(folders.src + '/assets/stylus/**/*.styl', ['stylus']);
-
-  // Watch .css files
-  //gulp.watch(['{.tmp,app}/assets/css/**/*.css'], ['autoprefixer', reload]);
+  gulp.watch(folders.src + '/' + folders.assets.stylus + '/**/*.styl', ['stylus']);
 
   // Watch .js files
-  gulp.watch([folders.src + '/assets/js/**/*.js'], ['js']);
+  gulp.watch([folders.src + '/' + folders.assets.js + '/**/*.js'], ['js']);
 
   // Watch .jade files
-  gulp.watch(folders.src + '/jade/**/*.jade', ['jade']);
+  gulp.watch(folders.src + '/' + folders.jade + '/**/*.jade', ['jade']);
 
   // Watch image files
   // gulp.watch(folders.src + '/assets/images/**/*', ['images']);
+  //
+  // Watch sprite changes
+  gulp.watch(folders.src + '/' + folders.assets.sprites + '/*.png', ['sprites']);
 
 });
 
@@ -422,5 +429,6 @@ gulp.task('watch', function() {
 gulp.task('default', function() {
   gulp.start('scripts', 'images', 'styles');
 });
+
 
 gulp.task('dev', ['default', 'watch']);
