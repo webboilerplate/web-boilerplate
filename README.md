@@ -1,5 +1,4 @@
-Web Boilerplate
-===============
+# Web Boilerplate
 
 Web Boilerplate is a starting point for platform agnostic web development.   
 
