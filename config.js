@@ -8,14 +8,28 @@ var folders = {
   src: 'src',
   dest: 'dist',
   tmp: '.tmp',
-  assets: 'assets',
+
+  jade: 'assets/jade',
+
+  assets: {
+    root: 'assets',
+    images: 'assets/images',
+    sprites: 'assets/images/sprites',
+    fonts: 'assets/fonts',
+    js: 'assets/js',
+    css: 'assets/css',
+    scss: 'assets/scss',
+    stylus: 'assets/stylus'
+  },
+
   components: 'src/assets/components',
 };
 
 
-folders.tmpAssets = path.join(folders.tmp, folders.assets);
-folders.srcAssets = path.join(folders.src, folders.assets);
-folders.destAssets = path.join(folders.dest, folders.assets);
+// folders.tmpAssets = path.join(folders.tmp, folders.assets.root) + '/';
+// folders.srcAssets = path.join(folders.src, folders.assets.root) + '/';
+// folders.destAssets = path.join(folders.dest, folders.assets.root) + '/';
+
 
 module.exports = {
 
@@ -23,7 +37,6 @@ module.exports = {
 
   js: {
 
-    folder: 'js',
     main: 'main.js',
     out: 'app.js',
 
@@ -38,26 +51,23 @@ module.exports = {
     }
   },
 
+
   styles: {
 
     //have one or more preprocessors.
     preprocessor: ['scss'],
-    folder: 'css',
 
     css: {
-      folder: 'css',
       main: 'main.css',
       out: 'main.css',
     },
 
     stylus: {
-      folder: 'stylus',
       main: 'main.styl',
       out: 'main.css'
     },
 
     scss: {
-      folder: 'scss',
       main: 'main.scss',
       out: 'main.css'
     }
@@ -65,14 +75,10 @@ module.exports = {
 
 
   images: {
-    folder: 'images',
+    sprites: {
+      src: '*.png'
+    }
   },
-
-  fonts: {
-    folder: 'fonts',
-
-  },
-
 
   autoprefixer: {
     def: [
@@ -95,7 +101,7 @@ module.exports = {
   },
 
   deploy: {
-    rsync: {
+    ssh: {
       dest: env === 'development' ? 'user@server.com:/var/www/dev/' : 'user@server.com:/var/www/live/'
     }
   }
