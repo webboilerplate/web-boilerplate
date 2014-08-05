@@ -135,7 +135,8 @@ gulp.task('stylus', function() {
     }));
 });
 
-
+// for rules see
+// https://github.com/CSSLint/csslint/wiki/Rules-by-ID
 gulp.task('csslint', function() {
   return gulp.src(folders.tmp + '/' + folders.assets.css + '/**/*.css')
     .pipe($.csslint())
@@ -143,9 +144,11 @@ gulp.task('csslint', function() {
 });
 
 
-gulp.task('styles', function(cb) {
-  return gulp.start(config.styles.preprocessor);
-});
+// gulp.task('styles', function(cb) {
+//   //return gulp.start(config.styles.preprocessor);
+// });
+
+gulp.task('styles', ['scss', 'csslint']);
 
 
 
