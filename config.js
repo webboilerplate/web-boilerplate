@@ -1,7 +1,6 @@
 'use strict';
 
 var env = process.env.NODE_ENV ||  'development';
-var ip = require('ip');
 var path = require('path');
 
 var folders = {
@@ -14,7 +13,7 @@ var folders = {
   assets: {
     root: 'assets',
     images: 'assets/images',
-    sprites: 'assets/images/sprites',
+    sprites: 'assets/images/_sprites',
     fonts: 'assets/fonts',
     js: 'assets/js',
     css: 'assets/css',
@@ -24,11 +23,6 @@ var folders = {
 
   components: 'src/assets/components',
 };
-
-
-// folders.tmpAssets = path.join(folders.tmp, folders.assets.root) + '/';
-// folders.srcAssets = path.join(folders.src, folders.assets.root) + '/';
-// folders.destAssets = path.join(folders.dest, folders.assets.root) + '/';
 
 
 module.exports = {
@@ -41,13 +35,17 @@ module.exports = {
     out: 'app.js',
 
     shim: {
-      //example: {
-      //  path: path.join(folders.src, folders.assets, 'js/app/vendor/example.js' )
-      //  exports: 'Example',
-      //  depends: {
-      //    jquery: 'jQuery',
-      //  }
-      //}
+      /*picturefill: {
+        path: folders.components + '/picturefill/src/picturefill.js',
+        exports: 'picturefill'
+      },
+      fixedsticky: {
+        path: folders.src + '/assets/js/app/libs/fixedsticky.js',
+        exports: 'fixedsticky',
+        depends: {
+          jquery: 'jQuery',
+        }
+      }*/
     }
   },
 
@@ -82,12 +80,12 @@ module.exports = {
 
   autoprefixer: {
     def: [
-      'ie >= 9',
+      'ie >= 8',
       'ie_mob >= 9',
-      'ff >= 30',
-      'chrome >= 30',
-      'safari >= 7',
-      'opera >= 23',
+      'ff >= 12',
+      'chrome >= 20',
+      'safari >= 5',
+      'opera >= 1',
       'ios >= 6',
       'android >= 3.0',
       'bb >= 10'
