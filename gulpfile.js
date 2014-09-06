@@ -228,7 +228,7 @@ gulp.task('sprite', function() {
       imgPath: '../images/sprite.png',
       cssName: 'sprites.scss',
       padding: 40,
-      cssTemplate: './spritesmith-template.mustache',
+      cssTemplate: './lib/spritesmith-template.mustache',
       cssVarMap: function(sprite) {
         sprite.image = sprite.image.replace('.png', '');
       },
