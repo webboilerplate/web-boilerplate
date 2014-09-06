@@ -1,15 +1,15 @@
 {
-    "folders":
-    [
-        {
-            "follow_symlinks": true,
-            "path": ".",
-            "folder_exclude_patterns": [ ".tmp", "dist", "material" ]
-        }
-    ],
-
-    "ternjs": {
-            "exclude": [ ".tmp/**", "dist/**", "test/**", "material/**", "node_modules/**" ],
-            "libs": [ "browser", "underscore", "jquery", "ecma5" ]
+  "folders":
+  [
+    {
+      "follow_symlinks": true,
+      "path": ".",
+      "folder_exclude_patterns": [ ".tmp", "dist", "material", "node_modules" ]
     }
+  ],
+
+  "ternjs": {
+    "exclude": [ ".tmp/**", "dist/**", "test/**", "material/**", "node_modules/**", "src/assets/components/**" ],
+    "libs": [ "browser", "underscore", "jquery", "ecma5" ]
+  }
 }
