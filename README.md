@@ -54,4 +54,5 @@ gulp deploy
 * https://github.com/styleguide/css
 * https://github.com/necolas/idiomatic-css
 * http://codeguide.co/
+* http://paulrobertlloyd.com/about/styleguide/
 
