@@ -2,4 +2,4 @@ linters:
 
   Indentation:
     enabled: false
-    width: 4
+    width: 2
