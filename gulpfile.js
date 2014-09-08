@@ -143,6 +143,7 @@ gulp.task('scsslint', function() {
     }));
 });
 
+
 gulp.task('stylestats', function() {
   return gulp.src(folders.tmp + '/' + folders.assets.css + '/main.css')
     .pipe($.stylestats());
@@ -228,7 +229,7 @@ gulp.task('sprite', function() {
       imgPath: '../images/sprite.png',
       cssName: 'sprites.scss',
       padding: 40,
-      cssTemplate: './lib/spritesmith-template.mustache',
+      cssTemplate: './lib/spritesmith.scss.tpl.mustache',
       cssVarMap: function(sprite) {
         sprite.image = sprite.image.replace('.png', '');
       },
