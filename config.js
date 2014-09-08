@@ -53,7 +53,7 @@ module.exports = {
   styles: {
 
     //have one or more preprocessors.
-    preprocessor: ['scss'],
+    preprocessor: ['stylus'],
 
     css: {
       main: 'main.css',
@@ -92,9 +92,9 @@ module.exports = {
     ],
 
     mobile: [
-      'last 1 version',
+      'last 2 version',
       'ios 6',
-      'android 4'
+      'android 3'
     ]
   },
 
