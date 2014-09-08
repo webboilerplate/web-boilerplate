@@ -2,7 +2,7 @@
 
 require('./app/util/error')();
 
-var domReady = require('domready');
+var domReady = require('./lib/domready');
 var fastdom = require('fastdom');
 var FastClick = require('fastclick');
 var polyfills = require('./polyfills');
