@@ -19,7 +19,6 @@ var rsync = require('rsyncwrapper').rsync;
 var pkg = require('./package.json');
 
 var spritesmith = require('gulp.spritesmith');
-var combineMediaQueries = require('gulp-combine-media-queries');
 
 var stylish = require('jshint-stylish');
 
@@ -95,9 +94,6 @@ gulp.task('scss', function() {
       outputStyle: 'expanded'
     }))
     .on('error', handleErrors)
-    .pipe(combineMediaQueries({
-      log: true
-    }))
     .pipe($.autoprefixer(config.autoprefixer.def))
     .pipe(gulp.dest(folders.tmp + '/' + folders.assets.css))
     .pipe(reload({
@@ -171,9 +167,22 @@ gulp.task('stylestats', function() {
     .pipe($.stylestats());
 });
 
-//TODO gulp-if
-gulp.task('styles', ['scsslint', 'scss', 'csslint']);
-gulp.task('styles', ['stylus', 'csslint']);
+
+gulp.task('styles', function(cb) {
+
+  switch (config.styles.preprocessor) {
+    case 'scss':
+      runSequence('scsslint', 'scss', 'csslint', cb);
+      break;
+    case 'stylus':
+      runSequence('stylus', 'csslint', cb);
+      break;
+    default:
+    cb();
+  }
+});
+
+
 
 
 
@@ -194,9 +203,8 @@ gulp.task('js', function() {
     .pipe($.browserify({
       insertGlobals: false,
       debug: true,
-      shim: config.js.shim
       // transform: ['jstify', 'debowerify', 'decomponentify', 'deamdify', 'deglobalify'],
-      // transform: ['jstify'],
+      shim: config.js.shim
     }))
     .on('error', handleErrors)
     .pipe($.rename(config.js.out))
@@ -209,7 +217,7 @@ gulp.task('js', function() {
 
 
 gulp.task('scripts', function(cb) {
-  return runSequence('jshint', 'js', cb);
+  runSequence('jshint', 'js', cb);
 });
 
 
@@ -226,18 +234,18 @@ gulp.task('images', function() {
       progressive: true,
       interlaced: true
     })))
-    .pipe(gulp.dest(folders.tmp + '/' + folders.assets.images))
+    .on('error', handleErrors)
+    .pipe(gulp.dest(folders.tmp + '/' + folders.assets.images));
 
-  .on('error', handleErrors);
 });
 
 
 gulp.task('sprite@2x', function() {
-  var spriteData = gulp.src(folders.src + '/' + folders.assets.sprites + '/*@2x.png')
+  var spriteData = gulp.src(folders.src + '/' + folders.assets.sprites + '/*@2x.{png,jpg,gif}')
     .pipe(spritesmith({
       imgName: 'sprite@2x.png',
       imgPath: '../images/sprite@2x.png',
-      padding: 80,
+      padding: 20,
       cssName: 'sprites-2x.scss'
     }));
 
@@ -246,26 +254,26 @@ gulp.task('sprite@2x', function() {
 
 
 gulp.task('sprite', function() {
-  var spriteData = gulp.src([folders.src + '/' + folders.assets.sprites + '/*.png', '!' + folders.src + '/' + folders.assets.sprites + '/*@2x.png'])
+  var spriteData = gulp.src([folders.src + '/' + folders.assets.sprites + '/*.{png,jpg,gif}', '!' + folders.src + '/' + folders.assets.sprites + '/*@2x.{png,jpg,gif}'])
     .pipe(spritesmith({
       imgName: 'sprite.png',
       imgPath: '../images/sprite.png',
       cssName: 'sprites.scss',
-      padding: 40,
-      cssTemplate: './lib/spritesmith.scss.tpl.mustache',
+      padding: 10,
+      cssTemplate: config.styles.preprocessor === 'scss' ? './lib/spritesmith.scss.tpl.mustache' : './lib/spritesmith.spritesmith.stylus.tpl.mustache',
       cssVarMap: function(sprite) {
         sprite.image = sprite.image.replace('.png', '');
       },
     }));
 
   spriteData.img.pipe(gulp.dest(folders.tmp + '/' + folders.assets.images));
-  return spriteData.css.pipe(gulp.dest(folders.src + '/' + folders.assets.scss + '/app/utils/'));
+  return spriteData.css.pipe(gulp.dest(folders.src + '/' + folders.assets.scss + '/app/sprite/'));
 
 });
 
 
 gulp.task('sprites', function(cb) {
-  return runSequence(['sprite@2x', 'sprite'], cb);
+  runSequence(['sprite@2x', 'sprite'], cb);
 });
 
 
@@ -345,6 +353,7 @@ gulp.task('js:dist', function() {
 gulp.task('vendor:dist', function() {
   return gulp.src(folders.src + '/' + folders.assets.js + '/vendor/*.js')
     .pipe($.uglify())
+    .pipe($.ignore.include(folders.tmp + '/' + folders.assets.js + '/vendor/*.htc'))
     .pipe(gulp.dest(folders.dest + '/' + folders.assets.js + '/vendor'));
 });
 
@@ -353,8 +362,8 @@ gulp.task('css:dist', function() {
   return gulp.src(folders.tmp + '/' + folders.assets.css + '/**/*.css')
     .pipe($.minifyCss({
       // noRebase: true,
-      noAdvanced: true,
-      keepSpecialComments: 0,
+      // noAdvanced: true,
+      // keepSpecialComments: 0,
       // compatibility: 'ie8'
     }))
     .pipe($.header(banner, {
@@ -385,7 +394,7 @@ gulp.task('html:src:dist', function() {
 });
 
 gulp.task('dist', function(cb) {
-  runSequence('clean', 'default', ['js:dist', 'vendor:dist', 'css:dist', 'fonts:dist', 'images:dist', 'pkg:dist'], 'html:src:dist', 'html:tmp:dist', 'htaccess:dist', cb);
+  runSequence('clean', 'default', ['js:dist', 'vendor:dist', 'css:dist', 'fonts:dist', 'images:dist', 'pkg:dist'], 'html:src:dist', 'html:tmp:dist', cb);
 });
 
 gulp.task('dist:bump', ['bump:patch', 'dist']);
@@ -489,7 +498,7 @@ gulp.task('watch', function() {
   gulp.watch(folders.src + '/' + folders.jade + '/**/*.jade', ['jade']);
 
   // Watch sprite changes
-  gulp.watch(folders.src + '/' + folders.assets.sprites + '/*.png', ['sprites', reload]);
+  gulp.watch(folders.src + '/' + folders.assets.sprites + '/*.{png,jpg,gif}', ['sprites', reload]);
 
   // Watch image files
   // gulp.watch(folders.src + '/assets/images/**/*', ['images']);
@@ -501,9 +510,9 @@ gulp.task('watch', function() {
 
 
 gulp.task('default', function(cb) {
-  return runSequence('sprites', ['scripts', 'styles'], cb);
+  runSequence('sprites', ['scripts', 'styles'], cb);
 });
 
 gulp.task('dev', function(cb) {
-  return runSequence('default', 'watch', cb);
+  runSequence('default', 'watch', cb);
 });
