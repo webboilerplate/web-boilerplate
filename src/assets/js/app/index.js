@@ -1,20 +1,14 @@
 'use strict';
 
-
-var Backbone = require('backbone');
-var _ = require('underscore');
-var $ = Backbone.$ = require('jquery');
-
-var AppRouter = require('./routes/app-router');
-
 var App = function() {};
 
-var _initialized = false;
 
 
 App.prototype = {
 
   name: 'Web Boilerplate',
+
+  _initialized: false,
 
   model: {},
   view: {},
@@ -25,25 +19,15 @@ App.prototype = {
 
   initialize: function() {
 
-    if (!_initialized) {
-
-      _initialized = true;
-
-      this.routes.AppRouter = new AppRouter();
-
-      Backbone.history.start({
-        pushState: (window.history && window.history.pushState),
-        root: this.root
-      });
+    if (!this._initialized) {
+      this._initialized = true;
 
       //TODO initialize
-
     }
   },
 
   start: function() {
-    if (!_initialized) {
-
+    if (!this._initialized) {
       this.initialize();
     }
   },
@@ -53,4 +37,4 @@ App.prototype = {
   }
 };
 
-module.exports = new App();
+module.exports = App;

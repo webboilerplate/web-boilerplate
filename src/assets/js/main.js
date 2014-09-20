@@ -5,16 +5,17 @@ var fastdom = require('fastdom');
 var FastClick = require('fastclick');
 var polyfills = require('./polyfills');
 
-var app = require('./app');
+var loadTimeout = 0;
+
+var App = require('./app');
+var app = new App();
+
 console.log('Moin Moin and welcome to ' + app.name);
-
-
-var startTimeOut = 0;
 
 var onLoad = function() {
 
-  if (startTimeOut) {
-    clearTimeout(startTimeOut);
+  if (loadTimeout) {
+    clearTimeout(loadTimeout);
   }
 
   app.start();
@@ -30,6 +31,6 @@ var onLoad = function() {
 if (document.readyState === 'complete') {
   domReady(onLoad);
 } else {
-  startTimeOut = setTimeout(onLoad, 2600);
+  loadTimeout = setTimeout(onLoad, 2600);
   window.onload = onLoad;
 }
