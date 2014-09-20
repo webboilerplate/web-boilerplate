@@ -1,2 +1,2 @@
 put your external scripts here
-this folder is beeing deployed to /assets/js/vendor
+this folder is deployed to /assets/js/vendor
