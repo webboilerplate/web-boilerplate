@@ -22,8 +22,7 @@ npm start
 ```
 or:
 ```
-gulp default
-gulp watch
+gulp dev
 ```
 ###distribute:
 ```
