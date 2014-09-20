@@ -18,5 +18,5 @@
   "strict": true,
   "trailing": true,
   "smarttabs": true,
-  "predef": ["require", "define", "alert"]
+  "predef": ["require", "define"]
 }
