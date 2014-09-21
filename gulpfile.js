@@ -128,6 +128,12 @@ gulp.task('stylus', function() {
     .pipe($.plumber())
     .pipe($.stylus({
       //use: nib(),
+      linenos: true,
+      sourcemap: {
+        inline: true,
+        sourceRoot: '..',
+        basePath: 'css'
+      },
       url: {
         name: 'embedurl',
         paths: [__dirname + '/' + folders.src + '/' + folders.assets.images],
@@ -178,7 +184,7 @@ gulp.task('styles', function(cb) {
       runSequence('stylus', 'csslint', cb);
       break;
     default:
-    cb();
+      cb();
   }
 });
 
@@ -267,7 +273,7 @@ gulp.task('sprite', function() {
     }));
 
   spriteData.img.pipe(gulp.dest(folders.tmp + '/' + folders.assets.images));
-  return spriteData.css.pipe(gulp.dest(folders.src + '/' + folders.assets.scss + '/app/sprite/'));
+  return spriteData.css.pipe(gulp.dest(folders.src + '/' + folders.assets.scss + '/app/utils/'));
 
 });
 
