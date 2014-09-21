@@ -28,14 +28,23 @@
 
 
 // breakpoint
-// example @include breakpoint(940) { width:80%; }
+// example @include bp(940px) { width:80%; }
 //
 @mixin bp($size, $mobile-first : false) {
   @if ($mobile-first == true ){
-    @media only screen and (min-width: $size + px) { @content; }
+    @media only screen and (min-width: $size) { @content; }
   }
   @else{
-    @media only screen and (max-width: $size + px) { @content; }
+    @media only screen and (max-width: $size) { @content; }
+  }
+}
+//alias for bp
+@mixin when($size, $mobile-first : false) {
+  @if ($mobile-first == true ){
+    @media only screen and (min-width: $size) { @content; }
+  }
+  @else{
+    @media only screen and (max-width: $size) { @content; }
   }
 }
 
@@ -98,7 +107,7 @@
 //     @include rem(padding, 20px);
 //   }
 //
-@mixin rem ($property, $values, $main-font-size: 16px) {
+@mixin rem ($property, $values, $main-font-size: 12px) {
 
   // Empty list for all values in px
   $px-values: ();

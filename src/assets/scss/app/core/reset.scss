@@ -4,8 +4,10 @@ picture {
     margin: 0;
     padding: 0;
     border: 0;
-    outline: 0;
     display: block;
+    &:focus {
+      outline: 0;
+    }
 }
 
 //button reset
@@ -16,18 +18,21 @@ button {
     padding: 0;
     width: auto;
     overflow: visible;
-    outline: none;
+    line-height: auto;
     font: inherit;
     -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+
+    &:focus {
+      outline: 0;
+    }
+
+    @media print {
+      display: none;
+    }
 }
 
-//font reset
- h1, h2, h3, h4, h5, b, strong {
-    margin: 0;
-    font-weight: 300;
-    letter-spacing: 1px;
-    line-height: 1.5;
-}
 
 //a reset
 a {
@@ -37,7 +42,7 @@ a {
         border-bottom: 1px solid #767d90;
         padding: 0 3px 1px;
         &:hover {
-            border-bottom: 1px solid white;
+            border-bottom: 1px solid;
         }
     }
 }
@@ -45,14 +50,4 @@ a {
 address {
     display: inline;
     font-style: normal;
-}
-
-//outlining the nav with invisible headlines
-nav {
-    h1, h2, h3, h4 {
-        font-size: 0;
-        visibility: hidden;
-        margin: 0;
-        padding:0;
-    }
 }

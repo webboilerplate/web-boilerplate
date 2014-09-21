@@ -12,10 +12,14 @@
     transform-style: preserve-3d;
 }
 
+.cf,
 .clearfix {
   @include cf();
 }
 
+.nowrap {
+  white-space: nowrap;
+}
 
 
 /**
