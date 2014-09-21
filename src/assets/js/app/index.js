@@ -1,8 +1,9 @@
 'use strict';
 
+//basic polyfills needed in almost every project
+//var polyfills = require('./polyfills');
+
 var App = function() {};
-
-
 
 App.prototype = {
 
@@ -21,6 +22,8 @@ App.prototype = {
 
     if (!this._initialized) {
       this._initialized = true;
+
+      console.log('Moin Moin and welcome to ' + this.name);
 
       //TODO initialize
     }

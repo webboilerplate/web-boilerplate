@@ -3,14 +3,10 @@
 var domReady = require('./lib/domready');
 var fastdom = require('fastdom');
 var FastClick = require('fastclick');
-var polyfills = require('./polyfills');
 
 var loadTimeout = 0;
 
 var App = require('./app');
-var app = new App();
-
-console.log('Moin Moin and welcome to ' + app.name);
 
 var onLoad = function() {
 
@@ -18,9 +14,10 @@ var onLoad = function() {
     clearTimeout(loadTimeout);
   }
 
+  var app = new App();
   app.start();
 
-  var fastClick = new FastClick(document.body, {});
+  new FastClick(document.body, {});
 
   fastdom.write(function() {
     document.body.classList.add('loaded');
