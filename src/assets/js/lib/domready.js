@@ -11,7 +11,7 @@
 'use strict';
 
 var isTop, testDiv, scrollIntervalId,
-  isBrowser = typeof window !== "undefined" && window.document,
+  isBrowser = typeof window !== 'undefined' && window.document,
   isPageLoaded = !isBrowser,
   doc = isBrowser ? document : null,
   readyCalls = [];
@@ -53,10 +53,10 @@ if (isBrowser) {
   if (document.addEventListener) {
     //Standards. Hooray! Assumption here that if standards based,
     //it knows about DOMContentLoaded.
-    document.addEventListener("DOMContentLoaded", pageLoaded, false);
-    window.addEventListener("load", pageLoaded, false);
+    document.addEventListener('DOMContentLoaded', pageLoaded, false);
+    window.addEventListener('load', pageLoaded, false);
   } else if (window.attachEvent) {
-    window.attachEvent("onload", pageLoaded);
+    window.attachEvent('onload', pageLoaded);
 
     testDiv = document.createElement('div');
     try {
@@ -77,17 +77,17 @@ if (isBrowser) {
   }
 
   //Check if document already complete, and if so, just trigger page load
-  //listeners. Latest webkit browsers also use "interactive", and
-  //will fire the onDOMContentLoaded before "interactive" but not after
-  //entering "interactive" or "complete". More details:
+  //listeners. Latest webkit browsers also use 'interactive', and
+  //will fire the onDOMContentLoaded before 'interactive' but not after
+  //entering 'interactive' or 'complete'. More details:
   //http://dev.w3.org/html5/spec/the-end.html#the-end
   //http://stackoverflow.com/questions/3665561/document-readystate-of-interactive-vs-ondomcontentloaded
-  //Hmm, this is more complicated on further use, see "firing too early"
+  //Hmm, this is more complicated on further use, see 'firing too early'
   //bug: https://github.com/requirejs/domReady/issues/1
-  //so removing the || document.readyState === "interactive" test.
+  //so removing the || document.readyState === 'interactive' test.
   //There is still a window.onload binding that should get fired if
   //DOMContentLoaded is missed.
-  if (document.readyState === "complete") {
+  if (document.readyState === 'complete') {
     pageLoaded();
   }
 }
