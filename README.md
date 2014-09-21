@@ -43,9 +43,6 @@ gulp deploy
 
 
 ##Roadmap
-* optimize / finalize folder config
-* implement touch features
-* swipe through the pages
 
 
 ##Frontend Coding Guidelines
