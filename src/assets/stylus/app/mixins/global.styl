@@ -1,0 +1,192 @@
+//pushes the target to its own render layer on the gpu
+layer()
+  -webkit-backface-visibility: hidden
+  -moz-backface-visibility: hidden
+  backface-visibility: hidden
+
+layer-reset()
+  -webkit-backface-visibility: initial
+  -moz-backface-visibility: initial
+  backface-visibility: initial
+
+// pushes the target to its own render layer on the gpu
+gpu()
+  transform: translateZ(0)
+  backface-visibility: hidden
+  transform-style: preserve-3d
+
+gpu-reset()
+  transform: none
+  perspective: none
+  backface-visibility: initial
+
+
+
+when($size, $mobilefirst = false)
+  if $mobilefirst
+    condition = 'screen and (min-width: %s)' % $size
+  else
+    condition = 'screen and (max-width: %s)' % $size
+  @media condition
+    {block}
+
+
+bp($size, $mobilefirst = false)
+  if $mobilefirst
+    condition = 'screen and (min-width: %s)' % $size
+  else
+    condition = 'screen and (max-width: %s)' % $size
+  @media condition
+    {block}
+
+
+// size
+size($width, $height = $width)
+  width: $width
+  height: $height
+
+// placeholder
+placeholder($color = $text-color, $alpha = 0.8)
+  &::-webkit-input-placeholder
+    color: rgba($color, $alpha)
+  /* WebKit browsers */
+  &:-moz-placeholder
+    color: rgba($color, 1)
+  /* Mozilla Firefox 4 to 18 */
+  &::-moz-placeholder
+    color: rgba($color, 1)
+  /* Mozilla Firefox 19+ */
+  &:-ms-input-placeholder
+    color: rgba($color, $alpha)
+  /* Internet Explorer 10+ */
+
+
+// Text ellipsis
+// Requires inline-block or block for proper styling
+text-ellipsis()
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+
+
+// @font-face mixin
+// Order of the includes matters, and it is: normal, bold, italic, bold+italic.
+// Forked from Bourbon. https://github.com/thoughtbot/bourbon/
+font-face($font-family, $file-path, $weight = normal, $style = normal)
+  @font-face
+    font-family: $font-family
+    font-weight: $weight
+    font-style: $style
+    src: url("{$file-path}.eot")
+    src: url("{$file-path}.eot?#iefix") format("embedded-opentype"), url("{$file-path}.woff") format("woff"), url("{$file-path}.ttf") format("truetype"), url("{$file-path}.svg#{$font-family}") format("svg")
+
+
+// Mixin for cross browser inline-block
+// http://blog.mozilla.org/webdev/2009/02/20/cross-browser-inline-block/
+// ------------------
+inline-block()
+  display: -moz-inline-stack
+  -moz-box-orient: vertical
+  display: inline-block
+  *display: inline
+  vertical-align: top
+  *zoom: 1
+
+//alias
+ib()
+  inline-block()
+
+// Clearfix
+cf()
+  *zoom: 1
+  &:before, &:after
+    content: ''
+    display: table
+  &:after
+    clear: both
+
+
+// Horizontal/Vertical/Both Alignment - Parent container needs position relative. IE9+
+align($direction = both)
+  position: absolute
+  transform-style: preserve-3d
+  if $direction == horizontal or $direction == h
+    left: 50%
+    transform: translateX(-50%)
+  else if $direction == vertical or $direction == v
+    top: 50%
+    transform: translateY(-50%)
+  else
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+
+
+//cut mulktiline text and fill with …
+line-clamp($numLines = 1, $lineHeight = 1.412)
+  overflow: hidden
+  text-overflow: -o-ellipsis-lastline
+  text-overflow: ellipsis
+  display: block
+  display: -webkit-box
+  box-orient: vertical
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: $numLines
+  max-height: ($numLines * $lineHeight + unquote("em"))
+
+
+
+// DRAW
+// circles
+circle($size = 0)
+  border-radius: 50%
+  height: auto
+  padding-bottom: (0% + $size)
+  width: (0% + $size)
+
+// square
+square($size = 0)
+  height: auto
+  padding-bottom: (0% + $size)
+  width: (0% + $size)
+
+// rectangle
+rectangle($size = 0)
+  height: 0
+  padding-bottom: (0% + $size / 3 * 2)
+  width: (0% + $size)
+
+// arrow
+arrow($direction, $color, $size)
+  $px-size = $size + px
+  $rem-size = $size / 10 + rem
+  width: 0
+  height: 0
+  if $direction == "left"
+    border-top: $px-size solid transparent
+    border-right: $px-size solid $color
+    border-bottom: $px-size solid transparent
+    border-top: $rem-size solid transparent
+    border-right: $rem-size solid $color
+    border-bottom: $rem-size solid transparent
+  else if $direction == "right"
+    border-top: $px-size solid transparent
+    border-bottom: $px-size solid transparent
+    border-left: $px-size solid $color
+    border-top: $rem-size solid transparent
+    border-bottom: $rem-size solid transparent
+    border-left: $rem-size solid $color
+  else if $direction == "up"
+    border-left: $px-size solid transparent
+    border-right: $px-size solid transparent
+    border-bottom: $px-size solid $color
+    border-left: $rem-size solid transparent
+    border-right: $rem-size solid transparent
+    border-bottom: $rem-size solid $color
+  else if $direction == "down"
+    border-left: $px-size solid transparent
+    border-right: $px-size solid transparent
+    border-top: $px-size solid $color
+    border-left: $rem-size solid transparent
+    border-right: $rem-size solid transparent
+    border-top: $rem-size solid $color
