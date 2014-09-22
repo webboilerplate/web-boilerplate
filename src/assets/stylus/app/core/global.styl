@@ -8,6 +8,10 @@ button
   font-smoothing: antialiased
   text-rendering: optimizeLegibility
 
+  .android,
+  .android &
+    text-rendering: auto
+
 
 .container
   margin: 0 auto
@@ -193,9 +197,12 @@ footer[role="contentinfo"]
   line-height: 20
   background: #E26A6A
   +bp(568px)
-    min-height 120%
-    padding-top: 16rem
+    min-height 100%
+    padding-top: 15.5rem
     padding-bottom: 4rem
     line-height: 1.412
+    .ios &
+      min-height 120%
+
 
 
