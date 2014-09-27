@@ -10,7 +10,7 @@ Thumbs.db
 .idea
 npm-debug.log
 
-# Project folders to ignore
+# Project folders / files to ignore
 node_modules
 /material
 /dist
@@ -20,3 +20,4 @@ node_modules
 /test/assets/components
 /test/bower_components
 /TODO
+/.package.sha1
