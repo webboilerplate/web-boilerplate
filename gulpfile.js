@@ -10,7 +10,7 @@ var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var scsslint = require('gulp-scss-lint');
-
+var del = require('del');
 
 var runSequence = require('run-sequence');
 var pagespeed = require('psi');
@@ -64,21 +64,11 @@ var handleErrors = function() {
 /*******************************************************************************
     CLEAN DEST TASK
 *******************************************************************************/
-gulp.task('clean', function() {
-  return gulp.src(folders.dest, {
-      read: false
-    })
-    .pipe($.rimraf());
-  /*return gulp.src([
-      path.join(folders.dest, folders.assets.css),
-      path.join(folders.dest, folders.assets.js),
-      path.join(folders.dest, folders.assets.fonts),
-      path.join(folders.dest, folders.assets.images)
-    ], {
-      read: false
-    })
-    .pipe($.rimraf());*/
-});
+// delete the dest folder:
+// gulp.task('clean', del.bind(null, [folders.dest]));
+
+// delete the dist folder but everything git and Readme or package.json
+gulp.task('clean', del.bind(null, [folders.dest + '/**/*', '!' + folders.dest + '.git*', '!' + folders.dest + 'README.md', '!' + folders.dest + 'package.json']));
 
 
 /*******************************************************************************
@@ -86,20 +76,27 @@ gulp.task('clean', function() {
 *******************************************************************************/
 
 
+var stats = {};
 gulp.task('scss', function() {
   return gulp.src(folders.src + '/' + folders.assets.scss + '/' + config.styles.scss.main)
-    .pipe($.plumber())
+    // .pipe($.sourcemaps.init())
     .pipe($.sass({
-      includePaths: folders.components,
-      outputStyle: 'expanded'
+      includePaths: [folders.components],
+      outputStyle: 'nested',
+      stats: stats
     }))
     .on('error', handleErrors)
-    .pipe($.autoprefixer(config.autoprefixer.def))
+    .pipe($.autoprefixer({
+      browsers: config.autoprefixer.def,
+      cascade: false
+    }))
+    // .pipe($.sourcemaps.write())
     .pipe(gulp.dest(folders.tmp + '/' + folders.assets.css))
     .pipe(reload({
       stream: true
     }));
 });
+
 
 
 gulp.task('compass', function() {
