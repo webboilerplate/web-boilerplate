@@ -1,10 +1,10 @@
 'use strict';
 
 //basic polyfills needed in almost every project
-//var polyfills = require('./polyfills');
-//
+var polyfills = require('./polyfills');
 
-var device = require('./util/device')();
+
+var device = require('device.js')();
 device.addClasses();
 
 var App = function() {};
