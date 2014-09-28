@@ -117,43 +117,46 @@
 </head>
 
 <body>
-
   <header class="header" role="banner">
-
     <div class="container">
       <div class="logo">
         <a rel="home" href="/">
           <h1>
-            <span class="small">Web</span><br><span class="bold">Boilerplate</span>
+            <span class="small">Web</span>
+            <br>
+            <span class="bold">Boilerplate</span>
           </h1>
           <p class="claim">a front-end starter template</p>
         </a>
       </div>
     </div>
-
-    <nav role="navigation">
-      <h4 class="visuallyhidden">Navigation</h4>
-      <ul>
-        <li class="active"><a href="/">Home</a>
-        </li>
-        <li><a href="#">About</a>
-        </li>
-        <li><a href="#">Portfolio</a>
-        </li>
-        <li><a href="#">Blog</a>
-        </li>
-      </ul>
-    </nav>
-
   </header>
 
+  <a href="https://github.com/soenkekluth/web-boilerplate"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
 
-  <div class="page page-index">
+  <nav role="navigation">
+    <h4 class="visuallyhidden">Navigation</h4>
+    <ul>
+      <li class="active"><a href="/">Home</a>
+      </li>
+      <li><a href="#about">About</a>
+      </li>
+      <li><a href="https://github.com/soenkekluth/web-boilerplate" target="blank">Github</a>
+      </li>
+      <li><a href="#">Blog</a>
+      </li>
+    </ul>
+  </nav>
+
+
+  <div id="about" class="page">
     <div class="container">
 
-      <main role="main" itemprop="mainContentOfPage">
+      <p>Web Boilerplate is a starting point for platform agnostic web development.</p>
+      <br>
+      <br>
 
-        <p>Web Boilerplate is a starting point for platform agnostic web development.</p>
+      <main role="main" itemprop="mainContentOfPage">
 
         <h2>
           <a name="user-content-tooling" class="anchor" href="#tooling" aria-hidden="true">
@@ -172,7 +175,8 @@
 
         <br>
         <br>
-
+        <h2>Kickoff:</h2>
+        <br>
         <h3>
           <a name="user-content-install-dependencies" class="anchor" href="#install-dependencies" aria-hidden="true">
             <span class="octicon octicon-link"></span>
@@ -185,22 +189,15 @@
             <span class="octicon octicon-link"></span>
           </a>start development:</h3>
 
-        <pre><code>npm start</code></pre>
-
-        <p>or:</p>
-
-        <pre><code>gulp dev</code></pre>
+        <pre><code>npm start /*or*/ gulp dev</code></pre>
 
         <h3>
           <a name="user-content-distribute" class="anchor" href="#distribute" aria-hidden="true">
             <span class="octicon octicon-link"></span>
           </a>distribute:</h3>
 
-        <pre><code>npm run dist</code></pre>
+        <pre><code>npm run dist /*or*/ gulp dist</code></pre>
 
-        <p>or:</p>
-
-        <pre><code>gulp dist</code></pre>
 
         <h3>
           <a name="user-content-deploy" class="anchor" href="#deploy" aria-hidden="true">
@@ -208,11 +205,8 @@
           </a>deploy:
         </h3>
 
-        <pre><code>npm run deploy</code></pre>
+        <pre><code>npm run deploy /*or*/ gulp deploy</code></pre>
 
-        <p>or:</p>
-
-        <pre><code>gulp deploy</code></pre>
 
       </main>
 
