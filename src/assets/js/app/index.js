@@ -3,7 +3,8 @@
 //basic polyfills needed in almost every project
 //var polyfills = require('./polyfills');
 //
-var device = require('./util/device');
+
+var device = require('./util/device')();
 device.addClasses();
 
 var App = function() {};
