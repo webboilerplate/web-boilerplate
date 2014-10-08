@@ -12,7 +12,7 @@ var config = require('../config');
 var paths = config.paths;
 
 gulp.task('stylus', function() {
-  return gulp.src(paths.src + '/' + paths.stylus + '/' + config.styles.stylus.main)
+  return gulp.src(paths.src + '/' + paths.stylus + '/' + config.stylus.main)
     .pipe(plumber())
     .pipe(stylus({
       //use: nib(),

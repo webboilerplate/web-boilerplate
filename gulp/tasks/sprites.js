@@ -17,7 +17,7 @@ gulp.task('sprite@2x', function() {
       imgName: 'sprite@2x.png',
       imgPath: '../images/sprite@2x.png',
       padding: 20,
-      cssName: 'sprites-2x.' + config.styles.preprocessor
+      cssName: 'sprites-2x.' + config.preprocessor
     }));
 
   return spriteData.img.pipe(gulp.dest(paths.tmp + '/' + paths.images));
@@ -29,9 +29,9 @@ gulp.task('sprite', function() {
     .pipe(spritesmith({
       imgName: 'sprite.png',
       imgPath: '../images/sprite.png',
-      cssName: 'sprites.' + config.styles.preprocessor,
+      cssName: 'sprites.' + config.preprocessor,
       padding: 10,
-      cssTemplate: config.styles.preprocessor === 'scss' ? './lib/spritesmith.scss.tpl.mustache' : './lib/spritesmith.spritesmith.stylus.tpl.mustache',
+      cssTemplate: config.preprocessor === 'scss' ? './lib/spritesmith.scss.tpl.mustache' : './lib/spritesmith.spritesmith.stylus.tpl.mustache',
       cssVarMap: function(sprite) {
         sprite.image = sprite.image.replace('.png', '');
       },

@@ -12,7 +12,7 @@ var config = require('../config');
 var paths = config.paths;
 
 gulp.task('compass', function() {
-  return gulp.src(paths.src + '/' + paths.scss + '/' + config.styles.scss.main)
+  return gulp.src(paths.src + '/' + paths.scss + '/' + config.scss.main)
     .pipe(plumber())
     .pipe(compass({
       css: paths.tmp + '/' + paths.css,

@@ -66,7 +66,7 @@ gulp.task('release', function(cb) {
 
 gulp.task('styles', function(cb) {
 
-  switch (config.styles.preprocessor) {
+  switch (config.preprocessor) {
     case 'scss':
       runSequence('scsslint', 'scss', 'csslint', cb);
       break;
