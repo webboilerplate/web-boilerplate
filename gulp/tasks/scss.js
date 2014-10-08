@@ -15,7 +15,7 @@ var paths = config.paths;
 
 var stats = {};
 gulp.task('scss', function() {
-  return gulp.src(paths.src + '/' + paths.scss + '/' + config.styles.scss.main)
+  return gulp.src(paths.src + '/' + paths.scss + '/' + config.scss.main)
     // .pipe(sourcemaps.init())
     .pipe(sass({
       includePaths: [paths.components],

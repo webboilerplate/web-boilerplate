@@ -46,28 +46,23 @@ module.exports = {
     }
   },
 
+  //have one or more preprocessors.
+  preprocessor: ['stylus'],
 
-  styles: {
-
-    //have one or more preprocessors.
-    preprocessor: ['stylus'],
-
-    css: {
-      main: 'main.css',
-      out: 'main.css',
-    },
-
-    stylus: {
-      main: 'main.styl',
-      out: 'main.css'
-    },
-
-    scss: {
-      main: 'main.scss',
-      out: 'main.css'
-    }
+  css: {
+    main: 'main.css',
+    out: 'main.css',
   },
 
+  stylus: {
+    main: 'main.styl',
+    out: 'main.css'
+  },
+
+  scss: {
+    main: 'main.scss',
+    out: 'main.css'
+  },
 
   images: {
     sprites: {
