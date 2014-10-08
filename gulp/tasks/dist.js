@@ -82,4 +82,3 @@ gulp.task('html:src:dist', function() {
   return gulp.src([paths.src + '/*.*', paths.src + '/.*', paths.src + '/**/*.{html,shtml,php,xml,json}', '!' + paths.components + '/**/*', '!' + paths.src + '/' + paths.js + '/**/*'])
     .pipe(gulp.dest(paths.dest));
 });
-
