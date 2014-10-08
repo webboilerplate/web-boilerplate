@@ -13,16 +13,11 @@ var browserSync = require('browser-sync');
 
 var config = require('../config');
 var paths = config.paths;
+
+
 /*******************************************************************************
     JAVASCRIPT TASK
 *******************************************************************************/
-
-gulp.task('jshint', function() {
-  return gulp.src([paths.src + '/' + paths.js + '/**/*.js', '!' + paths.src + '/' + paths.js + '/vendor/**', '!' + paths.src + '/' + paths.js + '/app/libs/**'])
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter(stylish));
-});
-
 
 gulp.task('js', function() {
   return gulp.src(paths.src + '/' + paths.js + '/' + config.js.main)
@@ -40,4 +35,10 @@ gulp.task('js', function() {
       stream: true,
       once: true
     }));
+});
+
+gulp.task('jshint', function() {
+  return gulp.src([paths.src + '/' + paths.js + '/**/*.js', '!' + paths.src + '/' + paths.js + '/vendor/**', '!' + paths.src + '/' + paths.js + '/app/libs/**'])
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter(stylish));
 });
