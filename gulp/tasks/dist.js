@@ -7,7 +7,7 @@ var ignore = require('gulp-ignore');
 var header = require('gulp-header');
 
 var config = require('../config');
-var folders = config.folders;
+var paths = config.paths;
 
 var pkg = require('../../package.json');
 
@@ -30,26 +30,26 @@ var banner = ['/**',
 *******************************************************************************/
 
 gulp.task('js:dist', function() {
-  return gulp.src(folders.tmp + '/' + folders.assets.js + '/**/*.js')
+  return gulp.src(paths.tmp + '/' + paths.js + '/**/*.js')
     .pipe(uglify())
-    .pipe(ignore.exclude(folders.tmp + '/' + folders.assets.js + '/vendor/**'))
+    .pipe(ignore.exclude(paths.tmp + '/' + paths.js + '/vendor/**'))
     .pipe(header(banner, {
       pkg: pkg
     }))
-    .pipe(gulp.dest(folders.dest + '/' + folders.assets.js));
+    .pipe(gulp.dest(paths.dest + '/' + paths.js));
 });
 
 
 gulp.task('vendor:dist', function() {
-  return gulp.src(folders.src + '/' + folders.assets.js + '/vendor/*.js')
+  return gulp.src(paths.src + '/' + paths.js + '/vendor/*.js')
     .pipe(uglify())
-    .pipe(ignore.include(folders.tmp + '/' + folders.assets.js + '/vendor/*.htc'))
-    .pipe(gulp.dest(folders.dest + '/' + folders.assets.js + '/vendor'));
+    .pipe(ignore.include(paths.tmp + '/' + paths.js + '/vendor/*.htc'))
+    .pipe(gulp.dest(paths.dest + '/' + paths.js + '/vendor'));
 });
 
 
 gulp.task('css:dist', function() {
-  return gulp.src(folders.tmp + '/' + folders.assets.css + '/**/*.css')
+  return gulp.src(paths.tmp + '/' + paths.css + '/**/*.css')
     .pipe(minifyCss({
       // noRebase: true,
       // noAdvanced: true,
@@ -59,27 +59,27 @@ gulp.task('css:dist', function() {
     .pipe(header(banner, {
       pkg: pkg
     }))
-    .pipe(gulp.dest(folders.dest + '/' + folders.assets.css));
+    .pipe(gulp.dest(paths.dest + '/' + paths.css));
 });
 
 gulp.task('fonts:dist', function() {
-  return gulp.src(folders.src + '/' + folders.assets.fonts + '/**/*')
-    .pipe(gulp.dest(folders.dest + '/assets/fonts'));
+  return gulp.src(paths.src + '/' + paths.fonts + '/**/*')
+    .pipe(gulp.dest(paths.dest + '/assets/fonts'));
 });
 
 // copy all content from images/* excapt prefixed with _
 gulp.task('images:dist', function() {
-  return gulp.src([folders.src + '/' + folders.assets.images + '/**/*', '!' + folders.src + '/' + folders.assets.images + '/_**/*', '!' + folders.src + '/' + folders.assets.images + '/_*', folders.tmp + '/' + folders.assets.images + '/**/*', folders.tmp + '/' + folders.assets.images + '/**/*'])
-    .pipe(gulp.dest(folders.dest + '/' + folders.assets.images));
+  return gulp.src([paths.src + '/' + paths.images + '/**/*', '!' + paths.src + '/' + paths.images + '/_**/*', '!' + paths.src + '/' + paths.images + '/_*', paths.tmp + '/' + paths.images + '/**/*', paths.tmp + '/' + paths.images + '/**/*'])
+    .pipe(gulp.dest(paths.dest + '/' + paths.images));
 });
 
 gulp.task('html:tmp:dist', function() {
-  return gulp.src(folders.tmp + '/**/*.{html,shtml,php,xml,json,webapp,txt,ico}')
-    .pipe(gulp.dest(folders.dest));
+  return gulp.src(paths.tmp + '/**/*.{html,shtml,php,xml,json,webapp,txt,ico}')
+    .pipe(gulp.dest(paths.dest));
 });
 
 gulp.task('html:src:dist', function() {
-  return gulp.src([folders.src + '/*.*', folders.src + '/.*', folders.src + '/**/*.{html,shtml,php,xml,json}', '!' + folders.components + '/**/*', '!' + folders.src + '/' + folders.assets.js + '/**/*'])
-    .pipe(gulp.dest(folders.dest));
+  return gulp.src([paths.src + '/*.*', paths.src + '/.*', paths.src + '/**/*.{html,shtml,php,xml,json}', '!' + paths.components + '/**/*', '!' + paths.src + '/' + paths.js + '/**/*'])
+    .pipe(gulp.dest(paths.dest));
 });
 

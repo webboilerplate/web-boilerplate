@@ -5,14 +5,14 @@ var spritesmith = require('gulp.spritesmith');
 var runSequence = require('run-sequence');
 
 var config = require('../config');
-var folders = config.folders;
+var paths = config.paths;
 
 /*******************************************************************************
      SPRITE TASK
 *******************************************************************************/
 
 gulp.task('sprite@2x', function() {
-  var spriteData = gulp.src(folders.src + '/' + folders.assets.sprites + '/*@2x.{png,jpg,gif}')
+  var spriteData = gulp.src(paths.src + '/' + paths.sprites + '/*@2x.{png,jpg,gif}')
     .pipe(spritesmith({
       imgName: 'sprite@2x.png',
       imgPath: '../images/sprite@2x.png',
@@ -20,12 +20,12 @@ gulp.task('sprite@2x', function() {
       cssName: 'sprites-2x.' + config.styles.preprocessor
     }));
 
-  return spriteData.img.pipe(gulp.dest(folders.tmp + '/' + folders.assets.images));
+  return spriteData.img.pipe(gulp.dest(paths.tmp + '/' + paths.images));
 });
 
 
 gulp.task('sprite', function() {
-  var spriteData = gulp.src([folders.src + '/' + folders.assets.sprites + '/*.{png,jpg,gif}', '!' + folders.src + '/' + folders.assets.sprites + '/*@2x.{png,jpg,gif}'])
+  var spriteData = gulp.src([paths.src + '/' + paths.sprites + '/*.{png,jpg,gif}', '!' + paths.src + '/' + paths.sprites + '/*@2x.{png,jpg,gif}'])
     .pipe(spritesmith({
       imgName: 'sprite.png',
       imgPath: '../images/sprite.png',
@@ -37,8 +37,8 @@ gulp.task('sprite', function() {
       },
     }));
 
-  spriteData.img.pipe(gulp.dest(folders.tmp + '/' + folders.assets.images));
-  return spriteData.css.pipe(gulp.dest(folders.src + '/' + folders.assets.scss + '/app/utils/'));
+  spriteData.img.pipe(gulp.dest(paths.tmp + '/' + paths.images));
+  return spriteData.css.pipe(gulp.dest(paths.src + '/' + paths.scss + '/app/utils/'));
 
 });
 

@@ -9,10 +9,10 @@ var handleErrors = require('../util/handleErrors');
 var browserSync = require('browser-sync');
 
 var config = require('../config');
-var folders = config.folders;
+var paths = config.paths;
 
 gulp.task('stylus', function() {
-  return gulp.src(folders.src + '/' + folders.assets.stylus + '/' + config.styles.stylus.main)
+  return gulp.src(paths.src + '/' + paths.stylus + '/' + config.styles.stylus.main)
     .pipe(plumber())
     .pipe(stylus({
       //use: nib(),
@@ -24,14 +24,14 @@ gulp.task('stylus', function() {
       },
       url: {
         name: 'embedurl',
-        paths: [__dirname + '/' + folders.src + '/' + folders.assets.images],
+        paths: [__dirname + '/' + paths.src + '/' + paths.images],
         limit: false
       },
       error: true
     }))
     .on('error', handleErrors)
     .pipe(autoprefixer.apply(config.autoprefixer.def))
-    .pipe(gulp.dest(folders.tmp + '/' + folders.assets.css))
+    .pipe(gulp.dest(paths.tmp + '/' + paths.css))
     .pipe(browserSync.reload({
       stream: true
     }));

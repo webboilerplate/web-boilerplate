@@ -3,23 +3,20 @@
 var env = process.env.NODE_ENV ||  'development';
 var path = require('path');
 
-var folders = {
+var paths = {
+
   src: 'src',
   dest: 'dist',
   tmp: '.tmp',
 
   jade: 'assets/jade',
-
-  assets: {
-    root: 'assets',
-    images: 'assets/images',
-    sprites: 'assets/images/_sprites',
-    fonts: 'assets/fonts',
-    js: 'assets/js',
-    css: 'assets/css',
-    scss: 'assets/scss',
-    stylus: 'assets/stylus'
-  },
+  images: 'assets/images',
+  sprites: 'assets/images/_sprites',
+  fonts: 'assets/fonts',
+  js: 'assets/js',
+  css: 'assets/css',
+  scss: 'assets/scss',
+  stylus: 'assets/stylus',
 
   components: 'src/assets/components',
 };
@@ -27,7 +24,7 @@ var folders = {
 
 module.exports = {
 
-  folders: folders,
+  paths: paths,
 
   js: {
 
@@ -36,11 +33,11 @@ module.exports = {
 
     shim: {
       /*picturefill: {
-        path: folders.components + '/picturefill/src/picturefill.js',
+        path: paths.components + '/picturefill/src/picturefill.js',
         exports: 'picturefill'
       },
       fixedsticky: {
-        path: folders.src + '/assets/js/app/libs/fixedsticky.js',
+        path: paths.src + '/assets/js/app/libs/fixedsticky.js',
         exports: 'fixedsticky',
         depends: {
           jquery: 'jQuery',

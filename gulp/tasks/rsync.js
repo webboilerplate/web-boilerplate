@@ -5,7 +5,7 @@ var rsync = require('rsyncwrapper').rsync;
 var pkg = require('../../package.json');
 
 var config = require('../config');
-var folders = config.folders;
+var paths = config.paths;
 
 
 /*******************************************************************************
@@ -19,7 +19,7 @@ gulp.task('rsync', function(cb) {
   rsync({
     // args: ['--verbose'],
     args: ['--verbose --compress --recursive --checksum --itemize-changes --delete -e'],
-    src: './' + folders.dest + '/',
+    src: './' + paths.dest + '/',
     exclude: ['.git', '.DS_Store', '.gitattributes', '.gitignore'],
     ssh: true,
     dest: config.deploy.ssh.dest,

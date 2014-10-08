@@ -12,20 +12,20 @@ var handleErrors = require('../util/handleErrors');
 var browserSync = require('browser-sync');
 
 var config = require('../config');
-var folders = config.folders;
+var paths = config.paths;
 /*******************************************************************************
     JAVASCRIPT TASK
 *******************************************************************************/
 
 gulp.task('jshint', function() {
-  return gulp.src([folders.src + '/' + folders.assets.js + '/**/*.js', '!' + folders.src + '/' + folders.assets.js + '/vendor/**', '!' + folders.src + '/' + folders.assets.js + '/app/libs/**'])
+  return gulp.src([paths.src + '/' + paths.js + '/**/*.js', '!' + paths.src + '/' + paths.js + '/vendor/**', '!' + paths.src + '/' + paths.js + '/app/libs/**'])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter(stylish));
 });
 
 
 gulp.task('js', function() {
-  return gulp.src(folders.src + '/' + folders.assets.js + '/' + config.js.main)
+  return gulp.src(paths.src + '/' + paths.js + '/' + config.js.main)
     .pipe(plumber())
     .pipe(browserify({
       insertGlobals: false,
@@ -35,7 +35,7 @@ gulp.task('js', function() {
     }))
     .on('error', handleErrors)
     .pipe(rename(config.js.out))
-    .pipe(gulp.dest(folders.tmp + '/' + folders.assets.js))
+    .pipe(gulp.dest(paths.tmp + '/' + paths.js))
     .pipe(browserSync.reload({
       stream: true,
       once: true

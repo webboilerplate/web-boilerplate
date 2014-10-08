@@ -3,7 +3,7 @@
 var gulp = require('gulp');
 var csslint = require('gulp-csslint');
 var stylestats = require('gulp-stylestats');
-var folders = require('../config').folders;
+var paths = require('../config').paths;
 
 
 /*******************************************************************************
@@ -13,7 +13,7 @@ var folders = require('../config').folders;
 // for rules see
 // https://github.com/CSSLint/csslint/wiki/Rules-by-ID
 gulp.task('csslint', function() {
-  return gulp.src(folders.tmp + '/' + folders.assets.css + '/**/*.css')
+  return gulp.src(paths.tmp + '/' + paths.css + '/**/*.css')
     .pipe(csslint())
     .pipe(csslint.reporter());
 });
@@ -21,6 +21,6 @@ gulp.task('csslint', function() {
 
 
 gulp.task('stylestats', function() {
-  return gulp.src(folders.tmp + '/' + folders.assets.css + '/main.css')
+  return gulp.src(paths.tmp + '/' + paths.css + '/main.css')
     .pipe(stylestats());
 });

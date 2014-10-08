@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var browserSync = require('browser-sync');
 
-var folders = require('../config').folders;
+var paths = require('../config').paths;
 
 
 gulp.task('browserSync:dev', function() {
@@ -17,7 +17,7 @@ gulp.task('browserSync:dev', function() {
     ghostMode: ghostMode,
 
     server: {
-      baseDir: [folders.tmp, folders.src]
+      baseDir: [paths.tmp, paths.src]
     }
   });
 });
@@ -32,7 +32,7 @@ gulp.task('browserSync:dist', ['dist'], function() {
     open: openBrowserWindow,
     ghostMode: false,
     server: {
-      baseDir: folders.dest
+      baseDir: paths.dest
     }
   });
 });

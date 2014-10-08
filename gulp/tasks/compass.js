@@ -9,23 +9,23 @@ var handleErrors = require('../util/handleErrors');
 var browserSync = require('browser-sync');
 
 var config = require('../config');
-var folders = config.folders;
+var paths = config.paths;
 
 gulp.task('compass', function() {
-  return gulp.src(folders.src + '/' + folders.assets.scss + '/' + config.styles.scss.main)
+  return gulp.src(paths.src + '/' + paths.scss + '/' + config.styles.scss.main)
     .pipe(plumber())
     .pipe(compass({
-      css: folders.tmp + '/' + folders.assets.css,
-      sass: folders.src + '/' + folders.assets.scss,
-      image: folders.src + '/' + folders.assets.images,
-      javascripts: folders.src + '/' + folders.assets.js,
-      fonts: folders.src + '/' + folders.assets.fonts,
-      import_path: folders.components
+      css: paths.tmp + '/' + paths.css,
+      sass: paths.src + '/' + paths.scss,
+      image: paths.src + '/' + paths.images,
+      javascripts: paths.src + '/' + paths.js,
+      fonts: paths.src + '/' + paths.fonts,
+      import_path: paths.components
         //, require: ['susy', 'modular-scale']
     }))
     .on('error', handleErrors)
     .pipe(autoprefixer(config.autoprefixer.def))
-    .pipe(gulp.dest(folders.tmp + '/css'))
+    .pipe(gulp.dest(paths.tmp + '/css'))
     .pipe(browserSync.reload({
       stream: true
     }));

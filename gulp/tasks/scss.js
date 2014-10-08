@@ -11,14 +11,14 @@ var scsslint = require('gulp-scss-lint');
 var browserSync = require('browser-sync');
 
 var config = require('../config');
-var folders = config.folders;
+var paths = config.paths;
 
 var stats = {};
 gulp.task('scss', function() {
-  return gulp.src(folders.src + '/' + folders.assets.scss + '/' + config.styles.scss.main)
+  return gulp.src(paths.src + '/' + paths.scss + '/' + config.styles.scss.main)
     // .pipe(sourcemaps.init())
     .pipe(sass({
-      includePaths: [folders.components],
+      includePaths: [paths.components],
       outputStyle: 'nested',
       stats: stats
     }))
@@ -28,7 +28,7 @@ gulp.task('scss', function() {
       cascade: false
     }))
     // .pipe(sourcemaps.write())
-    .pipe(gulp.dest(folders.tmp + '/' + folders.assets.css))
+    .pipe(gulp.dest(paths.tmp + '/' + paths.css))
     .pipe(browserSync.reload({
       stream: true
     }));
@@ -36,8 +36,8 @@ gulp.task('scss', function() {
 
 
 gulp.task('scsslint', function() {
-  gulp.src([folders.src + '/' + folders.assets.scss + '/**/*.scss', '!' + folders.src + '/' + folders.assets.scss + '/vendor/**'])
+  gulp.src([paths.src + '/' + paths.scss + '/**/*.scss', '!' + paths.src + '/' + paths.scss + '/vendor/**'])
     .pipe(scsslint({
-      'config': folders.src + '/' + folders.assets.scss + '/.scss-lint.yml',
+      'config': paths.src + '/' + paths.scss + '/.scss-lint.yml',
     }));
 });
