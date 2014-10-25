@@ -3,10 +3,9 @@
 var gulp = require('gulp');
 var stylus = require('gulp-stylus');
 var plumber = require('gulp-plumber');
+var reload = require('browser-sync').reload;
 var autoprefixer = require('gulp-autoprefixer');
 var handleErrors = require('../util/handleErrors');
-
-var browserSync = require('browser-sync');
 
 var config = require('../config');
 var paths = config.paths;
@@ -32,7 +31,7 @@ gulp.task('stylus', function() {
     .on('error', handleErrors)
     .pipe(autoprefixer.apply(config.autoprefixer.def))
     .pipe(gulp.dest(paths.tmp + '/' + paths.css))
-    .pipe(browserSync.reload({
+    .pipe(reload({
       stream: true
     }));
 });
