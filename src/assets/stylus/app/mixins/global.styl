@@ -69,6 +69,15 @@ text-ellipsis()
   white-space: nowrap
 
 
+rem(value)
+  u = unit(value)
+
+  if u is 'px'
+    return unit(value, 'px')
+  else
+    return unit(value*16, 'px')
+
+
 // @font-face mixin
 // Order of the includes matters, and it is: normal, bold, italic, bold+italic.
 // Forked from Bourbon. https://github.com/thoughtbot/bourbon/
