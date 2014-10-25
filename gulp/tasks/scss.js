@@ -8,8 +8,6 @@ var handleErrors = require('../util/handleErrors');
 
 var scsslint = require('gulp-scss-lint');
 
-var browserSync = require('browser-sync');
-
 var config = require('../config');
 var paths = config.paths;
 
@@ -28,16 +26,16 @@ gulp.task('scss', function() {
       cascade: false
     }))
     // .pipe(sourcemaps.write())
-    .pipe(gulp.dest(paths.tmp + '/' + paths.css))
-    .pipe(browserSync.reload({
-      stream: true
-    }));
+    .pipe(gulp.dest(paths.tmp + '/' + paths.css));
 });
 
 
 gulp.task('scsslint', function() {
-  gulp.src([paths.src + '/' + paths.scss + '/**/*.scss', '!' + paths.src + '/' + paths.scss + '/vendor/**'])
+  gulp.src([
+      paths.src + '/' + paths.scss + '/**/*.scss',
+      '!' + paths.src + '/' + paths.scss + '/vendor/**'
+    ])
     .pipe(scsslint({
-      'config': paths.src + '/' + paths.scss + '/.scss-lint.yml',
+      config: paths.src + '/' + paths.scss + '/.scss-lint.yml',
     }));
 });
