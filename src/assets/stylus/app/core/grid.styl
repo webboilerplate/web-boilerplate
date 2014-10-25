@@ -1,2 +1,12 @@
 .col-1-2
-  width: 94%
+  width: 45%
+  float: left
+  margin-right: 5%;
+  &:last-child
+    margin-right: 0;
+
+  +when(567px)
+    width: 100%
+    float: none
+
+
