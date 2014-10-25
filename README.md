@@ -2,50 +2,45 @@
 
 Web Boilerplate is a starting point for platform agnostic web development.   
 
-## Tooling
+## Tooling / Technologies / Libs
 
-Make sure your system has [Node.js](http://nodejs.org), [gulp.js](http://gulpjs.com) and  [Sass](http://sass-lang.com/install) installed
+- gulp
+- browserify
+- browser-sync
+- node-sass
+- compass
+- stylus
+- spritesmith
+- bower
+- rsync
+
+Just make sure your system has [Node.js](http://nodejs.org) installed. Web Boilerplate uses node-sass. for linting sass you need to install [Sass](http://sass-lang.com/install). 
+
+
+## start development:
+Web Boilerplate will care about installing newsest dependencies.
+just hit:
+```
+npm start
+```
+## distribute:
+```
+npm run dist
+```
+## deploy:
+```
+npm run deploy
+```
 
 ## Server Configs
 
 [https://github.com/h5bp/server-configs](https://github.com/h5bp/server-configs)
 
 
-
-## Install Dependencies:
-```
-npm install
-```
-###start development:
-```
-npm start
-```
-or:
-```
-gulp dev
-```
-###distribute:
-```
-npm run dist
-```
-or:
-```
-gulp dist
-```
-###deploy:
-```
-npm run deploy
-```
-or:
-```
-gulp deploy
-```
+## Roadmap
 
 
-##Roadmap
-
-
-##Frontend Coding Guidelines
+## Frontend Coding Guidelines
 
 * https://github.com/styleguide/css
 * https://github.com/necolas/idiomatic-css
