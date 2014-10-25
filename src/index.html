@@ -129,11 +129,12 @@
         </a>
       </div>
     </div>
+
+    <span id="forkongithub">
+      <a href="https://github.com/soenkekluth/web-boilerplate">Fork me on GitHub</a>
+    </span>
   </header>
 
-  <a href="https://github.com/soenkekluth/web-boilerplate">
-    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png">
-  </a>
 
   <nav role="navigation">
     <h4 class="visuallyhidden">Navigation</h4>
@@ -144,84 +145,67 @@
       </li>
       <li><a href="https://github.com/soenkekluth/web-boilerplate" target="blank">Github</a>
       </li>
-      <li><a href="#">Blog</a>
+      <li><a href="#credits">Credits</a>
       </li>
     </ul>
   </nav>
 
 
-  <div id="about" class="page">
+  <main id="about" class="page">
+
     <div class="container">
 
-      <p>Web Boilerplate is a starting point for platform agnostic web development.</p>
 
-      <main role="main" itemprop="mainContentOfPage">
+      <div class="col-1-2">
 
-        <h2>
-          <a name="user-content-tooling" class="anchor" href="#tooling" aria-hidden="true">
-            <span class="octicon octicon-link"></span>
-          </a>Tooling</h2>
+        <h1>About Web Boilerplate</h1>
+        <p>Web Boilerplate is a starting point for platform agnostic web development.</p>
+
+
+        <h2>Tooling</h2>
 
         <p>Make sure your system has <a href="http://nodejs.org">Node.js</a>, <a href="http://gulpjs.com">gulp.js</a> and <a href="http://sass-lang.com/install">Sass</a> installed</p>
 
-        <h2>
-          <a name="user-content-server-configs" class="anchor" href="#server-configs" aria-hidden="true">
-            <span class="octicon octicon-link"></span>
-          </a>Server Configs</h2>
+        <h2>Server Configs</h2>
 
-        <p><a href="https://github.com/h5bp/server-configs">https://github.com/h5bp/server-configs</a>
+        <p>
+          <a href="https://github.com/h5bp/server-configs">https://github.com/h5bp/server-configs</a>
         </p>
 
         <h2>Kickoff:</h2>
-        <h3>
-          <a name="user-content-install-dependencies" class="anchor" href="#install-dependencies" aria-hidden="true">
-            <span class="octicon octicon-link"></span>
-          </a>Install Dependencies:</h3>
 
-        <code>npm install</code>
+        <p>
+          <h3>Install Dependencies:</h3>
+          <code>npm install</code>
+        </p>
 
-        <h3>
-          <a name="user-content-start-development" class="anchor" href="#start-development" aria-hidden="true">
-            <span class="octicon octicon-link"></span>
-          </a>start development:</h3>
+        <p>
+          <h3>start development:</h3>
+          <code>npm start /*or*/ gulp dev</code>
+        </p>
 
-        <code>npm start /*or*/ gulp dev</code>
+        <p>
+          <h3>distribute:</h3>
+          <code>npm run dist /*or*/ gulp dist</code>
+        </p>
 
-        <h3>
-          <a name="user-content-distribute" class="anchor" href="#distribute" aria-hidden="true">
-            <span class="octicon octicon-link"></span>
-          </a>distribute:</h3>
+        <p>
+          <h3>deploy:</h3>
+          <code>npm run deploy /*or*/ gulp deploy</code>
+        </p>
 
-        <code>npm run dist /*or*/ gulp dist</code>
+      </div>
 
-
-        <h3>
-          <a name="user-content-deploy" class="anchor" href="#deploy" aria-hidden="true">
-            <span class="octicon octicon-link"></span>
-          </a>deploy:
-        </h3>
-
-        <code>npm run deploy /*or*/ gulp deploy</code>
-
-
-      </main>
-
-      <aside class="sidebar" role="complementary">
-        <h2>
-          <a name="user-content-roadmap" class="anchor" href="#roadmap" aria-hidden="true">
-            <span class="octicon octicon-link"></span>
-          </a>Roadmap</h2>
+      <aside class="col-1-2" role="complementary">
+        <h2>Roadmap</h2>
 
         <ul class="task-list">
           <li>optimize / finalize folder config</li>
           <li>implement touch features</li>
           <li>swipe through the pages</li>
         </ul>
-        <h2>
-          <a name="user-content-frontend-coding-guidelines" class="anchor" href="#frontend-coding-guidelines" aria-hidden="true">
-            <span class="octicon octicon-link"></span>
-          </a>Frontend Coding Guidelines</h2>
 
+        <h2>Frontend Coding Guidelines</h2>
         <ul class="task-list">
           <li><a href="https://github.com/styleguide/css">https://github.com/styleguide/css</a>
           </li>
@@ -235,9 +219,9 @@
       </aside>
 
     </div>
-  </div>
+  </main>
 
-  <footer class="footer" role="contentinfo">
+  <footer class="footer" id="credits" role="contentinfo">
     <div class="container">
       <small>made with ♥ in Berlin by
         <address class="author">
