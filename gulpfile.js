@@ -68,10 +68,10 @@ gulp.task('styles', function(cb) {
 
   switch (config.preprocessor) {
     case 'scss':
-      runSequence('scsslint', 'scss', 'csslint', cb);
+      runSequence(['scsslint', 'scss'], cb);
       break;
     case 'stylus':
-      runSequence('stylus', 'csslint', cb);
+      runSequence('stylus', cb);
       break;
     default:
       cb();
