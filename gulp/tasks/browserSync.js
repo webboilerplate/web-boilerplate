@@ -13,7 +13,7 @@ gulp.task('browserSync:dev', function() {
 
   browserSync({
     notify: false,
-    open: true,
+    open: openBrowserWindow,
     ghostMode: ghostMode,
 
     server: {
