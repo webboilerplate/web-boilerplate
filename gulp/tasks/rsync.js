@@ -17,7 +17,6 @@ var paths = config.paths;
 gulp.task('rsync', function(cb) {
 
   rsync({
-    // args: ['--verbose'],
     args: ['--verbose --compress --recursive --checksum --itemize-changes --delete -e'],
     src: './' + paths.dest + '/',
     exclude: ['.git', '.DS_Store', '.gitattributes', '.gitignore'],
