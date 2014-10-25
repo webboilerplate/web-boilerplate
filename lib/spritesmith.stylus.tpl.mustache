@@ -3,16 +3,26 @@
 }
 
 {{#items}}
-  ${{name}}-x : {{px.x}};
-  ${{name}}-y : {{px.y}};
-  ${{name}}-offset-x : {{px.offset_x}};
-  ${{name}}-offset-y : {{px.offset_y}};
-  ${{name}}-width : {{px.width}};
-  ${{name}}-height : {{px.height}};
-  ${{name}}-total-width : {{px.total_width}};
-  ${{name}}-total-height : {{px.total_height}};
-  ${{name}}-image: '{{{escaped_image}}}';
-  ${{name}} : {{px.x}} {{px.y}} {{px.offset_x}} {{px.offset_y}} {{px.width}} {{px.height}} {{px.total_width}} {{px.total_height}} '{{{escaped_image}}}';
+  ${{name}}-x = {{px.x}};
+  ${{name}}-y = {{px.y}};
+  ${{name}}-offset-x = {{px.offset_x}};
+  ${{name}}-offset-y = {{px.offset_y}};
+  ${{name}}-width = {{px.width}};
+  ${{name}}-height = {{px.height}};
+  ${{name}}-total-width = {{px.total_width}};
+  ${{name}}-total-height = {{px.total_height}};
+  ${{name}}-image= '{{{escaped_image}}}';
+  ${{name}} = {
+    x: {{px.x}},
+    y: {{px.y}},
+    offset_x: {{px.offset_x}},
+    offset_y: {{px.offset_y}},
+    width: {{px.width}},
+    height: {{px.height}},
+    total_width: {{px.total_width}},
+    total_height: {{px.total_height}},
+    image: '{{{escaped_image}}}'
+  };
 
 {{/items}}
 
@@ -23,35 +33,33 @@
 /*
 The provided mixins are intended to be used with the array-like variables
 .icon-home {
-  @include sprite-width($icon-home);
+  sprite-width($icon-home);
 }
 .icon-email {
-  @include sprite($icon-email);
+  sprite($icon-email);
 }
 */
 sprite-size($sprite)
-  $sprite-total-width = nth($sprite, 7)
-  $sprite-total-height = nth($sprite, 8)
+  $sprite-total-width = $sprite['total_width']
+  $sprite-total-height = $sprite['total_height']
   background-size: $sprite-total-width $sprite-total-height
 
 sprite-width($sprite)
-  width: nth($sprite, 5)
+  width: $sprite['width']
 
 sprite-height($sprite)
-  height: nth($sprite, 6)
+  height: $sprite['height']
 
 sprite-position($sprite)
-  $sprite-offset-x = nth($sprite, 3)
-  $sprite-offset-y = nth($sprite, 4)
+  $sprite-offset-x = $sprite['offset_x']
+  $sprite-offset-y = $sprite['offset_y']
   background-position: $sprite-offset-x $sprite-offset-y
 
 sprite-image($sprite)
-  $sprite-image = nth($sprite, 9) + ".png"
-  background-image: url({$sprite-image})
+  background-image: url( $sprite['image'] + ".png" )
 
 sprite-image-retina($sprite)
-  $sprite-image = nth($sprite, 9) + "@2x.png"
-  background-image: url({$sprite-image})
+  background-image: url( $sprite['image'] + "@2x.png" )
 
 sprite($sprite, $size = true)
   sprite-image($sprite)
@@ -60,7 +68,7 @@ sprite($sprite, $size = true)
   if $size
     sprite-width($sprite)
     sprite-height($sprite)
-  @media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: (:div 3 2)), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)
+  @media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx)
     sprite-size($sprite)
     sprite-image-retina($sprite)
 
@@ -70,9 +78,8 @@ center-sprite($sprite)
   position: absolute
   top: 50%
   left: 50%
-  margin-left: -1*(:div nth($sprite, 5) 2)
-  margin-top: -1*(:div nth($sprite, 6) 2)
-  // margin-left: -1*(nth($sprite, 5)/2);
-  // margin-top: -1*(nth($sprite, 6)/2);
+  margin-left: -1*($sprite['width']*0.5)
+  margin-top: -1*($sprite['height']*0.5)
+
 
 {{/options.functions}}
