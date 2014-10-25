@@ -6,8 +6,6 @@ var plumber = require('gulp-plumber');
 var compass = require('gulp-compass');
 var handleErrors = require('../util/handleErrors');
 
-var browserSync = require('browser-sync');
-
 var config = require('../config');
 var paths = config.paths;
 
@@ -25,8 +23,5 @@ gulp.task('compass', function() {
     }))
     .on('error', handleErrors)
     .pipe(autoprefixer(config.autoprefixer.def))
-    .pipe(gulp.dest(paths.tmp + '/css'))
-    .pipe(browserSync.reload({
-      stream: true
-    }));
+    .pipe(gulp.dest(paths.tmp + '/css'));
 });
