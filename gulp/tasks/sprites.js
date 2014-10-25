@@ -31,7 +31,7 @@ gulp.task('sprite', function() {
       imgPath: '../images/sprite.png',
       cssName: 'sprites.' + config.preprocessor,
       padding: 10,
-      cssTemplate: config.preprocessor === 'scss' ? './lib/spritesmith.scss.tpl.mustache' : './lib/spritesmith.spritesmith.stylus.tpl.mustache',
+      cssTemplate: config.preprocessor === 'scss' ? './lib/spritesmith.scss.tpl.mustache' : './lib/spritesmith.stylus.tpl.mustache',
       cssVarMap: function(sprite) {
         sprite.image = sprite.image.replace('.png', '');
       },
