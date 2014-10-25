@@ -9,8 +9,6 @@ var rename = require('gulp-rename');
 var stylish = require('jshint-stylish');
 var handleErrors = require('../util/handleErrors');
 
-var browserSync = require('browser-sync');
-
 var config = require('../config');
 var paths = config.paths;
 
@@ -30,11 +28,11 @@ gulp.task('js', function() {
     }))
     .on('error', handleErrors)
     .pipe(rename(config.js.out))
-    .pipe(gulp.dest(paths.tmp + '/' + paths.js))
-    .pipe(browserSync.reload({
+    .pipe(gulp.dest(paths.tmp + '/' + paths.js));
+    /*.pipe(browserSync.reload({
       stream: true,
       once: true
-    }));
+    }));*/
 });
 
 gulp.task('jshint', function() {
