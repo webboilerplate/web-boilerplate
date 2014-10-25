@@ -1,13 +1,12 @@
 'use strict';
 
 var env = process.env.NODE_ENV ||  'development';
-var path = require('path');
 
 var paths = {
 
-  src: 'src',
-  dest: 'dist',
-  tmp: '.tmp',
+  src: './src',
+  dest: './dist',
+  tmp: './.tmp',
 
   jade: 'assets/jade',
   images: 'assets/images',
@@ -26,13 +25,20 @@ module.exports = {
 
   paths: paths,
 
+  browserSync: {
+    notify: false,
+    server: {
+      baseDir: [paths.tmp, paths.src]
+    }
+  },
+
   js: {
 
     main: 'main.js',
     out: 'app.js',
 
-    shim: {
-      /*picturefill: {
+    /*shim: {
+      picturefill: {
         path: paths.components + '/picturefill/src/picturefill.js',
         exports: 'picturefill'
       },
@@ -42,12 +48,29 @@ module.exports = {
         depends: {
           jquery: 'jQuery',
         }
-      }*/
-    }
+      }
+    }*/
   },
 
-  //have one or more preprocessors.
-  preprocessor: ['stylus'],
+  browserify: {
+    // Enable source maps
+    debug: true,
+    // Additional file extentions to make optional
+    extensions: ['.coffee', '.hbs'],
+    // A separate bundle will be generated for each
+    // bundle config in the list below
+    bundleConfigs: [{
+      entries: paths.src + '/' + paths.js + '/' + 'main.js',
+      dest: paths.dest,
+      outputName: 'app.js'
+    }, {
+      entries: paths.src + '/' + paths.js + '/' + 'head.js',
+      dest: paths.dest,
+      outputName: 'head.js'
+    }]
+  },
+
+  preprocessor: 'stylus',
 
   css: {
     main: 'main.css',
