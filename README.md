@@ -63,7 +63,7 @@ we also recommend to use cmder as the default console on Windows
 ```
 
 ##start development:
-Web Boilerplate will always care about installing newsest dependencies.
+Web Boilerplate will always check if your package.json has changed and will automatically install all new dependencies if there are any. If you work on a project in a team this might help you a lot ;)
 
 ```bash
 npm start
