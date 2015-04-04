@@ -67,6 +67,7 @@
   "scripts": {
     "test": "npm run lint",
     "lint": "gulp csslint && gulp jshint",
+    "dist": "gulp deploy --production",
     "deploy": "gulp deploy --production",
     "start": "node ./lib/check.js && bower install && gulp dev",
     "restart": "node ./lib/check.js && bower install && gulp watch --restart",
