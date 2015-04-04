@@ -5,19 +5,18 @@ Thumbs.db
 .project
 .settings
 .tmproj
-# *.sublime-project
+*.sublime-project
 *.sublime-workspace
 .idea
 npm-debug.log
 
-# Project folders / files to ignore
+# Project folders to ignore
 node_modules
 /material
 /dist
 .tmp
 .sass-cache
-/src/assets/components
-/test/assets/components
+/bower_components
 /test/bower_components
 /TODO
-/.package.sha1
+.package.sha1
