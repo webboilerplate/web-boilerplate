@@ -11,6 +11,8 @@ var paths = config.paths;
      SPRITE TASK
 *******************************************************************************/
 
+//see http://frontendbabel.info/articles/css-sprites-with-gulp/
+
 gulp.task('sprite@2x', function() {
   var spriteData = gulp.src(paths.src + '/' + paths.sprites + '/*@2x.{png,jpg,gif}')
     .pipe(spritesmith({
