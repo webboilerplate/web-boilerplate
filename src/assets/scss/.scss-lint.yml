@@ -1,5 +1,0 @@
-linters:
-
-  Indentation:
-    enabled: false
-    width: 2
