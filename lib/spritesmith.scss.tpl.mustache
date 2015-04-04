@@ -62,6 +62,29 @@ The provided mixins are intended to be used with the array-like variables
   background-image: url(#{$sprite-image});
 }
 
+@mixin sprite-scale($sprite, $scale) {
+  $sprite-offset-x: nth($sprite, 3) * $scale;
+  $sprite-offset-y: nth($sprite, 4) * $scale;
+	background-position: ($sprite-offset-x)  ($sprite-offset-y);
+
+	$sprite-total-width: nth($sprite, 7) * $scale;
+	$sprite-total-height: nth($sprite, 8) * $scale;
+	background-size: $sprite-total-width $sprite-total-height;
+
+	width: nth($sprite, 5) * $scale;
+	height: nth($sprite, 6) * $scale;
+}
+
+$old-ie: false !default;
+
+@mixin retina() {
+  @if ($old-ie == false) {
+    @media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+      @content;
+    }
+  }
+}
+
 @mixin sprite($sprite, $size: true) {
   @include sprite-image($sprite);
   @include sprite-position($sprite);
@@ -73,8 +96,7 @@ The provided mixins are intended to be used with the array-like variables
     @include sprite-height($sprite);
   }
 
-  @media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
-
+  @include retina() {
     @include sprite-size($sprite);
     @include sprite-image-retina($sprite);
   }
