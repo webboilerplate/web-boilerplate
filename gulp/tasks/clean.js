@@ -1,12 +1,12 @@
-'use strict';
-
 var gulp = require('gulp');
 var del = require('del');
-var paths = require('../config').paths;
+var config = require('../config/clean');
 
 /*******************************************************************************
-    CLEAN DEST TASK
+    CLEAN  TASK
 *******************************************************************************/
 
-// delete the dist folder but everything git and Readme or package.json
-gulp.task('clean', del.bind(null, [paths.dest + '/**/*', '!' + paths.dest + '.git*', '!' + paths.dest + 'README.md', '!' + paths.dest + 'package.json']));
+
+gulp.task('clean', ['clean:dest']);
+gulp.task('clean:dest', del.bind(null, config.dest));
+gulp.task('clean:build', del.bind(null, config.build));

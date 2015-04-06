@@ -50,12 +50,12 @@ we also recommend to use cmder as the default console on Windows
     {
       "follow_symlinks": true,
       "path": ".",
-      "folder_exclude_patterns": [ ".tmp", "dist", "material", "node_modules", "bower_components" ]
+      "folder_exclude_patterns": ["dist", "build", "material", "node_modules", "bower_components" ]
     }
   ],
 
   "ternjs": {
-    "exclude": [ ".tmp/**", "dist/**", "test/**", "material/**", "node_modules/**", "bower_components/**" ],
+    "exclude": ["dist/**", "test/**", "build/**", "material/**", "node_modules/**", "bower_components/**" ],
     "libs": [ "browser", "underscore", "jquery", "ecma5" ]
   }
 }

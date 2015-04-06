@@ -1,19 +1,26 @@
 'use strict';
 
 var gulp = require('gulp');
-var pagespeed = require('psi');
+var psi = require('psi');
+var _ = require('lodash');
+var config = require('../config/pagespeed');
+var mergeStream = require('merge-stream');
+
 /*******************************************************************************
     PAGESPEED TASK
 *******************************************************************************/
 
-
 // Run PageSpeed Insights
-// Update `url` below to the public URL for your site
-gulp.task('pagespeed', pagespeed.bind(null, {
-  // By default, we use the PageSpeed Insights
-  // free (no API key) tier. You can use a Google
-  // Developer API key if you have one. See
-  // http://goo.gl/RkN0vE for info key: 'YOUR_API_KEY'
-  url: 'https://example.com',
-  strategy: 'mobile'
-}));
+gulp.task('pagespeed', function() {
+
+  var psiTask = function(conf) {
+    var t = conf.title ||  '';
+    return psi(conf.site, conf.settings, function(err, data) {
+      console.log('\n\n##### ' + t + ' #####');
+      console.log('score:', data.score);
+      console.log('pageStats:', data.pageStats);
+    });
+  };
+
+  return mergeStream.apply(gulp, _.map(config, psiTask));
+});

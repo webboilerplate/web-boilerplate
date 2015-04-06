@@ -1,6 +1,6 @@
 'use strict';
 
-var domReady = require('./lib/domready');
+var domready = require('domready');
 var fastdom = require('fastdom');
 var FastClick = require('fastclick');
 
@@ -26,7 +26,7 @@ var onLoad = function() {
 };
 
 if (document.readyState === 'complete') {
-  domReady(onLoad);
+  domready(onLoad);
 } else {
   loadTimeout = setTimeout(onLoad, 2600);
   window.onload = onLoad;

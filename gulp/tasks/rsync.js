@@ -4,12 +4,13 @@ var gulp = require('gulp');
 var rsync = require('rsyncwrapper').rsync;
 var pkg = require('../../package.json');
 
-var config = require('../config');
-var paths = config.paths;
+var config = require('../config/deploy');
 
+var sshConfig = config[process.env.NODE_ENV ||  'development'];
+sshConfig.agent = process.env.SSH_AUTH_SOCK;
 
 /*******************************************************************************
-    RSYNC TASK
+    DEPLOY TASK
 *******************************************************************************/
 
 // for rules see
@@ -17,11 +18,11 @@ var paths = config.paths;
 gulp.task('rsync', function(cb) {
 
   rsync({
-    args: ['--verbose --compress --recursive --checksum --itemize-changes --delete -e'],
-    src: './' + paths.dest + '/',
-    exclude: ['.git', '.DS_Store', '.gitattributes', '.gitignore'],
+    args: ['--verbose'],
+    src: config.src,
+    exclude: ['.git', '.DS_Store', '.gitattributes', '.gitignore', 'node_modules'],
     ssh: true,
-    dest: config.deploy.ssh.dest,
+    dest: sshConfig.username + '@' + sshConfig.host + ':' + sshConfig.path,
     recursive: true,
     syncDestIgnoreExcl: true,
     dryRun: false

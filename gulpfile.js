@@ -34,7 +34,7 @@ gulp.task('default', function(cb) {
 });
 
 gulp.task('dev', function(cb) {
-  runSequence('default', 'browserSync:dev', 'watch', cb);
+  runSequence('default', 'watch', cb);
 });
 
 gulp.task('dist', function(cb) {
@@ -56,7 +56,7 @@ gulp.task('deploy', function(cb) {
 });
 
 gulp.task('release', function(cb) {
-  runSequence('bump:patch', 'dist', 'publish');
+  runSequence('bump:patch', 'deploy');
 });
 
 
@@ -79,7 +79,7 @@ gulp.task('styles', function(cb) {
 });
 
 gulp.task('scripts', function(cb) {
-  runSequence('jshint', 'js', cb);
+  runSequence('jshint', 'browserify', cb);
 });
 
 gulp.task('publish', function(cb) {

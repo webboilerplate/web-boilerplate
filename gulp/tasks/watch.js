@@ -1,8 +1,14 @@
 'use strict';
 
+
 var gulp = require('gulp');
-var paths = require('../config').paths;
-var reload = require('browser-sync').reload;
+// var html        = require('../config/html');
+// var iconFont    = require('../config/iconFont');
+var sprites = require('../config/sprites');
+var images = require('../config/images');
+var sass = require('../config/sass');
+var stylus = require('../config/stylus');
+var fonts = require('../config/fonts');
 var browserSync = require('browser-sync');
 
 /*******************************************************************************
@@ -10,32 +16,22 @@ var browserSync = require('browser-sync');
 *******************************************************************************/
 
 
-gulp.task('watch', [ /*'setWatching', 'browserify'*/ ], function() {
+gulp.task('watch', ['browserSync'], function() {
+
+  var interval = process.env.WATCH_INTERVAL || 500;
+
+  gulp.watch(sass.src, ['sass']);
+
+  gulp.watch(stylus.src, ['stylus']);
 
 
-  // Watch for changes in `src` folder
-  gulp.watch(paths.src + '/**/*.{html,shtml,php,xml,json}', {
-    interval: 500
-  }, reload);
+  gulp.watch(images.src, {
+    interval: 2000
+  }, ['images', browserSync.reload]);
 
-  // Watch .scss files
-  gulp.watch(paths.src + '/' + paths.scss + '/**/*.scss', ['scss']);
 
-  // Watch .stylus files
-  gulp.watch(paths.src + '/' + paths.stylus + '/**/*.styl', ['stylus']);
+  gulp.watch(sprites.src, {
+    interval: 2000
+  }, ['sprites', browserSync.reload]);
 
-  // Watch .js files
-  gulp.watch([paths.src + '/' + paths.js + '/**/*.js'], ['js', reload]);
-
-  // Watch .jade files
-  gulp.watch(paths.src + '/' + paths.jade + '/**/*.jade', ['jade']);
-
-  // Watch sprite changes
-  gulp.watch(paths.src + '/' + paths.sprites + '/*.{png,jpg,gif}', {
-    interval: 1000
-  }, ['sprites', reload]);
-
-  // Watch image files
-  // gulp.watch(paths.src + '/assets/images/**/*', ['images']);
-  //
 });

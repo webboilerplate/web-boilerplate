@@ -2,26 +2,20 @@
 
 var gulp = require('gulp');
 var autoprefixer = require('gulp-autoprefixer');
+var browsers = require('../config/autoprefixer').browsers;
 var plumber = require('gulp-plumber');
 var compass = require('gulp-compass');
 var handleErrors = require('../util/handleErrors');
-
-var config = require('../config');
-var paths = config.paths;
+var config = require('../config/compass');
 
 gulp.task('compass', function() {
-  return gulp.src(paths.src + '/' + paths.scss + '/' + config.scss.main)
+  return gulp.src(config.src)
     .pipe(plumber())
-    .pipe(compass({
-      css: paths.tmp + '/' + paths.css,
-      sass: paths.src + '/' + paths.scss,
-      image: paths.src + '/' + paths.images,
-      javascripts: paths.src + '/' + paths.js,
-      fonts: paths.src + '/' + paths.fonts,
-      import_path: paths.components
-        //, require: ['susy', 'modular-scale']
-    }))
+    .pipe(compass(config.settings))
     .on('error', handleErrors)
-    .pipe(autoprefixer(config.autoprefixer.def))
-    .pipe(gulp.dest(paths.tmp + '/css'));
+    .pipe(autoprefixer({
+      browsers: browsers,
+      cascade: false
+    }))
+    .pipe(gulp.dest(config.dest));
 });
