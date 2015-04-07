@@ -6,6 +6,7 @@ Web Boilerplate is a starting point for platform agnostic web development.
 
 - gulp
 - browserify
+- webpack
 - browser-sync
 - node-sass
 - compass
