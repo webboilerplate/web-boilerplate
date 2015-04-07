@@ -3,45 +3,39 @@
 //basic polyfills needed in almost every project
 var polyfills = require('./polyfills');
 
-
 var device = require('device.js')();
 device.addClasses();
 
-var App = function() {};
+class App {
 
-App.prototype = {
+  constructor() {
+    this.name = 'Web Boilerplate';
+    this._initialized = false;
+  }
 
-  name: 'Web Boilerplate',
 
-  _initialized: false,
+  initialize() {
+    this._initialized = true;
+    //TODO initialize
+  }
 
-  model: {},
-  view: {},
-  controller: {},
-  routes: {},
-
-  root: '/',
-
-  initialize: function() {
-
-    if (!this._initialized) {
-      this._initialized = true;
-
-      console.log('Moin Moin and welcome to ' + this.name);
-
-      //TODO initialize
-    }
-  },
-
-  start: function() {
+  start() {
     if (!this._initialized) {
       this.initialize();
+
+      console.log(`
+      Moin Moin
+    and welcome to
+   ` + this.name);
     }
-  },
-
-  stop: function() {
-
   }
-};
+
+
+  pause() {}
+
+  stop() {}
+
+}
+
 
 module.exports = App;

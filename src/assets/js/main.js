@@ -1,33 +1,44 @@
 'use strict';
 
-var domready = require('domready');
-var fastdom = require('fastdom');
-var FastClick = require('fastclick');
+let App = require('./app');
 
-var loadTimeout = 0;
+let domready = require('domready');
+let fastdom = require('fastdom');
+let fastclick = require('fastclick');
 
-var App = require('./app');
+class Main {
 
-var onLoad = function() {
+  constructor() {
 
-  if (loadTimeout) {
-    clearTimeout(loadTimeout);
+    this.loadTimeout = 0;
+    this.app = new App();
+
+    let onLoad = this.onLoad.bind(this);
+
+    if (document.readyState === 'complete') {
+      domready(onLoad);
+    } else {
+      this.loadTimeout = setTimeout(onLoad, 2600);
+      window.onload = onLoad;
+    }
   }
 
-  var app = new App();
-  app.start();
 
-  new FastClick(document.body, {});
+  onLoad() {
 
-  fastdom.write(function() {
-    document.body.classList.add('loaded');
-  });
+    if (this.loadTimeout) {
+      clearTimeout(this.loadTimeout);
+    }
 
-};
+    this.app.start();
 
-if (document.readyState === 'complete') {
-  domready(onLoad);
-} else {
-  loadTimeout = setTimeout(onLoad, 2600);
-  window.onload = onLoad;
+    fastclick(document.body);
+
+    fastdom.write(function() {
+      document.body.classList.add('loaded');
+    });
+  }
 }
+
+
+module.exports = new Main();
