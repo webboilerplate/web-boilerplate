@@ -5,6 +5,7 @@ module.exports = {
 
   src: path.resolve(config.path.src, config.path.sass) + '/*.{sass,scss}',
   dest: path.resolve(config.path.build, config.path.css),
+  watch: path.resolve(config.path.src, config.path.sass) + '/**/*.{sass,scss}',
 
   settings: {
     //indentedSyntax: true, // Enable .sass syntax!

@@ -5,6 +5,7 @@ module.exports = {
 
   src: path.resolve(config.path.src, config.path.stylus) + '/*.styl',
   dest: path.resolve(config.path.build, config.path.css),
+  watch: path.resolve(config.path.src, config.path.stylus) + '/**/*.styl',
 
   settings: {
     //use: nib(),

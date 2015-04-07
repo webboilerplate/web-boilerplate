@@ -21,11 +21,15 @@ gulp.task('watch', ['watchify', 'browserSync'], function() {
 
   var interval = process.env.WATCH_INTERVAL || 500;
 
-  gulp.watch(sass.src, ['sass']);
+  gulp.watch(sass.watch, ['sass']);
 
-  gulp.watch(stylus.src, ['stylus']);
+  gulp.watch(stylus.watch, ['stylus']);
 
   // gulp.watch(html.src, ['html']);
+
+  gulp.watch(html.src, {
+    interval: 1000
+  }, [browserSync.reload]);
 
   gulp.watch(images.src, {
     interval: 2000

@@ -2,7 +2,7 @@
 
 var config = {
 
-  preprocessor: 'sass',
+  preprocessor: 'stylus',
 
   path: {
     src: 'src',
