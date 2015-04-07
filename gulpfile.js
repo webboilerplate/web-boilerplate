@@ -29,13 +29,15 @@ require('require-dir')('./gulp/tasks', {
     MAIN TASKS
 *******************************************************************************/
 
-gulp.task('default', function(cb) {
-  runSequence('sprites', ['scripts', 'styles'], cb);
+gulp.task('build', function(cb) {
+  runSequence('clean:build', [/*'fonts',*/ 'sprites', 'images', 'html'], ['scripts', 'styles'], cb);
 });
 
-gulp.task('dev', function(cb) {
-  runSequence('default', 'watch', cb);
+
+gulp.task('default', function(cb) {
+  runSequence('build', 'watch', cb);
 });
+
 
 gulp.task('dist', function(cb) {
   runSequence('clean', 'default', [
@@ -52,11 +54,11 @@ gulp.task('dist', function(cb) {
 });
 
 gulp.task('deploy', function(cb) {
-  runSequence('dist', 'publish');
+  runSequence('dist', 'publish', cb);
 });
 
 gulp.task('release', function(cb) {
-  runSequence('bump:patch', 'deploy');
+  runSequence('bump:patch', 'deploy', cb);
 });
 
 
@@ -65,10 +67,9 @@ gulp.task('release', function(cb) {
 *******************************************************************************/
 
 gulp.task('styles', function(cb) {
-
   switch (config.preprocessor) {
-    case 'scss':
-      runSequence(['scsslint', 'scss'], cb);
+    case 'sass':
+      runSequence(['scsslint', 'sass'], cb);
       break;
     case 'stylus':
       runSequence('stylus', cb);

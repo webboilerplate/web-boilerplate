@@ -76,7 +76,7 @@
     "lint": "gulp csslint && gulp jshint",
     "dist": "gulp deploy --production",
     "deploy": "gulp deploy --production",
-    "start": "node ./lib/check.js && bower install && gulp dev",
+    "start": "node ./lib/check.js && bower install && gulp default",
     "restart": "node ./lib/check.js && bower install && gulp watch --restart",
     "bower": "./node_modules/.bin/bower",
     "watch": "gulp watch"

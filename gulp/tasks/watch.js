@@ -7,6 +7,7 @@ var gulp = require('gulp');
 var sprites = require('../config/sprites');
 var images = require('../config/images');
 var sass = require('../config/sass');
+var html = require('../config/html');
 var stylus = require('../config/stylus');
 var fonts = require('../config/fonts');
 var browserSync = require('browser-sync');
@@ -16,7 +17,7 @@ var browserSync = require('browser-sync');
 *******************************************************************************/
 
 
-gulp.task('watch', ['browserSync'], function() {
+gulp.task('watch', ['watchify', 'browserSync'], function() {
 
   var interval = process.env.WATCH_INTERVAL || 500;
 
@@ -24,6 +25,7 @@ gulp.task('watch', ['browserSync'], function() {
 
   gulp.watch(stylus.src, ['stylus']);
 
+  // gulp.watch(html.src, ['html']);
 
   gulp.watch(images.src, {
     interval: 2000

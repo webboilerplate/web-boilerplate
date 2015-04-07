@@ -21,7 +21,7 @@ var config = require('../config/sprites');
 var spritesTask = function() {
 
   var createSprite = function(settings) {
-    console.log(settings);
+    // console.log(settings);
     var spriteData = gulp.src(settings.src)
       .pipe(spritesmith(settings.spritesmith));
     return spriteData.img.pipe(gulp.dest(settings.dest ||  config.dest));
