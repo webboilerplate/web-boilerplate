@@ -35,7 +35,7 @@ class Main {
     fastclick(document.body);
 
     fastdom.write(function() {
-      document.body.classList.add('loaded');
+      document.documentElement.classList.add('loaded');
     });
   }
 }
