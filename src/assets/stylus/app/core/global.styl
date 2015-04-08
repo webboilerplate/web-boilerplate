@@ -12,7 +12,6 @@ button
   font-smoothing: antialiased
   text-rendering: optimizeLegibility
 
-  .android
   .android &
     text-rendering: auto
 
@@ -38,7 +37,7 @@ body
 body
   position: relative
 
-  min-height :100%
+  min-height: 100%
   min-width: 320px
 
   font-family: 'Open Sans', sans-serif
@@ -68,9 +67,19 @@ h1,h2,h3,h4,h5,b,strong
 .page
   cf()
   width: 100%
-  min-height 100%
+  min-height: 100%
   background: #31343c
-  padding 4% 0
+  padding: 4% 0
+
+  h1
+    font-weight: 300
+
+  +bp(1023px)
+    float: none
+    width: 100%
+
+  +bp(568px)
+    padding-top: 30px
 
 
 header[role="banner"]
@@ -170,20 +179,6 @@ nav[role="navigation"]
 
   +when(567px)
     background: #E26A6A
-
-main
-  float: left
-  width: 60%
-
-  h1
-    font-weight: 300
-
-  +bp(1023px)
-    float: none
-    width: 100%
-
-  +bp(568px)
-    padding-top: 30px
 
 
 .sidebar

@@ -151,82 +151,85 @@
   </nav>
 
 
-  <main id="about" class="page">
-    <div class="container">
-      <h1 id="web-boilerplate">Web Boilerplate</h1>
-      <p>Web Boilerplate is a starting point for platform agnostic web development.   </p>
-      <h2 id="tooling-technologies-libs-core-only-">Tooling / Technologies / Libs <em>(core only)</em></h2>
-      <ul>
-      <li>gulp</li>
-      <li>browserify</li>
-      <li>webpack</li>
-      <li>browser-sync</li>
-      <li>node-sass</li>
-      <li>compass</li>
-      <li>stylus</li>
-      <li>spritesmith</li>
-      <li>bower</li>
-      <li>rsync</li>
-      </ul>
-      <h3 id="install-node-js">Install Node.js</h3>
-      <p>we recommend installing node through nvm: <em>(replace the node version with the one of your choice)</em></p>
-      <pre><code class="lang-bash">curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-      nvm install v0.<span class="hljs-number">12.2</span>
-      nvm alias default v0.<span class="hljs-number">12.2</span>
-      </code></pre>
-      <p>Web Boilerplate uses node-sass. for linting sass you need to install <a href="http://sass-lang.com/install">Sass</a>. </p>
-      <h3 id="install-scss-lint">Install scss-lint</h3>
-      <pre><code class="lang-bash">gem update --system &amp;&amp; gem install scss-lint
-      </code></pre>
-      <p><em>Windows user</em> have to install ruby first. then:</p>
-      <pre><code class="lang-bash">gem install windows-pr
-      </code></pre>
-      <p>we also recommend to use cmder as the default console on Windows
-      <a href="http://gooseberrycreative.com/cmder/">http://gooseberrycreative.com/cmder/</a></p>
-      <h3 id="recommended-sublime-project-file-contents-">recommended sublime-project file contents:</h3>
-      <pre><code>{
-        &quot;folders&quot;:
-        [
-          {
-            &quot;follow_symlinks&quot;: true,
-            &quot;path&quot;: &quot;.&quot;,
-            &quot;folder_exclude_patterns&quot;: [&quot;dist&quot;, &quot;build&quot;, &quot;material&quot;, &quot;node_modules&quot;, &quot;bower_components&quot; ]
-          }
-        ],
+  <main id="main" role="main">
 
-        &quot;ternjs&quot;: {
-          &quot;exclude&quot;: [&quot;dist/**&quot;, &quot;test/**&quot;, &quot;build/**&quot;, &quot;material/**&quot;, &quot;node_modules/**&quot;, &quot;bower_components/**&quot; ],
-          &quot;libs&quot;: [ &quot;browser&quot;, &quot;underscore&quot;, &quot;jquery&quot;, &quot;ecma5&quot; ]
+    <div id="about" class="page">
+      <div class="container">
+        <h1 id="web-boilerplate">Web Boilerplate</h1>
+        <p>Web Boilerplate is a starting point for platform agnostic web development.   </p>
+        <h2 id="tooling-technologies-libs-core-only-">Tooling / Technologies / Libs <em>(core only)</em></h2>
+        <ul>
+        <li>gulp</li>
+        <li>browserify</li>
+        <li>webpack</li>
+        <li>browser-sync</li>
+        <li>node-sass</li>
+        <li>compass</li>
+        <li>stylus</li>
+        <li>spritesmith</li>
+        <li>bower</li>
+        <li>rsync</li>
+        </ul>
+        <h3 id="install-node-js">Install Node.js</h3>
+        <p>we recommend installing node through nvm: <em>(replace the node version with the one of your choice)</em></p>
+        <pre><code class="lang-bash">curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+        nvm install v0.<span class="hljs-number">12.2</span>
+        nvm alias default v0.<span class="hljs-number">12.2</span>
+        </code></pre>
+        <p>Web Boilerplate uses node-sass. for linting sass you need to install <a href="http://sass-lang.com/install">Sass</a>. </p>
+        <h3 id="install-scss-lint">Install scss-lint</h3>
+        <pre><code class="lang-bash">gem update --system &amp;&amp; gem install scss-lint
+        </code></pre>
+        <p><em>Windows user</em> have to install ruby first. then:</p>
+        <pre><code class="lang-bash">gem install windows-pr
+        </code></pre>
+        <p>we also recommend to use cmder as the default console on Windows
+        <a href="http://gooseberrycreative.com/cmder/">http://gooseberrycreative.com/cmder/</a></p>
+        <h3 id="recommended-sublime-project-file-contents-">recommended sublime-project file contents:</h3>
+        <pre><code>{
+          &quot;folders&quot;:
+          [
+            {
+              &quot;follow_symlinks&quot;: true,
+              &quot;path&quot;: &quot;.&quot;,
+              &quot;folder_exclude_patterns&quot;: [&quot;dist&quot;, &quot;build&quot;, &quot;material&quot;, &quot;node_modules&quot;, &quot;bower_components&quot; ]
+            }
+          ],
+
+          &quot;ternjs&quot;: {
+            &quot;exclude&quot;: [&quot;dist/**&quot;, &quot;test/**&quot;, &quot;build/**&quot;, &quot;material/**&quot;, &quot;node_modules/**&quot;, &quot;bower_components/**&quot; ],
+            &quot;libs&quot;: [ &quot;browser&quot;, &quot;underscore&quot;, &quot;jquery&quot;, &quot;ecma5&quot; ]
+          }
         }
-      }
-      </code></pre>
-      <h2 id="start-development-">start development:</h2>
-      <p>Web Boilerplate will always check if your package.json has changed and will automatically install all new dependencies if there are any. If you work on a project in a team this might help you a lot ;)</p>
-      <pre><code class="lang-bash">npm start
-      </code></pre>
-      <p>if you get an error like &quot;Package cairo was not found in the pkg-config search path.&quot; just can just ignore it. its an optional dependency used to generate sprites with spritesmith using canvassmith. if you like you can install it with <code>brew install cairo --without-x11</code>.</p>
-      <h2 id="restart-development-">restart development:</h2>
-      <pre><code class="lang-bash">npm restart
-      </code></pre>
-      <p>the restart command will not preprocess / compile / transpile your code before it starts watching your files an run the dev server. if you work in a team we recommand to use start as your default command to start development</p>
-      <h2 id="distribute-">distribute:</h2>
-      <pre><code class="lang-bash">npm run dist
-      </code></pre>
-      <h2 id="deploy-">deploy:</h2>
-      <pre><code class="lang-bash">npm run deploy
-      </code></pre>
-      <h2 id="server-configs">Server Configs</h2>
-      <p><a href="https://github.com/h5bp/server-configs">https://github.com/h5bp/server-configs</a></p>
-      <h2 id="frontend-coding-guidelines">Frontend Coding Guidelines</h2>
-      <ul>
-      <li><a href="http://codeguide.co/">http://codeguide.co/</a></li>
-      <li><a href="http://cssguidelin.es/">http://cssguidelin.es/</a></li>
-      <li><a href="http://sass-guidelin.es/">http://sass-guidelin.es/</a></li>
-      <li><a href="https://github.com/styleguide/css/">https://github.com/styleguide/css/</a></li>
-      <li><a href="https://github.com/necolas/idiomatic-css/">https://github.com/necolas/idiomatic-css/</a></li>
-      <li><a href="http://paulrobertlloyd.com/about/styleguide/">http://paulrobertlloyd.com/about/styleguide/</a></li>
-      <li><a href="https://github.com/airbnb/javascript/">https://github.com/airbnb/javascript/</a></li>
-      </ul>
+        </code></pre>
+        <h2 id="start-development-">start development:</h2>
+        <p>Web Boilerplate will always check if your package.json has changed and will automatically install all new dependencies if there are any. If you work on a project in a team this might help you a lot ;)</p>
+        <pre><code class="lang-bash">npm start
+        </code></pre>
+        <p>if you get an error like &quot;Package cairo was not found in the pkg-config search path.&quot; just can just ignore it. its an optional dependency used to generate sprites with spritesmith using canvassmith. if you like you can install it with <code>brew install cairo --without-x11</code>.</p>
+        <h2 id="restart-development-">restart development:</h2>
+        <pre><code class="lang-bash">npm restart
+        </code></pre>
+        <p>the restart command will not preprocess / compile / transpile your code before it starts watching your files an run the dev server. if you work in a team we recommand to use start as your default command to start development</p>
+        <h2 id="distribute-">distribute:</h2>
+        <pre><code class="lang-bash">npm run dist
+        </code></pre>
+        <h2 id="deploy-">deploy:</h2>
+        <pre><code class="lang-bash">npm run deploy
+        </code></pre>
+        <h2 id="server-configs">Server Configs</h2>
+        <p><a href="https://github.com/h5bp/server-configs">https://github.com/h5bp/server-configs</a></p>
+        <h2 id="frontend-coding-guidelines">Frontend Coding Guidelines</h2>
+        <ul>
+        <li><a href="http://codeguide.co/">http://codeguide.co/</a></li>
+        <li><a href="http://cssguidelin.es/">http://cssguidelin.es/</a></li>
+        <li><a href="http://sass-guidelin.es/">http://sass-guidelin.es/</a></li>
+        <li><a href="https://github.com/styleguide/css/">https://github.com/styleguide/css/</a></li>
+        <li><a href="https://github.com/necolas/idiomatic-css/">https://github.com/necolas/idiomatic-css/</a></li>
+        <li><a href="http://paulrobertlloyd.com/about/styleguide/">http://paulrobertlloyd.com/about/styleguide/</a></li>
+        <li><a href="https://github.com/airbnb/javascript/">https://github.com/airbnb/javascript/</a></li>
+        </ul>
+      </div>
     </div>
   </main>
 
