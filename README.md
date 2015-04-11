@@ -4,16 +4,17 @@ Web Boilerplate is a starting point for platform agnostic web development.
 
 ## Tooling / Technologies / Libs *(core only)*
 
-- gulp
-- browserify
-- webpack
-- browser-sync
-- node-sass
-- compass
-- stylus
-- spritesmith
-- bower
-- rsync
+- [gulp](http://gulpjs.com)
+- [browserify](http://browserify.org)
+- [webpack](https://webpack.github.io), 
+- [browser-sync](http://www.browsersync.io)
+- [node-sass](https://github.com/sass/node-sass)
+- [compass](http://compass-style.org)
+- [stylus](https://learnboost.github.io/stylus)
+- [spritesmith](https://github.com/Ensighten/spritesmith)
+- [bower](http://bower.io)
+- [rsync](https://github.com/jedrichards/rsyncwrapper)
+- [npm](https://www.npmjs.com/) 
 
 ### Install Node.js
 we recommend installing node through nvm: *(replace the node version with the one of your choice)*
@@ -89,7 +90,7 @@ npm run deploy
 
 ## Server Configs
 
-[https://github.com/h5bp/server-configs](https://github.com/h5bp/server-configs)
+<https://github.com/h5bp/server-configs/>
 
 
 ## Roadmap
