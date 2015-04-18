@@ -1,8 +1,7 @@
 {
-  preset: "google",
-  validateLineBreaks: "LF",
-  validateIndentation: 2,
-  excludeFiles: [
-  "node_modules/**"
-  ]
+  "preset": "google",
+  "validateLineBreaks": "LF",
+  "disallowSpacesInAnonymousFunctionExpression": null,
+  "validateIndentation": 2,
+  "excludeFiles": [ "node_modules/**"  ]
 }
