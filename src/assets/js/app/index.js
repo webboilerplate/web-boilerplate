@@ -24,9 +24,9 @@ class App {
       this.initialize();
 
       console.log(`
-      Moin Moin
-    and welcome to
-   ` + this.name);
+          Moin Moin
+        and welcome to
+        ${this.name}`);
     }
   }
 
