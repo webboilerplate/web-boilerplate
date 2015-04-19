@@ -3,7 +3,7 @@
 Web Boilerplate is a starting point for platform agnostic HTML5 web development.
 
 It lets you kick off your next web / app front-end project without the timecost of setting up a fresh project with all file structure, building tasks, core files and core contents with SEO and accessibility, dependencies, deployment and so on...
-Web Boilperplate takes the best parts of [Web Starter Kit](https://developers.google.com/web/starter-kit/), [HTML5 Boilperplate](https://html5boilerplate.com), [Gulp Starter](https://github.com/greypants/gulp-starter) among others and of course some of my own approaches in professional web development.
+Web Boilperplate enhances! the best parts of [Web Starter Kit](https://developers.google.com/web/starter-kit/), [HTML5 Boilperplate](https://html5boilerplate.com), [Gulp Starter](https://github.com/greypants/gulp-starter) among others and of course some of my own approaches in professional web development.
 
 ## Tooling / Technologies / Libs *(core only)*
 
