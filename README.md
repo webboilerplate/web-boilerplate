@@ -69,52 +69,50 @@ we also recommend to use cmder as the default console on Windows
 
 
 ### recommended Sublime Plugins:
-```
-AdvancedNewFile
-Alignment
-ApacheConf.tmLanguage
-AutoFileName
-Base16 Color Schemes
-Better CoffeeScript
-Better JavaScript
-BracketHighlighter
-Browser Refresh
-Color Highlighter
-DocBlockr
-Dotfiles Syntax Highlighting
-EJS
-EditorConfig
-Emmet
-ExpandRegion
-FileDiffs
-FindKeyConflicts
-Gist
-GitGutter
-HTML5
-Handlebars
-JSX
-Jade
-LESS
-Local History
-Open URL
-Package Control
-PyV8
-ReactJS
-SCSS
-SassBeautify
-SideBarEnhancements
-SideBarGit
-Stylus
-SublimeLinter-annotations
-SublimeLinter-html-tidy
-SublimeLinter-jscs
-SublimeLinter-jshint
-SublimeLinter-json
-SublimeLinter-jsxhint
-SublimeLinter-phplint
-TernJS
+* AdvancedNewFile
+* Alignment
+* ApacheConf.tmLanguage
+* AutoFileName
+* Base16 Color Schemes
+* Better CoffeeScript
+* Better JavaScript
+* BracketHighlighter
+* Browser Refresh
+* Color Highlighter
+* DocBlockr
+* Dotfiles Syntax Highlighting
+* EJS
+* EditorConfig
+* Emmet
+* ExpandRegion
+* FileDiffs
+* FindKeyConflicts
+* Gist
+* GitGutter
+* HTML5
+* Handlebars
+* JSX
+* Jade
+* LESS
+* Local History
+* Open URL
+* Package Control
+* PyV8
+* ReactJS
+* SCSS
+* SassBeautify
+* SideBarEnhancements
+* SideBarGit
+* Stylus
+* SublimeLinter-annotations
+* SublimeLinter-html-tidy
+* SublimeLinter-jscs
+* SublimeLinter-jshint
+* SublimeLinter-json
+* SublimeLinter-jsxhint
+* SublimeLinter-phplint
+* TernJS
 
-```
 
 ##start development:
 Web Boilerplate will always check if your package.json has changed and will automatically install all new dependencies if there are any. If you work on a project in a team this might help you a lot ;)
