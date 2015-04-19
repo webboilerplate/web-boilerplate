@@ -45,30 +45,6 @@ we also recommend to use cmder as the default console on Windows
 <http://gooseberrycreative.com/cmder/>
 
 
-
-
-### recommended sublime-project file contents:
-```
-{
-  "folders":
-  [
-    {
-      "follow_symlinks": true,
-      "path": ".",
-      "folder_exclude_patterns": ["dist", "build", "material", "node_modules", "bower_components" ]
-    }
-  ],
-
-  "ternjs": {
-    "exclude": ["dist/**", "test/**", "build/**", "material/**", "node_modules/**", "bower_components/**" ],
-    "libs": [ "browser", "underscore", "jquery", "ecma5" ]
-  }
-}
-
-```
-
-
-
 ##start development:
 Web Boilerplate will always check if your package.json has changed and will automatically install all new dependencies if there are any. If you work on a project in a team this might help you a lot ;)
 
@@ -113,6 +89,28 @@ if you may need any...
 * <http://paulrobertlloyd.com/about/styleguide/>
 * <https://github.com/airbnb/javascript/>
 
+
+
+
+### recommended sublime-project file contents:
+```
+{
+  "folders":
+  [
+    {
+      "follow_symlinks": true,
+      "path": ".",
+      "folder_exclude_patterns": ["dist", "build", "material", "node_modules", "bower_components" ]
+    }
+  ],
+
+  "ternjs": {
+    "exclude": ["dist/**", "test/**", "build/**", "material/**", "node_modules/**", "bower_components/**" ],
+    "libs": [ "browser", "underscore", "jquery", "ecma5" ]
+  }
+}
+
+```
 
 
 
