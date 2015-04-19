@@ -1,16 +1,20 @@
 # Web Boilerplate
 
-Web Boilerplate is a starting point for platform agnostic web development.   
+Web Boilerplate is a starting point for platform agnostic web development.
+
+It lets you kick off your next web / app front-end project without the timecost of setting up a fresh project with all file structure, building tasks, core files, dependencies, deployment and so on...
+Web Boilperplate takes the best parts of [Web Starter Kit](https://developers.google.com/web/starter-kit/), [HTML5 Boilperplate](https://html5boilerplate.com), [Gulp Starter](https://github.com/greypants/gulp-starter) among others and some of my own approaches in professional web development.   
 
 ## Tooling / Technologies / Libs *(core only)*
 
 - [gulp](http://gulpjs.com)
 - [browserify](http://browserify.org)
-- [webpack](https://webpack.github.io), 
+- [webpack](https://webpack.github.io) 
+- [ES6](https://people.mozilla.org/~jorendorff/es6-draft.html)
 - [browser-sync](http://www.browsersync.io)
 - [node-sass](https://github.com/sass/node-sass)
-- [compass](http://compass-style.org)
 - [stylus](https://learnboost.github.io/stylus)
+- [compass](http://compass-style.org)
 - [spritesmith](https://github.com/Ensighten/spritesmith)
 - [bower](http://bower.io)
 - [rsync](https://github.com/jedrichards/rsyncwrapper)
@@ -25,9 +29,8 @@ nvm install v0.12.2
 nvm alias default v0.12.2
 ```
 
-Web Boilerplate uses node-sass. for linting sass you need to install [Sass](http://sass-lang.com/install). 
-
 ### Install scss-lint
+Web Boilerplate uses node-sass. for linting sass you need to install [sass](http://sass-lang.com/install). 
 
 ```bash
 gem update --system && gem install scss-lint
@@ -91,6 +94,7 @@ npm run deploy
 ## Server Configs
 
 <https://github.com/h5bp/server-configs/>
+
 if you may need any...
 
 
