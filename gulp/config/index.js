@@ -18,6 +18,7 @@ config.path.jade = config.path.assets + '/jade';
 config.path.images = config.path.assets + '/images';
 config.path.base64 = config.path.assets + '/base64';
 config.path.sprites = config.path.assets + '/sprites';
+config.path.icons = config.path.assets + '/icons';
 config.path.fonts = config.path.assets + '/fonts';
 config.path.js = config.path.assets + '/js';
 config.path.css = config.path.assets + '/css';

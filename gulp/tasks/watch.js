@@ -3,7 +3,7 @@
 
 var gulp = require('gulp');
 // var html        = require('../config/html');
-// var iconFont    = require('../config/iconFont');
+// var iconfont    = require('../config/iconfont');
 var sprites = require('../config/sprites');
 var images = require('../config/images');
 var sass = require('../config/sass');
