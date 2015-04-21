@@ -88,6 +88,8 @@ if you may need any...
 * <https://github.com/necolas/idiomatic-css/>
 * <http://paulrobertlloyd.com/about/styleguide/>
 * <https://github.com/airbnb/javascript/>
+* <https://github.com/felixge/node-style-guide>
+* <https://github.com/yandex/codestyle/blob/master/javascript.md>
 
 
 
