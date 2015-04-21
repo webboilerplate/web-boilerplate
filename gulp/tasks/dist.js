@@ -41,19 +41,22 @@ gulp.task('vendor:dist', function() {
 });
 
 
+
 gulp.task('css:dist', function() {
   return gulp.src(config.path.build + '/' + config.path.css + '/**/*.css')
     .pipe(minifyCss({
-      // noRebase: true,
-      noAdvanced: true,
-      keepSpecialComments: 0,
-      compatibility: 'ie8'
+      // rebase: false,
+      // advanced: false,
+      // keepSpecialComments: 0,
+      // processImport:false,
+      // compatibility: 'ie8'
     }))
     .pipe(header(banner, {
       pkg: pkg
     }))
     .pipe(gulp.dest(config.path.dest + '/' + config.path.css));
 });
+
 
 gulp.task('fonts:dist', function() {
   return gulp.src(config.path.src + '/' + config.path.fonts + '/**/*')
