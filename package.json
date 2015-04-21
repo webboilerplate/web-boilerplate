@@ -1,7 +1,7 @@
 {
   "name": "web-boilerplate",
   "version": "0.1.0",
-  "description": "Codebase for Web Font-End Development",
+  "description": "Web Boilerplate - codebase for platform agnostic front-end web development",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -51,7 +51,7 @@
     "gulp-imagemin": "2.2.1",
     "gulp-jade": "1.0.0",
     "gulp-jshint": "1.10.0",
-    "gulp-minify-css": "1.0.0",
+    "gulp-minify-css": "1.1.0",
     "gulp-notify": "2.2.0",
     "gulp-plumber": "1.0.0",
     "gulp-rename": "1.2.2",
