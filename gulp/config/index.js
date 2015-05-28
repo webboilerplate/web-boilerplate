@@ -13,7 +13,6 @@ var config = {
   }
 };
 
-
 config.path.jade = config.path.assets + '/jade';
 config.path.images = config.path.assets + '/images';
 config.path.base64 = config.path.assets + '/base64';

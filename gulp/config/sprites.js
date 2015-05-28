@@ -3,56 +3,77 @@
 var config = require('./');
 var path = require('path');
 
+
+/**
+ * add more sprite configs to array if needed
+ */
 module.exports = {
 
-  src : path.resolve(config.path.src, config.path.sprites) + '/**/*.{png,jpg,gif}',
-  dest: path.resolve(config.path.build, config.path.css),
+  src: path.resolve(config.path.src, config.path.sprites) + '/**/*.png',
+  watch: config.path.src + '/' + config.path.sprites + '/**/*.png',
+  dest: path.resolve(config.path.build, config.path.images),
 
   sprites: [
 
-    //common sprite:
+    // sprite @1x:
 
     {
 
       src: [
-        path.resolve(config.path.src, config.path.sprites) + '/common/*.{png,jpg,gif}',
-        '!' + path.resolve(config.path.src, config.path.sprites) + '/common/*@2x.{png,jpg,gif}',
-        '!' + path.resolve(config.path.src, config.path.sprites) + '/common/*@3x.{png,jpg,gif}'
+        path.resolve(config.path.src, config.path.sprites) + '/global/*.png',
+        '!' + path.resolve(config.path.src, config.path.sprites) + '/global/*@2x.png',
+        '!' + path.resolve(config.path.src, config.path.sprites) + '/global/*@3x.png'
       ],
+
+      cssDest: config.path.src + '/' + config.path.sass + '/generated',
 
       spritesmith: {
         // engine:'canvas',
-        imgName: 'sprite.png',
-        imgPath: '../images/sprite.png',
-        cssName: 'sprite.scss',
+        imgName: 'sprite-global.png',
+        imgPath: '../images/sprite-global.png',
+        cssName: '_sprite-global.scss',
         padding: 10,
         cssTemplate: './lib/spritesmith.' + config.preprocessor + '.tpl.mustache',
         cssVarMap: function(sprite) {
-          sprite.image = sprite.image.replace('.png', '').replace('.jpg', '').replace('.gif', '');
-        },
+          sprite.image = sprite.image
+            .replace('.png', '')
+            .replace('.jpg', '')
+            .replace('.gif', '');
+        }
       }
-    }, {
+    },
+
+    // sprite @2x:
+
+    {
 
       src: [
-        path.resolve(config.path.src, config.path.sprites) + '/common/*@2x.{png,jpg,gif}',
-        '!' + path.resolve(config.path.src, config.path.sprites) + '/common/*@3x.{png,jpg,gif}'
+        path.resolve(config.path.src, config.path.sprites) + '/global/*@2x.png',
+        '!' + path.resolve(config.path.src, config.path.sprites) + '/global/*@3x.png'
       ],
 
       spritesmith: {
         // engine:'canvas',
-        imgName: 'sprite@2x.png',
-        imgPath: '../images/sprite@2x.png',
-        cssName: 'sprite-2x.scss',
+        imgName: 'sprite-global@2x.png',
+        imgPath: '../images/sprite-global@2x.png',
+        cssName: '_sprite-global-2x.scss',
         padding: 20,
         cssTemplate: './lib/spritesmith.' + config.preprocessor + '.tpl.mustache',
         cssVarMap: function(sprite) {
-          sprite.image = sprite.image.replace('.png', '').replace('.jpg', '').replace('.gif', '');
-        },
+          sprite.image = sprite.image
+            .replace('.png', '')
+            .replace('.jpg', '')
+            .replace('.gif', '');
+        }
       }
-    }/*, {
+    }
+
+    // sprite @3x:
+
+    /*, {
 
       src: [
-        path.resolve(config.path.src, config.path.sprites) + '/common/*@3x.{png,jpg,gif}'
+        path.resolve(config.path.src, config.path.sprites) + '/global/*@3x.png'
       ],
 
       spritesmith: {
@@ -63,10 +84,12 @@ module.exports = {
         padding: 30,
         cssTemplate: './lib/spritesmith.' + config.preprocessor + '.tpl.mustache',
         cssVarMap: function(sprite) {
-          sprite.image = sprite.image.replace('.png', '').replace('.jpg', '').replace('.gif', '');
+          sprite.image = sprite.image.replace('.png', '')
+            .replace('.jpg', '')
+            .replace('.gif', '');
         },
       }
     }*/
-  ],
+  ]
 
 };

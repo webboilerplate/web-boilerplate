@@ -1,3 +1,5 @@
+'use strict';
+
 var config = require('./');
 var gutil = require('gulp-util');
 

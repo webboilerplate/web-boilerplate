@@ -1,3 +1,5 @@
+'use strict';
+
 var config = require('./');
 
 module.exports = {
@@ -7,5 +9,4 @@ module.exports = {
     '!' + config.path.src + '/' + config.path.js + '/app/libs/**',
     '!' + config.path.src + '/' + config.path.js + '/app/polyfills/**'
   ]
-
 };

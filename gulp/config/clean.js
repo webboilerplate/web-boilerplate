@@ -1,6 +1,7 @@
+'use strict';
+
 var config = require('./');
 var path = require('path');
-
 
 module.exports = {
   // delete the dist folder but everything git and Readme or package.json

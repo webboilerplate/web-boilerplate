@@ -8,7 +8,7 @@ module.exports = {
   watch: path.resolve(config.path.src, config.path.sass) + '/**/*.{sass,scss}',
 
   settings: {
-    //indentedSyntax: true, // Enable .sass syntax!
+    // indentedSyntax: true, // Enable .sass syntax!
     imagePath: config.path.images, // Used by the image-url helper
     includePaths: config.path.includePaths,
     outputStyle: 'nested'
