@@ -3,7 +3,7 @@ var path = require('path');
 
 module.exports = {
 
-  watch: path.resolve(config.path.src, config.path.stylus) + '/**/*.styl',
+  watch: config.path.src+'/'+ config.path.stylus + '/**/*.styl',
   src: path.resolve(config.path.src, config.path.stylus) + '/*.styl',
   dest: path.resolve(config.path.build, config.path.css),
 
