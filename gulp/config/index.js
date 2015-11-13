@@ -13,7 +13,8 @@ var config = {
   }
 };
 
-config.path.jade = config.path.assets + '/jade';
+config.path.sketch = config.path.assets + '/sketch';
+config.path.svg = config.path.assets + '/svg';
 config.path.images = config.path.assets + '/images';
 config.path.base64 = config.path.assets + '/base64';
 config.path.sprites = config.path.assets + '/sprites';
@@ -23,8 +24,10 @@ config.path.js = config.path.assets + '/js';
 config.path.css = config.path.assets + '/css';
 config.path.sass = config.path.assets + '/sass';
 config.path.stylus = config.path.assets + '/stylus';
+config.path.components = config.path.assets + '/components';
 
-config.path.includePath = [
+config.path.sassIncludePath = [
+  config.path.build + '/' + config.path.sass,
   config.path.components
 ];
 

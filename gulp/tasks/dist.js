@@ -9,7 +9,6 @@ var header = require('gulp-header');
 var pkg = require('../../package.json');
 var config = require('../config');
 
-
 /*******************************************************************************
     BUILD / DIST TASK
 *******************************************************************************/
@@ -33,7 +32,6 @@ gulp.task('js:dist', function() {
     .pipe(gulp.dest(config.path.dest + '/' + config.path.js));
 });
 
-
 gulp.task('vendor:dist', function() {
   return gulp.src(config.path.src + '/' + config.path.js + '/vendor/*.{js,htc}')
     .pipe(uglify())
@@ -41,13 +39,12 @@ gulp.task('vendor:dist', function() {
 });
 
 
-
 gulp.task('css:dist', function() {
   return gulp.src(config.path.build + '/' + config.path.css + '/**/*.css')
     .pipe(minifyCss({
-      // rebase: false,
-      // advanced: false,
-      // keepSpecialComments: 0,
+      rebase: false,
+      advanced: false,
+      keepSpecialComments: 0
       // processImport:false,
       // compatibility: 'ie8'
     }))
@@ -89,12 +86,10 @@ gulp.task('html:src:dist', function() {
         config.path.src + '/*.*',
         config.path.src + '/.*',
         config.path.src + '/**/*.{html,shtml,php,xml,json}',
-        '!' + config.path.src + '/data/**/*',
         '!' + config.path.src + '/' + config.path.js + '/**/*'
       ])
     .pipe(gulp.dest(config.path.dest));
 });
-
 
 gulp.task('server:dist', function() {
   return gulp.src('./server/**/**')
@@ -108,6 +103,10 @@ gulp.task('pkg:dist', function() {
       pkg = JSON.parse(file.contents.toString());
       delete(pkg.devDependencies);
       delete(pkg.scripts);
+      delete(pkg.repository);
+      delete(pkg.browser);
+      delete(pkg.browserify);
+      delete(pkg['browserify-shim']);
       pkg.scripts = {
         'start': 'npm install && node ./server/index.js'
       };

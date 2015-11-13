@@ -3,7 +3,6 @@
 var gulp = require('gulp');
 var rsync = require('rsyncwrapper').rsync;
 var pkg = require('../../package.json');
-
 var config = require('../config/deploy');
 
 var sshConfig = config[process.env.NODE_ENV ||  'development'];

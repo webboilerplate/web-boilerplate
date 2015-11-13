@@ -25,7 +25,7 @@ module.exports = {
         '!' + path.resolve(config.path.src, config.path.sprites) + '/global/*@3x.png'
       ],
 
-      cssDest: config.path.src + '/' + config.path.sass + '/generated',
+      cssDest: config.path.build + '/' + config.path.sass,
 
       spritesmith: {
         // engine:'canvas',

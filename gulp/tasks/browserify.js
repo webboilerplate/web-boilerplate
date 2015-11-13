@@ -50,6 +50,7 @@ var browserifyTask = function(watchMode) {
       bundleLogger.start(bundleConfig.outputName);
 
       return b
+        .transform('babelify', {presets: ['es2015']})
         .bundle()
         // Report compile errors
         .on('error', handleErrors)

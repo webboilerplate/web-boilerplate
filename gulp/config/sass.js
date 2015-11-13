@@ -1,16 +1,18 @@
+'use strict';
+
 var config = require('./');
 var path = require('path');
 
-module.exports = {
 
+module.exports = {
   src: path.resolve(config.path.src, config.path.sass) + '/*.{sass,scss}',
   dest: path.resolve(config.path.build, config.path.css),
   watch: config.path.src + '/' + config.path.sass + '/**/*.{sass,scss}',
 
   settings: {
-    // indentedSyntax: true, // Enable .sass syntax!
+    //indentedSyntax: true, // Enable .sass syntax!
     imagePath: config.path.images, // Used by the image-url helper
-    includePaths: config.path.includePaths,
+    includePaths: config.path.sassIncludePath,
     outputStyle: 'nested'
   },
 

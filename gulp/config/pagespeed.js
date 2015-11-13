@@ -11,7 +11,7 @@ module.exports = [
     settings: {
       // key: key
       nokey: 'true',
-      strategy: 'mobile',
+      strategy: 'mobile'
     }
 
   },
@@ -23,7 +23,7 @@ module.exports = [
     settings: {
       // key: key
       nokey: 'true',
-      strategy: 'desktop',
+      strategy: 'desktop'
     }
   }
 ];

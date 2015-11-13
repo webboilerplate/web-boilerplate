@@ -2,9 +2,9 @@
 
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
+var jscs = require('gulp-jscs');
 var stylish = require('jshint-stylish');
 var config = require('../config/jshint');
-
 
 /*******************************************************************************
     JAVASCRIPT TASK
@@ -14,4 +14,9 @@ gulp.task('jshint', function() {
   return gulp.src(config.src)
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter(stylish));
+});
+
+gulp.task('jscs', function() {
+  return gulp.src(config.src)
+    .pipe(jscs())
 });

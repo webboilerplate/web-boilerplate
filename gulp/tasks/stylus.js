@@ -4,7 +4,8 @@ var gulp = require('gulp');
 var stylus = require('gulp-stylus');
 var plumber = require('gulp-plumber');
 var reload = require('browser-sync').reload;
-var autoprefixer = require('gulp-autoprefixer');
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer');
 var browsers = require('../config/autoprefixer').browsers;
 var handleErrors = require('../util/handleErrors');
 
@@ -15,7 +16,12 @@ gulp.task('stylus', function() {
     .pipe(plumber())
     .pipe(stylus(config.settings))
     .on('error', handleErrors)
-    .pipe(autoprefixer.apply(browsers))
+    .pipe(postcss([
+      autoprefixer({
+        browsers: browsers,
+        cascade: false
+      })
+    ]))
     .pipe(gulp.dest(config.dest))
     .pipe(reload({
       stream: true

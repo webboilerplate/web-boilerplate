@@ -1,0 +1,17 @@
+<%= comment %>
+
+<% _.each(breakpoints,function(bp){ %>
+$bp-<%= bp.name %>: <%= bp.value %>;
+<% }) %>
+
+$breakpoints : (
+  <% _.each(breakpoints, function(bp, i) { %>
+  <%= bp.name %>: (
+    <% var keys =  _.keys(bp); %>
+    <% _.each(keys, function(key, ii) { %>
+      <%= key %>: <%= bp[key] %><% if(ii < keys.length - 1) { %>,<% } %>
+    <% }); %>
+  )<% if(i < breakpoints.length - 1) { %>,<% } %>
+
+  <% }) %>
+);

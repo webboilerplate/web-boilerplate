@@ -3,6 +3,10 @@
 var config = require('./');
 var path = require('path');
 
+//
+//
+//
+
 module.exports = {
   // Enable source maps
   // A separate bundle will be generated for each
@@ -10,7 +14,7 @@ module.exports = {
   bundleConfigs: [{
     entries: './' + path.join(config.path.src, config.path.js, 'main.js'),
     dest: path.join(config.path.build, config.path.js),
-    outputName: 'app.js'
+    outputName: 'main.js'
     // Additional file extentions to make optional
     // extensions: ['.coffee', '.hbs'],
     // list of modules to make require-able externally
