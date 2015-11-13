@@ -1,5 +1,6 @@
 {
   "preset": "google",
+  "maximumLineLength" : 200,
   "disallowSpacesInAnonymousFunctionExpression": null,
   "excludeFiles": [ "node_modules/**"  ],
   "disallowEmptyBlocks": true,
@@ -8,7 +9,7 @@
   ],
   "disallowMixedSpacesAndTabs": true,
   "disallowMultipleLineStrings": true,
-  "disallowMultipleVarDecl": true,
+  "disallowMultipleVarDecl": "exceptUndefined",
   "disallowSpaceAfterPrefixUnaryOperators": [
       "!",
       "+",
@@ -63,7 +64,6 @@
   "requireSpacesInNamedFunctionExpression": {
       "beforeOpeningCurlyBrace": true
   },
-  "requireSpacesInsideObjectBrackets": "allButNested",
   "validateIndentation": 2,
   "validateLineBreaks": "LF",
   "validateParameterSeparator": ", ",
