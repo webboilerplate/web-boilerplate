@@ -1,5 +1,5 @@
 {
-	'functions': true
+  'functions': true
 }
 
 {{#items}}
@@ -65,14 +65,14 @@ The provided mixins are intended to be used with the array-like variables
 @mixin sprite-scale($sprite, $scale) {
   $sprite-offset-x: nth($sprite, 3) * $scale;
   $sprite-offset-y: nth($sprite, 4) * $scale;
-	background-position: ($sprite-offset-x)  ($sprite-offset-y);
+  background-position: ($sprite-offset-x)  ($sprite-offset-y);
 
-	$sprite-total-width: nth($sprite, 7) * $scale;
-	$sprite-total-height: nth($sprite, 8) * $scale;
-	background-size: $sprite-total-width $sprite-total-height;
+  $sprite-total-width: nth($sprite, 7) * $scale;
+  $sprite-total-height: nth($sprite, 8) * $scale;
+  background-size: $sprite-total-width $sprite-total-height;
 
-	width: nth($sprite, 5) * $scale;
-	height: nth($sprite, 6) * $scale;
+  width: nth($sprite, 5) * $scale;
+  height: nth($sprite, 6) * $scale;
 }
 
 $old-ie: false !default;
