@@ -30,7 +30,17 @@ require('require-dir')('./gulp/tasks', {
 *******************************************************************************/
 
 gulp.task('build', function(cb) {
-  runSequence('clean:build', [/*'fonts',*/ 'sprites', 'images', 'html'], ['scripts', 'styles'], cb);
+  runSequence('clean:build', 'sketch', 'sprites', [
+    // 'fonts',
+    //'iconfont',
+    'svgsprite',
+    'breakpoints',
+    'images',
+    'html'
+  ], [
+    'scripts',
+    'styles'
+  ], cb);
 });
 
 
@@ -40,31 +50,28 @@ gulp.task('default', function(cb) {
 
 
 gulp.task('dist', function(cb) {
-  runSequence('clean', 'default', [
+  runSequence('clean', 'build', [
       'js:dist',
       'vendor:dist',
       'css:dist',
-      'fonts:dist',
+      'fonts',
       'images:dist',
+      'server:dist',
       'pkg:dist'
     ],
     'html:src:dist',
-    'html:tmp:dist',
     cb);
 });
 
 gulp.task('deploy', function(cb) {
-  runSequence('dist', 'publish', cb);
+  runSequence('dist', 'publish', 'server:reload', cb);
 });
+
 
 gulp.task('release', function(cb) {
   runSequence('bump:patch', 'deploy', cb);
 });
 
-
-/*******************************************************************************
-    TASKS
-*******************************************************************************/
 
 gulp.task('styles', function(cb) {
   switch (config.preprocessor) {
