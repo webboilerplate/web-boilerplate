@@ -3,16 +3,12 @@
 //basic polyfills needed in almost every project
 var polyfills = require('./polyfills');
 
-var device = require('device.js')();
-device.addClasses();
-
 class App {
 
   constructor() {
     this.name = 'Web Boilerplate';
     this._initialized = false;
   }
-
 
   initialize() {
     this._initialized = true;
@@ -30,12 +26,10 @@ class App {
     }
   }
 
-
   pause() {}
 
   stop() {}
 
 }
-
 
 module.exports = App;

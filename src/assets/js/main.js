@@ -1,10 +1,10 @@
 'use strict';
 
-let App = require('./app');
-
 let domready = require('domready');
 let fastdom = require('fastdom');
 let fastclick = require('fastclick');
+
+let App = require('./app');
 
 class Main {
 
@@ -23,7 +23,6 @@ class Main {
     }
   }
 
-
   onLoad() {
 
     if (this.loadTimeout) {
@@ -39,6 +38,5 @@ class Main {
     });
   }
 }
-
 
 module.exports = new Main();

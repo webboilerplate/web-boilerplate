@@ -1,24 +1,3 @@
-@function parseInt($n) {
-  @return $n / ($n * 0 + 1);
-}
-
-
-@function rem($value, $main-font-size: $font-size-base) {
-
-    @return (parseInt($value) / parseInt($main-font-size) * 1rem);
-
-    /* $unit: unit($value);
-
-    @if $unit == 'px' {
-      @return #{(parseInt($value)/$main-font-size)}rem;
-      @return (parseInt($value) / parseInt($main-font-size) * 1rem);
-    } @else {
-      @return ($value * $main-font-size);
-      @return #{$value}rem;
-    } */
-}
-
-
 @function linear() {
   @return cubic-bezier(0.250, 0.250, 0.750, 0.750);
 }
