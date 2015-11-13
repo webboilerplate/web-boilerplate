@@ -6,10 +6,5 @@
       "path": ".",
       "folder_exclude_patterns": [ ".tmp", "dist", "build", "material", "node_modules", "bower_components" ]
     }
-  ],
-
-  "ternjs": {
-    "exclude": [ ".tmp/**", "dist/**", "build/**", "test/**", "material/**", "node_modules/**", "bower_components/**" ],
-    "libs": [ "browser", "underscore", "jquery", "ecma5" ]
-  }
+  ]
 }
