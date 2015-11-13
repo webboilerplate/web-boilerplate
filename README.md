@@ -14,7 +14,6 @@ Web Boilperplate enhances! the best parts of [Web Starter Kit](https://developer
 - [browser-sync](http://www.browsersync.io)
 - [node-sass](https://github.com/sass/node-sass)
 - [stylus](https://learnboost.github.io/stylus)
-- [compass](http://compass-style.org)
 - [spritesmith](https://github.com/Ensighten/spritesmith)
 - [bower](http://bower.io)
 - [rsync](https://github.com/jedrichards/rsyncwrapper)
