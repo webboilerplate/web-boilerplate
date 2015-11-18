@@ -4,6 +4,8 @@ var gulp      = require('gulp');
 var svgSprite = require('gulp-svg-sprites');
 var filter    = require('gulp-filter');
 var svg2png   = require('gulp-svg2png');
+var config    = require('../config/svgsprite')
+
 
 // var config = {
 //     templates: {
@@ -12,7 +14,7 @@ var svg2png   = require('gulp-svg2png');
 // };
 
 gulp.task('svgsprite', function() {
-  return gulp.src('src/resources/svg-sprite/wetter/*.svg')
+  return gulp.src(config.src)
       .pipe(svgSprite({
           // mode: 'symbols',
           // selector: 'svg-%f',
@@ -23,8 +25,8 @@ gulp.task('svgsprite', function() {
             sprite: 'img/svgsprite.svg'
           }
         }))
-      .pipe(gulp.dest('build/resources')) // Write the sprite-sheet + CSS + Preview
+      .pipe(gulp.dest(config.dest)) // Write the sprite-sheet + CSS + Preview
       .pipe(filter('**/*.svg'))  // Filter out everything except the SVG file
       .pipe(svg2png())           // Create a PNG
-      .pipe(gulp.dest('build/resources'));
+      .pipe(gulp.dest(config.dest));
 });
