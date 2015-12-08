@@ -4,8 +4,7 @@ var gulp      = require('gulp');
 var svgSprite = require('gulp-svg-sprites');
 var filter    = require('gulp-filter');
 var svg2png   = require('gulp-svg2png');
-var config    = require('../config/svgsprite')
-
+var config    = require('../config/svgsprite');
 
 // var config = {
 //     templates: {
@@ -22,7 +21,7 @@ gulp.task('svgsprite', function() {
           cssFile: 'sass/_svgsprite.scss',
           preview: false,
           svg: {
-            sprite: 'img/svgsprite.svg'
+            sprite: 'images/svgsprite.svg'
           }
         }))
       .pipe(gulp.dest(config.dest)) // Write the sprite-sheet + CSS + Preview
