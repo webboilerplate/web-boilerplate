@@ -2,7 +2,6 @@
 
 
 var gulp = require('gulp');
-// var html        = require('../config/html');
 var iconfont    = require('../config/iconfont');
 var sprites = require('../config/sprites');
 var images = require('../config/images');
