@@ -12,3 +12,9 @@ CONTRIBUTING.md export-ignore
 *.dll    binary
 *.exe    binary
 *.zip    binary
+
+*.otf binary
+*.eot binary
+*.svg binary
+*.ttf binary
+*.woff binary
