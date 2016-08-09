@@ -21,7 +21,10 @@
     "fontend",
     "template"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "compression": "1.6.2",
+    "express": "4.14.0"
+  },
   "devDependencies": {
     "autoprefixer": "6.4.0",
     "babel-cli": "6.10.1",
@@ -40,14 +43,17 @@
     "browser-sync": "2.14.0",
     "browserify": "13.1.0",
     "clean-sketch": "1.0.1",
+    "concurrently": "2.2.0",
     "debowerify": "1.5.0",
     "del": "2.2.1",
+    "derequire": "2.0.3",
     "gulp": "3.9.1",
     "gulp-base64": "0.1.3",
     "gulp-bump": "2.2.0",
     "gulp-cache": "0.4.5",
     "gulp-cached": "1.1.0",
     "gulp-changed": "1.3.1",
+    "gulp-clean-css": "2.0.12",
     "gulp-clean-sketch": "1.0.0",
     "gulp-concat": "2.6.0",
     "gulp-consolidate": "0.2.0",
@@ -59,7 +65,6 @@
     "gulp-imagemin": "3.0.2",
     "gulp-jscs": "4.0.0",
     "gulp-jshint": "2.0.1",
-    "gulp-minify-css": "1.2.4",
     "gulp-notify": "2.2.0",
     "gulp-plumber": "1.1.0",
     "gulp-postcss": "6.1.1",
@@ -92,19 +97,17 @@
     "vinyl-source-stream": "1.1.0",
     "watchify": "3.7.0"
   },
-  "browserify": {
-    "transform": [
-      "babelify",
-      "debowerify"
-    ]
-  },
   "scripts": {
     "test": "npm run lint",
-    "dist": "gulp dist --production",
-    "build": "gulp build",
-    "dev": "gulp default",
-    "start": "gulp default",
-    "restart": "gulp watch --restart",
+    "setup": "mkdir -p build/assets/js",
+    "dist": "gulp build && gulp dist --production && npm run dist-js",
+    "dist-js": "BABEL_ENV=production browserify -e src/assets/js/main.js -t babelify | derequire > dist/public/assets/js/main.js",
+    "dev": "npm run setup && concurrently --kill-others \"npm run watch\" \"npm run watch-js\" \"npm run dev-server\"",
+    "dev-server": "browser-sync start --no-ghost-mode --server 'build' --serveStatic 'src/static' --files 'build'",
+    "build-js": "npm run setup && browserify --fast -e src/assets/js/main.js -d -t babelify | derequire > build/assets/js/main.js",
+    "build": "gulp build && npm run build-js",
+    "start": "npm run build && npm run dev",
+    "watch-js": "watchify --poll=300 --fast -e src/assets/js/main.js -d -t babelify -o build/assets/js/main.js -v",
     "watch": "gulp watch"
   },
   "engines": {
