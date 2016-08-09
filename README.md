@@ -24,7 +24,7 @@ Web Boilperplate enhances! the best parts of [Web Starter Kit](https://developer
 You can either use the [web-boilerplate image](https://hub.docker.com/r/soenkekluth/web-boilerplate/) from [docker-hub](https://hub.docker.com/) or create your own images using the included Dockerfile
 
 ### Create a docker container from docker-hub and start development
-`docker run -p 3000:3000 -p 3001:3001 --name web-boilerplate -v $(pwd)/src:/usr/local/src/src --sig-proxy=false soenkekluth/web-boilerplate:latest npm run dev`
+`docker run -p 3000:3000 -p 3001:3001 --name web-boilerplate -v $(pwd)/src:/usr/local/src/src --sig-proxy=false soenkekluth/web-boilerplate npm run dev`
 
 ### or build your own Docker Image
 `docker build -t web-boilerplate .`
