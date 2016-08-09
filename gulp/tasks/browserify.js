@@ -88,8 +88,12 @@ var browserifyTask = function(watchMode) {
 
 };
 
-gulp.task('browserify', function() {
-  return browserifyTask();
+gulp.task('browserify', function(cb) {
+  var task = browserifyTask();
+  if(typeof cb === 'function'){
+    return cb();
+  }
+  return task;
 });
 
 // Exporting the task so we can call it directly in our watch task, with the 'watchMode' option

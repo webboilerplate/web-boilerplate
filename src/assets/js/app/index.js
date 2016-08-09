@@ -1,9 +1,4 @@
-'use strict';
-
-//basic polyfills needed in almost every project
-var polyfills = require('./polyfills');
-
-class App {
+export default class App {
 
   constructor() {
     this.name = 'Web Boilerplate';
@@ -12,7 +7,6 @@ class App {
 
   initialize() {
     this._initialized = true;
-    //TODO initialize
   }
 
   start() {
@@ -20,7 +14,7 @@ class App {
       this.initialize();
 
       console.log(`
-          Moin Moin
+          Moin Moin und so
         and welcome to
         ${this.name}`);
     }
@@ -31,5 +25,3 @@ class App {
   stop() {}
 
 }
-
-module.exports = App;

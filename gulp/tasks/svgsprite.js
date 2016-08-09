@@ -5,25 +5,15 @@ var svgSprite = require('gulp-svg-sprites');
 var filter    = require('gulp-filter');
 var svg2png   = require('gulp-svg2png');
 var config    = require('../config/svgsprite');
+var cleanSketch = require('gulp-clean-sketch');
+var path = require('path');
 
-// var config = {
-//     templates: {
-//         css: require('fs').readFileSync('./lib/svgsprites.scss', 'utf-8')
-//     }
-// };
+
 
 gulp.task('svgsprite', function() {
   return gulp.src(config.src)
-      .pipe(svgSprite({
-          // mode: 'symbols',
-          // selector: 'svg-%f',
-          common: 'svg-icon',
-          cssFile: 'sass/_svgsprite.scss',
-          preview: false,
-          svg: {
-            sprite: 'images/svgsprite.svg'
-          }
-        }))
+      // .pipe(cleanSketch())
+      .pipe(svgSprite( config.settings ))
       .pipe(gulp.dest(config.dest)) // Write the sprite-sheet + CSS + Preview
       .pipe(filter('**/*.svg'))  // Filter out everything except the SVG file
       .pipe(svg2png())           // Create a PNG

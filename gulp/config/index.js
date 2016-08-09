@@ -2,11 +2,13 @@
 
 var config = {
 
-  preprocessor: 'stylus',
+  preprocessor: 'sass',
 
   path: {
     src: 'src',
     dest: 'dist',
+    public: 'public',
+    static: 'src/static',
     build: 'build',
     assets: 'assets',
     components: 'bower_components'
@@ -27,8 +29,7 @@ config.path.stylus = config.path.assets + '/stylus';
 config.path.components = config.path.assets + '/components';
 
 config.path.sassIncludePath = [
-  config.path.build + '/' + config.path.sass,
-  config.path.components
+  config.path.build + '/' + config.path.sass
 ];
 
 module.exports = config;

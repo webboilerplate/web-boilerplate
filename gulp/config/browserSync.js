@@ -10,12 +10,16 @@ module.exports = {
   ghostMode: !!(gutil.env.ghostMode || false),
 
   server: {
-    baseDir: [config.path.build, config.path.src]
+    baseDir: [config.path.build, config.path.static],
   },
 
+  // proxy: {
+  //   target: 'http://' + serverConfig.host + ':' + serverConfig.port,
+  //   ws: true
+  // },
+
   files: [
-      config.path.build + '/**',
-      '!' + config.path.build + '/**/*.map',
-      '!' + config.path.build + '/**/*.{png,jpg,gif}'
-    ]
+    config.path.build + '/**',
+    '!' + config.path.build + '/**/*.map',
+  ]
 };

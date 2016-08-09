@@ -15,8 +15,3 @@ gulp.task('jshint', function() {
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter(stylish));
 });
-
-gulp.task('jscs', function() {
-  return gulp.src(config.src)
-    .pipe(jscs())
-});

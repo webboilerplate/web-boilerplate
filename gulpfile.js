@@ -30,17 +30,19 @@ require('require-dir')('./gulp/tasks', {
 *******************************************************************************/
 
 gulp.task('build', function(cb) {
-  runSequence('clean:build', 'sketch', 'sprites', [
+  runSequence('clean:build',  ['sketch', 'sprites'], [
     // 'fonts',
     //'iconfont',
+    // 'browserify',
     'svgsprite',
     'breakpoints',
-    'images',
-    'html'
-  ], [
+    'images'
+    // 'html'
+  ],
     'scripts',
-    'styles'
-  ], cb);
+    'styles',
+    cb
+  );
 });
 
 
@@ -51,15 +53,14 @@ gulp.task('default', function(cb) {
 
 gulp.task('dist', function(cb) {
   runSequence('clean', 'build', [
+      'static:dist',
       'js:dist',
-      'vendor:dist',
       'css:dist',
-      'fonts',
-      'images:dist',
-      'server:dist',
-      'pkg:dist'
+      'images:dist'
+      // 'server:dist',
+      // 'pkg:dist'
     ],
-    'html:src:dist',
+    'html:dist',
     cb);
 });
 
@@ -76,7 +77,7 @@ gulp.task('release', function(cb) {
 gulp.task('styles', function(cb) {
   switch (config.preprocessor) {
     case 'sass':
-      runSequence(['scsslint', 'sass'], cb);
+      runSequence(['sass'], cb);
       break;
     case 'stylus':
       runSequence('stylus', cb);
@@ -87,7 +88,7 @@ gulp.task('styles', function(cb) {
 });
 
 gulp.task('scripts', function(cb) {
-  runSequence('jshint', 'browserify', cb);
+  runSequence('browserify', cb);
 });
 
 gulp.task('publish', function(cb) {
