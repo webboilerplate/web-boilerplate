@@ -7,17 +7,28 @@ Web Boilperplate enhances! the best parts of [Web Starter Kit](https://developer
 
 ## Tooling / Technologies / Libs *(core only)*
 
+- [docker](http://docker.com)
+- [node](http://nodejs.com)
+- [npm](https://www.npmjs.com/) 
 - [gulp](http://gulpjs.com)
 - [browserify](http://browserify.org)
 - [webpack](https://webpack.github.io) 
-- [ES6](https://people.mozilla.org/~jorendorff/es6-draft.html)
+- [babel](https://babeljs.io)
 - [browser-sync](http://www.browsersync.io)
 - [node-sass](https://github.com/sass/node-sass)
 - [stylus](https://learnboost.github.io/stylus)
-- [spritesmith](https://github.com/Ensighten/spritesmith)
+- [image sprites via spritesmith](https://github.com/Ensighten/spritesmith)
+- [svg sprites](https://github.com/Ensighten/spritesmith)
 - [bower](http://bower.io)
 - [rsync](https://github.com/jedrichards/rsyncwrapper)
-- [npm](https://www.npmjs.com/) 
+
+## Setup
+
+### Install Docker
+
+- [docker for mac](https://docs.docker.com/docker-for-mac)
+- [docker for windows](https://docs.docker.com/docker-for-windows)
+- [docker for linux](https://docs.docker.com/engine/installation/linux)
 
 ## Development
 
@@ -36,16 +47,11 @@ You can either use the [web-boilerplate image](https://hub.docker.com/r/soenkekl
 `docker run --rm -v $(pwd)/src:/usr/local/src/src -v $(pwd)/dist:/usr/local/src/dist soenkekluth/web-boilerplate npm run dist`
 
 
-
 ## Server Configs
 
+if you may need any...
 <https://github.com/h5bp/server-configs/>
 
-if you may need any...
-
-
-## Roadmap
-...
 
 ## Frontend Coding Guidelines
 

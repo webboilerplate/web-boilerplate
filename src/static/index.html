@@ -164,70 +164,68 @@
 
     <div id="about" class="page">
       <div class="container">
-        <h1 id="web-boilerplate">Web Boilerplate</h1>
-        <p>Web Boilerplate is a starting point for platform agnostic web development.   </p>
-        <h2 id="tooling-technologies-libs-core-only-">Tooling / Technologies / Libs <em>(core only)</em></h2>
-        <ul>
-        <li>gulp</li>
-        <li>browserify</li>
-        <li>webpack</li>
-        <li>browser-sync</li>
-        <li>node-sass</li>
-        <li>stylus</li>
-        <li>spritesmith</li>
-        <li>bower</li>
-        <li>rsync</li>
-        </ul>
-        <h3 id="install-node-js">Install Node.js</h3>
-        <p>we recommend installing node through nvm: <em>(replace the node version with the one of your choice)</em></p>
-        <pre><code class="lang-bash">curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-        nvm install v0.<span class="hljs-number">12.2</span>
-        nvm alias default v0.<span class="hljs-number">12.2</span>
-        </code></pre>
-        <p>Web Boilerplate uses node-sass. for linting sass you need to install <a href="http://sass-lang.com/install">Sass</a>. </p>
-        <h3 id="install-scss-lint">Install scss-lint</h3>
-        <pre><code class="lang-bash">gem update --system &amp;&amp; gem install scss-lint
-        </code></pre>
-        <p><em>Windows user</em> have to install ruby first. then:</p>
-        <pre><code class="lang-bash">gem install windows-pr
-        </code></pre>
-        <p>we also recommend to use cmder as the default console on Windows
-        <a href="http://gooseberrycreative.com/cmder/">http://gooseberrycreative.com/cmder/</a></p>
-        <h3 id="recommended-sublime-project-file-contents-">recommended sublime-project file contents:</h3>
-        <pre><code>{
-          &quot;folders&quot;:
-          [
-            {
-              &quot;follow_symlinks&quot;: true,
-              &quot;path&quot;: &quot;.&quot;,
-              &quot;folder_exclude_patterns&quot;: [&quot;dist&quot;, &quot;build&quot;, &quot;material&quot;, &quot;node_modules&quot;, &quot;bower_components&quot; ]
-            }
-          ],
+        <h1>Web Boilerplate</h1>
 
-          &quot;ternjs&quot;: {
-            &quot;exclude&quot;: [&quot;dist/**&quot;, &quot;test/**&quot;, &quot;build/**&quot;, &quot;material/**&quot;, &quot;node_modules/**&quot;, &quot;bower_components/**&quot; ],
-            &quot;libs&quot;: [ &quot;browser&quot;, &quot;underscore&quot;, &quot;jquery&quot;, &quot;ecma5&quot; ]
-          }
-        }
-        </code></pre>
-        <h2 id="start-development-">start development:</h2>
-        <p>Web Boilerplate will always check if your package.json has changed and will automatically install all new dependencies if there are any. If you work on a project in a team this might help you a lot ;)</p>
-        <pre><code class="lang-bash">npm start
-        </code></pre>
-        <p>if you get an error like &quot;Package cairo was not found in the pkg-config search path.&quot; just can just ignore it. its an optional dependency used to generate sprites with spritesmith using canvassmith. if you like you can install it with <code>brew install cairo --without-x11</code>.</p>
-        <h2 id="restart-development-">restart development:</h2>
-        <pre><code class="lang-bash">npm restart
-        </code></pre>
-        <p>the restart command will not preprocess / compile / transpile your code before it starts watching your files an run the dev server. if you work in a team we recommand to use start as your default command to start development</p>
-        <h2 id="distribute-">distribute:</h2>
-        <pre><code class="lang-bash">npm run dist
-        </code></pre>
-        <h2 id="deploy-">deploy:</h2>
-        <pre><code class="lang-bash">npm run deploy
-        </code></pre>
-        <h2 id="server-configs">Server Configs</h2>
-        <p><a href="https://github.com/h5bp/server-configs">https://github.com/h5bp/server-configs</a></p>
-        <h2 id="frontend-coding-guidelines">Frontend Coding Guidelines</h2>
+        <p>Web Boilerplate is a starting point for HTML5 web development.</p>
+
+        <p>You can kick off your next web / app front-end project without the timecost of setting up a fresh project with its file structure, building tasks, core files and core contents, SEO specific meta tags and accessibility, dependencies, deployment and so on...</p>
+
+        <h2>Tooling / Technologies / Libs <em>(core only)</em></h2>
+
+        <ul>
+        <li><a href="http://docker.com">docker</a></li>
+        <li><a href="http://nodejs.com">node</a></li>
+        <li><a href="https://www.npmjs.com/">npm</a> </li>
+        <li><a href="http://gulpjs.com">gulp</a></li>
+        <li><a href="http://browserify.org">browserify</a></li>
+        <li><a href="https://webpack.github.io">webpack</a> </li>
+        <li><a href="https://babeljs.io">babel</a></li>
+        <li><a href="http://www.browsersync.io">browser-sync</a></li>
+        <li><a href="https://github.com/sass/node-sass">node-sass</a></li>
+        <li><a href="https://learnboost.github.io/stylus">stylus</a></li>
+        <li><a href="https://github.com/Ensighten/spritesmith">image sprites via spritesmith</a></li>
+        <li><a href="https://github.com/Ensighten/spritesmith">svg sprites</a></li>
+        <li><a href="http://bower.io">bower</a></li>
+        <li><a href="https://github.com/jedrichards/rsyncwrapper">rsync</a></li>
+        </ul>
+
+        <h2>Setup</h2>
+
+        <h3>Install Docker</h3>
+
+        <ul>
+        <li><a href="https://docs.docker.com/docker-for-mac">docker for mac</a></li>
+        <li><a href="https://docs.docker.com/docker-for-windows">docker for windows</a></li>
+        <li><a href="https://docs.docker.com/engine/installation/linux">docker for linux</a></li>
+        </ul>
+
+        <h2>Development</h2>
+
+        <p>You can either use the <a href="https://hub.docker.com/r/soenkekluth/web-boilerplate/">web-boilerplate image</a> from <a href="https://hub.docker.com/">docker-hub</a> or create your own images using the included Dockerfile</p>
+
+        <h3>Create a docker container from docker-hub and start development</h3>
+
+        <p><code>docker run -p 3000:3000 -p 3001:3001 --name web-boilerplate -v $(pwd)/src:/usr/local/src/src --sig-proxy=false soenkekluth/web-boilerplate npm run dev</code></p>
+
+        <h3>or build your own Docker Image</h3>
+
+        <p><code>docker build -t web-boilerplate .</code></p>
+
+        <h3>and run your Docker Container for development</h3>
+
+        <p><code>docker run -p 3000:3000 -p 3001:3001 --name web-boilerplate -v $(pwd)/src:/usr/local/src/src --sig-proxy=false web-boilerplate npm run dev</code></p>
+
+        <h2>Distribute</h2>
+
+        <p><code>docker run --rm -v $(pwd)/src:/usr/local/src/src -v $(pwd)/dist:/usr/local/src/dist soenkekluth/web-boilerplate npm run dist</code></p>
+
+        <h2>Server Configs</h2>
+
+        <p>if you may need any...
+        <a href="https://github.com/h5bp/server-configs/">https://github.com/h5bp/server-configs/</a></p>
+
+        <h2>Frontend Coding Guidelines</h2>
+
         <ul>
         <li><a href="http://codeguide.co/">http://codeguide.co/</a></li>
         <li><a href="http://cssguidelin.es/">http://cssguidelin.es/</a></li>
@@ -236,8 +234,11 @@
         <li><a href="https://github.com/necolas/idiomatic-css/">https://github.com/necolas/idiomatic-css/</a></li>
         <li><a href="http://paulrobertlloyd.com/about/styleguide/">http://paulrobertlloyd.com/about/styleguide/</a></li>
         <li><a href="https://github.com/airbnb/javascript/">https://github.com/airbnb/javascript/</a></li>
+        <li><a href="https://github.com/felixge/node-style-guide">https://github.com/felixge/node-style-guide</a></li>
+        <li><a href="https://github.com/yandex/codestyle/blob/master/javascript.md">https://github.com/yandex/codestyle/blob/master/javascript.md</a></li>
         </ul>
-      </div>
+
+
     </div>
   </main>
 
