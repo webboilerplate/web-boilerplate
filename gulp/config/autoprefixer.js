@@ -4,15 +4,15 @@ module.exports = {
   browsers: ['last 2 version'],
 
   desktop: [
-    'ie >= 8',
+    'ie >= 10',
     'ie_mob >= 9',
-    'ff >= 12',
-    'chrome >= 20',
-    'safari >= 5',
-    'opera >= 1',
-    'ios >= 6',
-    'android >= 3.0',
-    'bb >= 10'
+    'Firefox <= 24',
+    'Chrome >= 20',
+    'Safari >= 7',
+    'Opera >= 12',
+    'iOS >= 8',
+    'Android >= 3.0',
+    'BlackBerry >= 10'
   ],
 
   mobile: [
