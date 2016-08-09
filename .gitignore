@@ -9,14 +9,11 @@ Thumbs.db
 *.sublime-workspace
 .idea
 npm-debug.log
+.tern-port
 
 # Project folders to ignore
 node_modules
-/material
 /dist
 /build
-.sass-cache
 /bower_components
-/test/bower_components
 /TODO
-.package.sha1
