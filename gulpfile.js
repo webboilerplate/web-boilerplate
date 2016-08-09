@@ -39,28 +39,26 @@ gulp.task('build', function(cb) {
     'images'
     // 'html'
   ],
-    'scripts',
+    // 'scripts',
     'styles',
     cb
   );
 });
 
 
-gulp.task('default', function(cb) {
-  runSequence('build', 'watch', cb);
-});
+// gulp.task('default', function(cb) {
+//   runSequence('build', 'watch', cb);
+// });
 
 
 gulp.task('dist', function(cb) {
-  runSequence('clean', 'build', [
-      'static:dist',
-      'js:dist',
+  runSequence('clean:dist', 'static:dist', [
+      // 'js:dist',
       'css:dist',
-      'images:dist'
-      // 'server:dist',
-      // 'pkg:dist'
+      'images:dist',
+      'server:dist',
+      'pkg:dist'
     ],
-    'html:dist',
     cb);
 });
 
@@ -73,23 +71,6 @@ gulp.task('release', function(cb) {
   runSequence('bump:patch', 'deploy', cb);
 });
 
-
-gulp.task('styles', function(cb) {
-  switch (config.preprocessor) {
-    case 'sass':
-      runSequence(['sass'], cb);
-      break;
-    case 'stylus':
-      runSequence('stylus', cb);
-      break;
-    default:
-      cb();
-  }
-});
-
-gulp.task('scripts', function(cb) {
-  runSequence('browserify', cb);
-});
 
 gulp.task('publish', function(cb) {
   runSequence('rsync', cb);

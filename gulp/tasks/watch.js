@@ -3,10 +3,11 @@
 var gulp = require('gulp');
 var iconfont    = require('../config/iconfont');
 var sprites = require('../config/sprites');
+var styles = require('../config/styles');
 var images = require('../config/images');
-var sass = require('../config/sass');
+
 var html = require('../config/html');
-var stylus = require('../config/stylus');
+
 var fonts = require('../config/fonts');
 var browserSync = require('browser-sync');
 var sketch = require('../config/sketch');
@@ -17,13 +18,12 @@ var reload = browserSync.reload;
     WATCH TASK
 *******************************************************************************/
 
-gulp.task('watch', ['watchify', 'browserSync'], function() {
+gulp.task('watch'/*, ['watchify', 'browserSync']*/, function() {
 
-  gulp.watch(sass.watch, ['sass']);
-  gulp.watch(stylus.watch, ['stylus']);
-  gulp.watch(html.watch, { interval: 1000 }).on('change', reload);
+  gulp.watch(styles.watch, ['styles']);
+  gulp.watch(html.watch, { interval: 2000 }).on('change', reload);
   gulp.watch(sprites.watch, { interval: 4000 }, ['sprites']);
-  gulp.watch(breakpoints.watch, { interval: 4000 }, ['breakpoints']);
+  // gulp.watch(breakpoints.watch, { interval: 4000 }, ['breakpoints']);
   // gulp.watch(sketch.watch, {interval: 4000}, ['sketch'/*,'iconfont'*/]);
   gulp.watch(iconfont.watch, { interval: 4000 }, ['iconfont']);
 });
