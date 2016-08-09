@@ -14,7 +14,7 @@ export default class App {
       this.initialize();
 
       console.log(`
-          Moin Moin und so
+          Moin Moin
         and welcome to
         ${this.name}`);
     }
