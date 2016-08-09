@@ -1,0 +1,21 @@
+{
+  "ecmaVersion": 6,
+  "libs": [
+    "browser",
+    "underscore",
+    "ecma6"
+  ],
+  "loadEagerly": [
+      "src/assets/js/**/*.js"
+  ],
+  "exclude": [
+    "dist/**",
+    "build/**",
+    "test/**",
+    "material/**",
+    "node_modules/**"
+  ],
+  "plugins": {
+    "node": {}
+  }
+}
