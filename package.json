@@ -103,7 +103,7 @@
     "dist": "gulp build && gulp dist --production && npm run dist-js",
     "dist-js": "BABEL_ENV=production browserify -e src/assets/js/main.js -t babelify | derequire > dist/public/assets/js/main.js",
     "dev": "npm run setup && concurrently --kill-others \"npm run watch\" \"npm run watch-js\" \"npm run dev-server\"",
-    "dev-server": "browser-sync start --no-ghost-mode --server 'build' --serveStatic 'src/static' --files 'build'",
+    "dev-server": "browser-sync start --no-ghost-mode --server 'build' --serveStatic 'src/static' --files 'build , src/static'",
     "build-js": "npm run setup && browserify --fast -e src/assets/js/main.js -d -t babelify | derequire > build/assets/js/main.js",
     "build": "gulp build && npm run build-js",
     "start": "npm run build && npm run dev",
