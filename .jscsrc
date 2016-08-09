@@ -1,8 +1,13 @@
 {
-  "preset": "google",
+  "preset": "airbnb",
+  "fileExtensions": [".js", ".jsx", ".babelrc"],
   "maximumLineLength" : 200,
   "disallowSpacesInAnonymousFunctionExpression": null,
-  "excludeFiles": [ "node_modules/**"  ],
+  "excludeFiles": [
+    "node_modules/**",
+    "dist/**",
+    "build/**"
+  ],
   "disallowEmptyBlocks": true,
   "disallowKeywords": [
       "with"
