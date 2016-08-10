@@ -1,27 +1,32 @@
-.forkongithub {
-  display: block;
-  height: 200px;
+.banderole {
+  display: inline-block;
   overflow: hidden;
   position: absolute;
-  right: 0;
   top: 0;
-  width: 230px;
+  transform-origin: center;
   z-index: 9999;
+
+  &.forkongithub {
+    right : 0;
+    transform: translateX(20%) translateY(115%) rotate(45deg);
+  }
+
+  &.pullfromdocker {
+    left : 0;
+    transform: translateX(-20%) translateY(110%) rotate(-45deg);
+  }
 
   a {
     background: #e26a6a;
-    color: #fff;
+    color: #ffffff;
+    display: block;
     font-family: arial, sans-serif;
     font-size: 1rem;
     font-weight: 300;
     line-height: 2.5rem;
-    padding: 0px 40px;
-    position: absolute;
-    right: -48px;
+    padding: 0 40px;
     text-align: center;
     text-decoration: none;
-    top: 48px;
-    transform: rotate(45deg);
     transition: background .5s;
     width: 230px;
 
