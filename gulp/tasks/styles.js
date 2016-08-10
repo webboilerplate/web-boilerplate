@@ -2,18 +2,8 @@
 
 var gulp = require('gulp');
 var config = require('../config');
+var gutil = require('gulp-util');
 
-gulp.task('styles', [config.preprocessor]);
+var preprocessor = process.env.PREPROCESSOR || config.preprocessor;
 
-// gulp.task('styles', function(cb) {
-//   switch (config.preprocessor) {
-//     case 'sass':
-//       runSequence(['sass'], cb);
-//       break;
-//     case 'stylus':
-//       runSequence('stylus', cb);
-//       break;
-//     default:
-//       cb();
-//   }
-// });
+gulp.task('styles', [preprocessor]);

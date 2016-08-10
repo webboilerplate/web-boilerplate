@@ -1,51 +1,36 @@
 //pushes the target to its own render layer on the gpu
+//
 layer()
-  -webkit-backface-visibility: hidden
-  -moz-backface-visibility: hidden
   backface-visibility: hidden
-
 layer-reset()
-  -webkit-backface-visibility: initial
-  -moz-backface-visibility: initial
   backface-visibility: initial
-
 // pushes the target to its own render layer on the gpu
+//
 gpu()
-  transform: translateZ(0)
   backface-visibility: hidden
+  transform: translateZ(0)
   transform-style: preserve-3d
-
 gpu-reset()
-  transform: none
-  perspective: none
   backface-visibility: initial
-
-
-
-when($size, $mobilefirst = false)
-  if $mobilefirst
-    condition = 'screen and (min-width: %s)' % $size
+  perspective: none
+  transform: none
+// breakpoint
+// example @include bp(940px) { width:80%; }
+//
+bp($size, $mobile-first = false)
+  if $mobile-first == true
+    @media only screen and (min-width: $size)
+      {block}
   else
-    condition = 'screen and (max-width: %s)' % $size
-  @media condition
-    {block}
-
-
-bp($size, $mobilefirst = false)
-  if $mobilefirst
-    condition = 'screen and (min-width: %s)' % $size
-  else
-    condition = 'screen and (max-width: %s)' % $size
-  @media condition
-    {block}
-
-
+    @media only screen and (max-width: $size)
+      {block}
 // size
+//
 size($width, $height = $width)
-  width: $width
   height: $height
-
+  width: $width
 // placeholder
+//
 placeholder($color = $text-color, $alpha = 0.8)
   &::-webkit-input-placeholder
     color: rgba($color, $alpha)
@@ -59,62 +44,43 @@ placeholder($color = $text-color, $alpha = 0.8)
   &:-ms-input-placeholder
     color: rgba($color, $alpha)
   /* Internet Explorer 10+ */
-
-
 // Text ellipsis
 // Requires inline-block or block for proper styling
 text-ellipsis()
   overflow: hidden
   text-overflow: ellipsis
   white-space: nowrap
-
-
-rem(value)
-  u = unit(value)
-
-  if u is 'px'
-    return unit(value, 'px')
-  else
-    return unit(value*16, 'px')
-
-
 // @font-face mixin
 // Order of the includes matters, and it is: normal, bold, italic, bold+italic.
 // Forked from Bourbon. https://github.com/thoughtbot/bourbon/
 font-face($font-family, $file-path, $weight = normal, $style = normal)
   @font-face
     font-family: $font-family
-    font-weight: $weight
     font-style: $style
+    font-weight: $weight
     src: url("{$file-path}.eot")
     src: url("{$file-path}.eot?#iefix") format("embedded-opentype"), url("{$file-path}.woff") format("woff"), url("{$file-path}.ttf") format("truetype"), url("{$file-path}.svg#{$font-family}") format("svg")
-
-
 // Mixin for cross browser inline-block
 // http://blog.mozilla.org/webdev/2009/02/20/cross-browser-inline-block/
 // ------------------
 inline-block()
+  /* autoprefixer: off */
   display: -moz-inline-stack
+  /* autoprefixer: off */
   -moz-box-orient: vertical
   display: inline-block
   *display: inline
   vertical-align: top
   *zoom: 1
-
-//alias
-ib()
-  inline-block()
-
 // Clearfix
 cf()
   *zoom: 1
-  &:before, &:after
+  &::before,
+  &::after
     content: ''
     display: table
-  &:after
+  &::after
     clear: both
-
-
 // Horizontal/Vertical/Both Alignment - Parent container needs position relative. IE9+
 align($direction = both)
   position: absolute
@@ -126,51 +92,44 @@ align($direction = both)
     top: 50%
     transform: translateY(-50%)
   else
-    top: 50%
     left: 50%
+    top: 50%
     transform: translate(-50%, -50%)
-
-
-//cut mulktiline text and fill with …
 line-clamp($numLines = 1, $lineHeight = 1.412)
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: $numLines
+  max-height: ($numLines * $lineHeight + unquote("em"))
+  display: -webkit-box
   overflow: hidden
   text-overflow: -o-ellipsis-lastline
   text-overflow: ellipsis
   display: block
-  display: -webkit-box
-  box-orient: vertical
-  -webkit-box-orient: vertical
-  -webkit-line-clamp: $numLines
-  max-height: ($numLines * $lineHeight + unquote("em"))
-
-
-
+  /* autoprefixer: off */
+//
 // DRAW
+//
 // circles
 circle($size = 0)
   border-radius: 50%
   height: auto
   padding-bottom: (0% + $size)
   width: (0% + $size)
-
 // square
 square($size = 0)
   height: auto
   padding-bottom: (0% + $size)
   width: (0% + $size)
-
 // rectangle
 rectangle($size = 0)
   height: 0
   padding-bottom: (0% + $size / 3 * 2)
   width: (0% + $size)
-
 // arrow
 arrow($direction, $color, $size)
   $px-size = $size + px
   $rem-size = $size / 10 + rem
-  width: 0
   height: 0
+  width: 0
   if $direction == "left"
     border-top: $px-size solid transparent
     border-right: $px-size solid $color

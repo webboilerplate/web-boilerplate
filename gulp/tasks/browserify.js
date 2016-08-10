@@ -39,8 +39,8 @@ var browserifyTask = function(watchMode) {
 
     //TODO check
     _.extend(bundleConfig, {
-      fullPaths: !gutil.env.production,
-      debug: !gutil.env.production
+      fullPaths: process.env.NODE_ENV !== 'production',
+      debug: process.env.NODE_ENV !== 'production'
     });
 
     var b = browserify(bundleConfig);

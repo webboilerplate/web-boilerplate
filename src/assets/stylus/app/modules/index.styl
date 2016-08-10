@@ -1,0 +1,111 @@
+.container
+  bp(568px)
+  margin: 0 auto
+  max-width: 1024px
+  padding: 0 2%
+body
+  background-color: #53b2e5
+  color: #fff
+  font-family: 'Open Sans', sans-serif
+  font-weight: 300
+  min-height: 100%
+  min-width: 320px
+  position: relative
+  &.no-touch
+    -webkit-text-size-adjust: none
+    -webkit-touch-callout: none
+    -webkit-user-select: none
+    user-select: none
+  &.noscroll
+    overflow: hidden !important
+    position: fixed
+  bp(565px)
+//reset
+h1,
+h2,
+h3,
+h4,
+h5,
+b,
+strong
+  font-weight: 400
+  line-height: 1.4
+  margin: 0
+.page
+  cf()
+  background: #31343c
+  min-height: 100%
+  padding: 4% 0
+  width: 100%
+  h1
+    font-weight: 300
+  bp(1023px)
+  bp(568px)
+header
+  &[role="banner"]
+    color: #fff
+    padding-top: 11%
+    text-align: center
+    h1
+      font-family: 'lane_-_narrowregular'
+      font-size: 4rem
+      letter-spacing: -2px
+      line-height: 1
+      margin: 0
+      margin-bottom: 1rem
+      padding: 0
+      .small
+        font-weight: 300
+        text-transform: lowercase
+      .bold
+        font-size: 6rem
+        font-weight: 400
+    .claim
+      font-size: 1.2rem
+      margin: 0
+      padding-bottom: 10%
+      padding-top: .5rem
+    .menu
+      display: none
+    bp(1024px, true)
+    bp(567px)
+nav
+  &[role="navigation"]
+    background-color: #53b2e5
+    border-bottom: 3px solid #e26a6a
+    color: #fff
+    font-weight: 200
+    padding-top: 4px
+    text-align: center
+    ul
+      @extend .container
+      font-size: 0
+      list-style: none
+      padding: 0
+    li
+      border-top-left-radius: 4px
+      border-top-right-radius: 4px
+      display: inline-block
+      font-size: 1rem
+      margin-left: 3px
+      transition: background .24s
+      &.active,
+      &:hover
+        bp(567px)
+        background: #e26a6a
+      &:last-child
+        margin-left: 0
+      a
+        display: block
+        padding: 17px 20px
+    bp(567px)
+.sidebar
+  bp(1023px)
+  float: right
+  width: 40%
+footer
+  &[role="contentinfo"]
+    bp(568px)
+    background: #e26a6a
+    line-height: 20
+    text-align: center

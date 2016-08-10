@@ -1,33 +1,27 @@
-#forkongithub a
-  background: #e26a6a
-  color: #fff
-  text-decoration: none
-  font-family: arial, sans-serif
-  text-align: center
-  font-weight: 300
-  padding: 0px 40px
-  font-size: 1rem
-  line-height: 2.5rem
-  position: relative
-  transition: background 0.5s
-
-#forkongithub a:hover
-  background: #31343c
-
-#forkongithub
-  position: absolute
+.forkongithub
   display: block
-  top: 0
-  right: 0
-  width: 230px
-  overflow: hidden
   height: 200px
-  z-index: 9999
-
-#forkongithub a
-  width: 230px
+  overflow: hidden
   position: absolute
-  top: 48px
-  right: -48px
-  transform: rotate(45deg)
-
+  right: 0
+  top: 0
+  width: 230px
+  z-index: 9999
+  a
+    background: #e26a6a
+    color: #fff
+    font-family: arial, sans-serif
+    font-size: 1rem
+    font-weight: 300
+    line-height: 2.5rem
+    padding: 0px 40px
+    position: absolute
+    right: -48px
+    text-align: center
+    text-decoration: none
+    top: 48px
+    transform: rotate(45deg)
+    transition: background .5s
+    width: 230px
+    &:hover
+      background: #31343c

@@ -1,5 +1,5 @@
 var config = require('./');
-var sass = require('./sass');
-var stylus = require('./stylus');
 
-module.exports = config.preprocessor === 'sass' ? sass : stylus;
+var preprocessor = process.env.PREPROCESSOR || config.preprocessor;
+
+module.exports = preprocessor === 'sass' ? require('./sass') : require('./stylus');
