@@ -13,8 +13,8 @@ module.exports = {
 
   settings: {
     templates: {
-        // scss:  true
-        css:  template
+        scss:  true
+        // css:  template
     },
     common: 'icon',
     cssFile: 'sass/_svgsprite.scss',
