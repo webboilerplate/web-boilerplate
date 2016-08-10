@@ -12,7 +12,11 @@ var sassLint = require('gulp-sass-lint');
 gulp.task('scsslint', function() {
   return gulp.src(config.src)
     .pipe(sassLint({
-      configFile: '.scss-lint.yml'
+      configFile: './.sass-lint.yml',
+      // options: {
+      //         formatter: 'stylish',
+      //         'merge-default-rules': false
+      //       }
     }))
     .pipe(sassLint.format())
     .pipe(sassLint.failOnError());
