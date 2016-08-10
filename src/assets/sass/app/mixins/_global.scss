@@ -1,25 +1,25 @@
 //pushes the target to its own render layer on the gpu
 //
-@mixin layer() {
+@mixin layer {
   backface-visibility: hidden;
 }
 
-@mixin layer-reset() {
+@mixin layer-reset {
   backface-visibility: initial;
 }
 
 // pushes the target to its own render layer on the gpu
 //
-@mixin gpu() {
-  transform: translateZ(0);
+@mixin gpu {
   backface-visibility: hidden;
+  transform: translateZ(0);
   transform-style: preserve-3d;
 }
 
-@mixin gpu-reset() {
+@mixin gpu-reset {
+  backface-visibility: initial;
   transform: none;
   perspective: none;
-  backface-visibility: initial;
 }
 
 // breakpoint
@@ -68,7 +68,7 @@
 
 // Text ellipsis
 // Requires inline-block or block for proper styling
-@mixin text-ellipsis() {
+@mixin text-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -105,7 +105,7 @@
 }
 
 // Clearfix
-@mixin cf() {
+@mixin cf {
   *zoom: 1;
   &:before,
   &:after {
