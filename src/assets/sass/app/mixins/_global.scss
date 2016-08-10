@@ -18,20 +18,19 @@
 
 @mixin gpu-reset {
   backface-visibility: initial;
-  transform: none;
   perspective: none;
+  transform: none;
 }
 
 // breakpoint
 // example @include bp(940px) { width:80%; }
 //
 @mixin bp($size, $mobile-first: false) {
-  @if ($mobile-first==true) {
+  @if ($mobile-first == true) {
     @media only screen and (min-width: $size) {
       @content;
     }
-  }
-  @else {
+  } @else {
     @media only screen and (max-width: $size) {
       @content;
     }
@@ -41,8 +40,8 @@
 // size
 //
 @mixin size($width, $height: $width) {
-  width: $width;
   height: $height;
+  width: $width;
 }
 
 // placeholder
@@ -80,8 +79,8 @@
 @mixin font-face($font-family, $file-path, $weight: normal, $style: normal) {
   @font-face {
     font-family: $font-family;
-    font-weight: $weight;
     font-style: $style;
+    font-weight: $weight;
     src: url('#{$file-path}.eot');
     src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
     url('#{$file-path}.woff') format('woff'),
@@ -107,46 +106,43 @@
 // Clearfix
 @mixin cf {
   *zoom: 1;
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: '';
     display: table;
   }
-  &:after {
+  &::after {
     clear: both;
   }
 }
 
 // Horizontal/Vertical/Both Alignment - Parent container needs position relative. IE9+
-@mixin align($direction:both) {
+@mixin align($direction: both) {
   position: absolute;
   transform-style: preserve-3d;
-  @if ($direction==horizontal) or ($direction==h) {
+  @if ($direction == horizontal) or ($direction == h) {
     left: 50%;
     transform: translateX(-50%);
-  }
-  @else if ($direction==vertical) or ($direction==v) {
+  } @else if ($direction == vertical) or ($direction == v) {
     top: 50%;
     transform: translateY(-50%);
-  }
-  @else {
-    top: 50%;
+  } @else {
     left: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
   }
 }
 
-@mixin line-clamp($numLines: 1,
-$lineHeight: 1.412) {
+@mixin line-clamp($numLines: 1,$lineHeight: 1.412) {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $numLines;
+  max-height: $numLines * $lineHeight + unquote('em');
+  display: -webkit-box;
   overflow: hidden;
   text-overflow: -o-ellipsis-lastline;
   text-overflow: ellipsis;
   display: block;
   /* autoprefixer: off */
-  display: -webkit-box;
-  -webkit-line-clamp: $numLines;
-  -webkit-box-orient: vertical;
-  max-height: $numLines * $lineHeight + unquote('em');
 }
 
 //
@@ -170,19 +166,17 @@ $lineHeight: 1.412) {
 // rectangle
 @mixin rectangle($size: 0) {
   height: 0;
-  padding-bottom: 0% + $size / 3 *2;
+  padding-bottom: 0% + $size / 3 * 2;
   width: 0% + $size;
 }
 
 // arrow
-@mixin arrow($direction,
-$color,
-$size) {
+@mixin arrow($direction, $color, $size) {
   $px-size: $size + px;
   $rem-size: ($size / 10) + rem;
-  width: 0;
   height: 0;
-  @if $direction=="left" {
+  width: 0;
+  @if $direction == "left" {
     border-top: $px-size solid transparent;
     border-right: $px-size solid $color;
     border-bottom: $px-size solid transparent;
@@ -190,7 +184,7 @@ $size) {
     border-right: $rem-size solid $color;
     border-bottom: $rem-size solid transparent;
   }
-  @else if $direction=="right" {
+  @else if $direction == "right" {
     border-top: $px-size solid transparent;
     border-bottom: $px-size solid transparent;
     border-left: $px-size solid $color;
@@ -198,7 +192,7 @@ $size) {
     border-bottom: $rem-size solid transparent;
     border-left: $rem-size solid $color;
   }
-  @else if $direction=="up" {
+  @else if $direction == "up" {
     border-left: $px-size solid transparent;
     border-right: $px-size solid transparent;
     border-bottom: $px-size solid $color;
@@ -206,7 +200,7 @@ $size) {
     border-right: $rem-size solid transparent;
     border-bottom: $rem-size solid $color;
   }
-  @else if $direction=="down" {
+  @else if $direction == "down" {
     border-left: $px-size solid transparent;
     border-right: $px-size solid transparent;
     border-top: $px-size solid $color;
