@@ -31,8 +31,6 @@ gulp.task('server:dist', function() {
     .pipe(gulp.dest(config.path.dest + '/server'));
 });
 
-
-
 // gulp.task('js:dist', function() {
 //   return gulp.src(config.path.build + '/' + config.path.js + '/**/*.js')
 //     .pipe(uglify())
@@ -61,13 +59,6 @@ gulp.task('images:dist', function() {
     .pipe(gulp.dest(config.path.dest + '/' + config.path.public + '/' + config.path.images));
 });
 
-gulp.task('html:dist', function() {
-  return gulp.src([
-    config.path.src + '/**/*.{html,shtml,php,xml,json,webapp,txt,ico}',
-    config.path.build + '/**/*.{html,shtml,php,xml,json,webapp,txt,ico}'
-    ])
-    .pipe(gulp.dest(config.path.dest + '/' + config.path.public));
-});
 
 gulp.task('pkg:dist', function() {
   return gulp.src('./package.json')
