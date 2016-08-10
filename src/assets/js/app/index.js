@@ -1,7 +1,8 @@
 export default class App {
 
+  static NAME = 'Web Boilerplate';
+
   constructor() {
-    this.name = 'Web Boilerplate';
     this._initialized = false;
   }
 
@@ -16,7 +17,7 @@ export default class App {
       console.log(`
           Moin Moin
         and welcome to
-        ${this.name}`);
+        ${App.NAME}`);
     }
   }
 

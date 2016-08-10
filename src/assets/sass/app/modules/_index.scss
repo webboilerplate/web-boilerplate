@@ -30,7 +30,7 @@ body {
     position: fixed;
   }
 
-  @include when(565px) {
+  @include bp(565px) {
     word-wrap: break-word;
   }
 }
@@ -108,7 +108,7 @@ header[role="banner"] {
     display: none;
   }
 
-  @include when(1024px, true) {
+  @include bp(1024px, true) {
     h1 {
       font-size: 5rem;
 
@@ -118,7 +118,7 @@ header[role="banner"] {
     }
   }
 
-  @include when(567px) {
+  @include bp(567px) {
     min-height: 100%;
     padding-top: 60%;
 
@@ -163,7 +163,7 @@ nav[role="navigation"] {
       &:hover {
         background: #E26A6A;
 
-        @include when(567px) {
+        @include bp(567px) {
           color: #31343c;
         }
       }
@@ -179,7 +179,7 @@ nav[role="navigation"] {
     }
   }
 
-  @include when(567px) {
+  @include bp(567px) {
     background: #E26A6A;
   }
 }
