@@ -101,7 +101,8 @@
   },
   "scripts": {
     "test": "npm run lint",
-    "lint": "gulp scsslint && gulp jscs && npm run stylint",
+    "lint": "gnpm run sasslint && gulp jscs && npm run stylint",
+    "sasslint": "gulp scsslint",
     "stylint": "stylint src/assets/stylus -c .stylintrc",
     "setup": "mkdir -p build/assets/js",
     "dist": "gulp build && gulp dist --production && npm run dist-js",
