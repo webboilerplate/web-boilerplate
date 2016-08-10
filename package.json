@@ -103,7 +103,7 @@
     "test": "npm run lint",
     "lint": "gnpm run sasslint && gulp jscs && npm run stylint",
     "sasslint": "gulp scsslint",
-    "stylint": "stylint src/assets/stylus -c .stylintrc",
+    "stylint": "stylint src/assets/stylus/app",
     "setup": "mkdir -p build/assets/js",
     "dist": "gulp build && gulp dist --production && npm run dist-js",
     "dist-js": "BABEL_ENV=production browserify -e src/assets/js/main.js -t babelify | derequire > dist/public/assets/js/main.js",
