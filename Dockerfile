@@ -1,6 +1,8 @@
 FROM node:6
 # FROM risingstack/alpine:3.4-v6.3.0-3.6.2
 
+MAINTAINER Soenke Kluth <soenke.kluth@gmail.com>
+
 ENV NODE_ENV=development
 
 WORKDIR /usr/local/src

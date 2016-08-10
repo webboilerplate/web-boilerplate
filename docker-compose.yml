@@ -1,0 +1,8 @@
+app:
+  image: soenkekluth/web-boilerplate
+  command: npm run dev
+  volumes:
+    - ./src:/usr/local/src/src
+  ports:
+    - "3000:3000"
+    - "3001:3001"

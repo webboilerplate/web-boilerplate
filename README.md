@@ -33,17 +33,25 @@ You can kick off your next web / app front-end project without the timecost of s
 
 You can either use the [web-boilerplate image](https://hub.docker.com/r/soenkekluth/web-boilerplate/) from [docker-hub](https://hub.docker.com/) or create your own images using the included Dockerfile
 
-### Create a docker container from docker-hub and start development
+### Docker Compose
+simply run:
+`docker-compose up`
+
+### Pull the [web-boilerplate](https://hub.docker.com/r/soenkekluth/web-boilerplate/) docker image from docker-hub and start development
 `docker run -p 3000:3000 -p 3001:3001 --name web-boilerplate -v $(pwd)/src:/usr/local/src/src --sig-proxy=false soenkekluth/web-boilerplate npm run dev`
 
-### or build your own Docker Image
+if needed you can mount more than just the src folder. for example:
+
+`docker run -p 3000:3000 -p 3001:3001 --name web-boilerplate -v $(pwd)/src:/usr/local/src/src -v $(pwd)/gulp:/usr/local/src/gulp -v $(pwd)/server:/usr/local/src/server -v $(pwd)/lib:/usr/local/src/lib -v $(pwd)/test:/usr/local/src/test -v $(pwd)/package.json:/usr/local/src/package.json -v $(pwd)/.babelrc:/usr/local/src/.babelrc --sig-proxy=false soenkekluth/web-boilerplate npm run dev`
+
+### Or build your own Docker Image
 `docker build -t web-boilerplate .`
 
-### and run your Docker Container for development
 `docker run -p 3000:3000 -p 3001:3001 --name web-boilerplate -v $(pwd)/src:/usr/local/src/src --sig-proxy=false web-boilerplate npm run dev`
 
 ## Distribute
 `docker run --rm -v $(pwd)/src:/usr/local/src/src -v $(pwd)/dist:/usr/local/src/dist soenkekluth/web-boilerplate npm run dist`
+
 
 
 ## Server Configs
