@@ -11,7 +11,9 @@ var sassLint = require('gulp-sass-lint');
 
 gulp.task('scsslint', function() {
   return gulp.src(config.src)
-    .pipe(sassLint())
+    .pipe(sassLint({
+      configFile: '.scss-lint.yml'
+    }))
     .pipe(sassLint.format())
-    .pipe(sassLint.failOnError())
+    .pipe(sassLint.failOnError());
 });
