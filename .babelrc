@@ -30,7 +30,32 @@
         "transform-class-properties",
         "transform-class-constructor-call",
         "transform-decorators-legacy",
-        "transform-remove-console", [
+        "transform-remove-console",
+        [
+          "transform-es2015-classes", {
+            "loose": true
+          }
+        ],
+        "transform-proto-to-assign",
+        "add-module-exports"
+      ]
+    },
+
+    "stage": {
+
+      "presets": [
+        "stage-0",
+        "es2015"
+      ],
+
+      "comments": false,
+      "minified": true,
+
+      "plugins": [
+        "transform-class-properties",
+        "transform-class-constructor-call",
+        "transform-decorators-legacy",
+        [
           "transform-es2015-classes", {
             "loose": true
           }
