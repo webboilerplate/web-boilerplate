@@ -52,6 +52,9 @@ if needed you can mount more than just the src folder. for example:
 ## Distribute
 `docker run --rm -v $(pwd)/src:/usr/local/src/src -v $(pwd)/dist:/usr/local/src/dist soenkekluth/web-boilerplate npm run dist`
 
+## sass vs stylus
+sass (scss) is used as the default preprocessor to generate your css files. if you want to use stylus instead just run :
+`docker run .... web-boilerplate PREPROCESSOR=stylus npm run dev`
 
 
 ## Server Configs
