@@ -32,7 +32,7 @@ require('require-dir')('./gulp/tasks', {
 gulp.task('build', function(cb) {
   runSequence('clean:build',  ['sketch', 'sprites'], [
     // 'fonts',
-    //'iconfont',
+    'iconfont',
     // 'browserify',
     'svgsprite',
     'breakpoints',
@@ -53,8 +53,8 @@ gulp.task('build', function(cb) {
 
 gulp.task('dist', function(cb) {
   runSequence('clean:dist', 'static:dist', [
-      // 'js:dist',
       'css:dist',
+      'fonts:dist',
       'images:dist',
       'server:dist',
       'pkg:dist'

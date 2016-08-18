@@ -37,33 +37,25 @@
   }
 }
 
-// size
-//
-@mixin size($width, $height: $width) {
-  height: $height;
-  width: $width;
+
+$bp-mobile : '586px';
+
+@mixin mobile($ref) {
+
+  @if ($ref) {
+    @at-root {
+      .mobile #{$ref} {
+        @content;
+      }
+    }
+  }
+
+  @media only screen and (max-width: $bp-mobile) {
+    @content;
+  }
+
 }
 
-// placeholder
-//
-@mixin placeholder($color: $text-color, $alpha: .8) {
-  &::-webkit-input-placeholder {
-    color: rgba($color, $alpha);
-  }
-  /* WebKit browsers */
-  &:-moz-placeholder {
-    color: rgba($color, 1)
-  }
-  /* Mozilla Firefox 4 to 18 */
-  &::-moz-placeholder {
-    color: rgba($color, 1)
-  }
-  /* Mozilla Firefox 19+ */
-  &:-ms-input-placeholder {
-    color: rgba($color, $alpha)
-  }
-  /* Internet Explorer 10+ */
-}
 
 // Text ellipsis
 // Requires inline-block or block for proper styling
@@ -71,36 +63,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-// @font-face mixin
-// Order of the includes matters, and it is: normal, bold, italic, bold+italic.
-// Forked from Bourbon. https://github.com/thoughtbot/bourbon/
-@mixin font-face($font-family, $file-path, $weight: normal, $style: normal) {
-  @font-face {
-    font-family: $font-family;
-    font-style: $style;
-    font-weight: $weight;
-    src: url('#{$file-path}.eot');
-    src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
-    url('#{$file-path}.woff') format('woff'),
-    url('#{$file-path}.ttf') format('truetype'),
-    url('#{$file-path}.svg##{$font-family}') format('svg');
-  }
-}
-
-// Mixin for cross browser inline-block
-// http://blog.mozilla.org/webdev/2009/02/20/cross-browser-inline-block/
-// ------------------
-@mixin inline-block {
-  /* autoprefixer: off */
-  display: -moz-inline-stack;
-  /* autoprefixer: off */
-  -moz-box-orient: vertical;
-  display: inline-block;
-  *display: inline;
-  vertical-align: top;
-  *zoom: 1;
 }
 
 // Clearfix
@@ -143,69 +105,4 @@
   text-overflow: ellipsis;
   display: block;
   /* autoprefixer: off */
-}
-
-//
-// DRAW
-//
-// circles
-@mixin circle($size: 0) {
-  border-radius: 50%;
-  height: auto;
-  padding-bottom: 0% + $size;
-  width: 0% + $size;
-}
-
-// square
-@mixin square($size: 0) {
-  height: auto;
-  padding-bottom: 0% + $size;
-  width: 0% + $size;
-}
-
-// rectangle
-@mixin rectangle($size: 0) {
-  height: 0;
-  padding-bottom: 0% + $size / 3 * 2;
-  width: 0% + $size;
-}
-
-// arrow
-@mixin arrow($direction, $color, $size) {
-  $px-size: $size + px;
-  $rem-size: ($size / 10) + rem;
-  height: 0;
-  width: 0;
-  @if $direction == "left" {
-    border-top: $px-size solid transparent;
-    border-right: $px-size solid $color;
-    border-bottom: $px-size solid transparent;
-    border-top: $rem-size solid transparent;
-    border-right: $rem-size solid $color;
-    border-bottom: $rem-size solid transparent;
-  }
-  @else if $direction == "right" {
-    border-top: $px-size solid transparent;
-    border-bottom: $px-size solid transparent;
-    border-left: $px-size solid $color;
-    border-top: $rem-size solid transparent;
-    border-bottom: $rem-size solid transparent;
-    border-left: $rem-size solid $color;
-  }
-  @else if $direction == "up" {
-    border-left: $px-size solid transparent;
-    border-right: $px-size solid transparent;
-    border-bottom: $px-size solid $color;
-    border-left: $rem-size solid transparent;
-    border-right: $rem-size solid transparent;
-    border-bottom: $rem-size solid $color;
-  }
-  @else if $direction == "down" {
-    border-left: $px-size solid transparent;
-    border-right: $px-size solid transparent;
-    border-top: $px-size solid $color;
-    border-left: $rem-size solid transparent;
-    border-right: $rem-size solid transparent;
-    border-top: $rem-size solid $color;
-  }
 }

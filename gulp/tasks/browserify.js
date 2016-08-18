@@ -1,22 +1,16 @@
 'use strict';
 
-/* browserify task
-   ---------------
-   Bundle javascripty things with browserify!
-
-   This task is set up to generate multiple separate bundles, from
-   different sources, and to use Watchify when run from the default task.
-
-   See browserify.bundleConfigs in gulp/config.js
-*/
 
 var gulp = require('gulp');
 var gutil = require('gulp-util');
+var gulpif = require('gulp-if');
 var browserify = require('browserify');
-var browserSync = require('browser-sync');
+var babelify = require('babelify');
 var watchify = require('watchify');
 var mergeStream = require('merge-stream');
+var buffer = require('vinyl-buffer');
 var bundleLogger = require('../util/bundleLogger');
+var sourcemaps = require('gulp-sourcemaps');
 var handleErrors = require('../util/handleErrors');
 var source = require('vinyl-source-stream');
 var config = require('../config/browserify');
@@ -26,58 +20,50 @@ var browserifyTask = function(watchMode) {
 
   var browserifyThis = function(bundleConfig) {
 
+    var options = bundleConfig.options;
+    var isProduction = process.env.NODE_ENV === 'production';
+    console.log('isProduction', isProduction);
+
     if (watchMode) {
       // Add watchify args and debug (sourcemaps) option
-      _.extend(bundleConfig, watchify.args, {
-        debug: true
+      _.extend(options, watchify.args, {
+        debug: true,
       });
       // A watchify require/external bug that prevents proper recompiling,
       // so (for now) we'll ignore these options during development. Running
       // `gulp browserify` directly will properly require and externalize.
-      bundleConfig = _.omit(bundleConfig, ['external', 'require']);
+      options = _.omit(options, ['external', 'require']);
     }
 
     //TODO check
-    _.extend(bundleConfig, {
-      fullPaths: process.env.NODE_ENV !== 'production',
-      debug: process.env.NODE_ENV !== 'production'
+    _.extend(options, {
+      fullPaths: !isProduction,
+      debug: !isProduction,
     });
 
-    var b = browserify(bundleConfig);
+    var b = browserify(options);
 
     var bundle = function() {
       // Log when bundling starts
-      bundleLogger.start(bundleConfig.outputName);
 
       return b
-        .transform('babelify', {presets: ['es2015']})
+        .transform(babelify)
         .bundle()
-        // Report compile errors
-        .on('error', handleErrors)
-        // Use vinyl-source-stream to make the
-        // stream gulp compatible. Specify the
-        // desired output filename here.
+        .on('error', gutil.log.bind(gutil, 'Browserify Error'))
         .pipe(source(bundleConfig.outputName))
-        // Specify the output destination
-        .pipe(gulp.dest(bundleConfig.dest))
-        .pipe(browserSync.reload({
-          stream: true
-        }));
+        .pipe(buffer())
+        .pipe(gulpif(!isProduction, sourcemaps.init({ loadMaps: true })))
+        .pipe(gulpif(!isProduction, sourcemaps.write('./')))
+        .pipe(gulp.dest(bundleConfig.dest));
     };
 
     if (watchMode) {
-      // Wrap with watchify and rebundle on changes
       b = watchify(b);
-      // Rebundle on update
       b.on('update', bundle);
-      bundleLogger.watch(bundleConfig.outputName);
+      b.on('log', gutil.log);
     } else {
-      // Sort out shared dependencies.
-      // b.require exposes modules externally
-      if (bundleConfig.require) b.require(bundleConfig.require);
-      // b.external excludes modules from the bundle, and expects
-      // they'll be available externally
-      if (bundleConfig.external) b.external(bundleConfig.external);
+      if (options.require) b.require(options.require);
+      if (options.external) b.external(options.external);
     }
 
     return bundle();
@@ -88,12 +74,8 @@ var browserifyTask = function(watchMode) {
 
 };
 
-gulp.task('browserify', function(cb) {
-  var task = browserifyTask();
-  if(typeof cb === 'function'){
-    return cb();
-  }
-  return task;
+gulp.task('browserify', function() {
+  return browserifyTask(false);
 });
 
 // Exporting the task so we can call it directly in our watch task, with the 'watchMode' option

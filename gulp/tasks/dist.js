@@ -60,6 +60,12 @@ gulp.task('images:dist', function() {
 });
 
 
+gulp.task('fonts:dist', function() {
+  return gulp.src(config.path.build + '/' + config.path.fonts + '/**/*')
+    .pipe(gulp.dest(config.path.dest + '/' + config.path.public + '/' + config.path.fonts));
+});
+
+
 gulp.task('pkg:dist', function() {
   return gulp.src('./package.json')
     .pipe(tap(function(file) {

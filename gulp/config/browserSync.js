@@ -10,7 +10,12 @@ module.exports = {
   ghostMode: !!(gutil.env.ghostMode || false),
 
   server: {
-    baseDir: [config.path.build, config.path.static],
+    baseDir: [config.path.build, config.path.static]
+  },
+
+  watchOptions: {
+      ignoreInitial: true,
+      ignored: '*.txt'
   },
 
   // proxy: {
