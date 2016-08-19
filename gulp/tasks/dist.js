@@ -1,8 +1,6 @@
 'use strict';
 
 var gulp = require('gulp');
-// var uglify = require('gulp-uglify');
-// var ignore = require('gulp-ignore');
 var tap = require('gulp-tap');
 var cleanCSS = require('gulp-clean-css');
 var header = require('gulp-header');
@@ -31,15 +29,6 @@ gulp.task('server:dist', function() {
     .pipe(gulp.dest(config.path.dest + '/server'));
 });
 
-// gulp.task('js:dist', function() {
-//   return gulp.src(config.path.build + '/' + config.path.js + '/**/*.js')
-//     .pipe(uglify())
-//     .pipe(header(banner, {
-//       pkg: pkg
-//     }))
-//     .pipe(gulp.dest(config.path.dest + '/' + config.path.public + '/' + config.path.js));
-// });
-
 gulp.task('css:dist', function() {
   return gulp.src([
     config.path.build + '/' + config.path.css + '/**/*.css',
@@ -48,9 +37,9 @@ gulp.task('css:dist', function() {
       keepSpecialComments: 0,
       rebase: false
     }))
-    .pipe(header(banner, {
-      pkg: pkg
-    }))
+    // .pipe(header(banner, {
+    //   pkg: pkg
+    // }))
     .pipe(gulp.dest(config.path.dest + '/' + config.path.public + '/' + config.path.css));
 });
 
@@ -77,7 +66,7 @@ gulp.task('pkg:dist', function() {
       delete(pkg.browserify);
       delete(pkg['browserify-shim']);
       pkg.scripts = {
-        start: 'NODE_ENV=production npm install --production && node ./server',
+        start: 'NODE_ENV=production npm install && node ./server',
       };
       file.contents = new Buffer(JSON.stringify(pkg, null, 2));
     }))
