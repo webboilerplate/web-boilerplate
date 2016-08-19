@@ -38,8 +38,6 @@
 }
 
 
-$bp-mobile : '586px';
-
 @mixin mobile($ref) {
 
   @if ($ref) {
