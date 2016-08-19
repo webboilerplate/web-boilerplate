@@ -5,21 +5,29 @@ MAINTAINER Soenke Kluth <soenke.kluth@gmail.com>
 
 ENV NODE_ENV=development
 
-WORKDIR /usr/local/src
+RUN mkdir /app
 
+WORKDIR /app
+
+RUN mkdir src
 RUN mkdir build
 RUN mkdir dist
 
-COPY src /usr/local/src/src
-COPY gulp /usr/local/src/gulp
-COPY lib /usr/local/src/lib
-COPY server /usr/local/src/server
-COPY package.json /usr/local/src/package.json
-COPY .babelrc /usr/local/src/.babelrc
-COPY gulpfile.js /usr/local/src/gulpfile.js
+#COPY src /app/src
+COPY gulp /app/gulp
+COPY lib /app/lib
+COPY test /app/test
+COPY server /app/server
+COPY gulpfile.js /app/gulpfile.js
+COPY package.json /app/package.json
+COPY .babelrc /app/.babelrc
+COPY .jscsrc /app/.jscsrc
+COPY .jshintrc /app/.jshintrc
+COPY .stylintrc /app/.stylintrc
+COPY .sass-lint.yml /app/.sass-lint.yml
 
 RUN npm install
-RUN npm run build
+# RUN npm run build
 
 EXPOSE 3000
 
