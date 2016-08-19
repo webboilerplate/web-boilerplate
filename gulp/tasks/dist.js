@@ -2,7 +2,7 @@
 
 var gulp = require('gulp');
 // var uglify = require('gulp-uglify');
-var ignore = require('gulp-ignore');
+// var ignore = require('gulp-ignore');
 var tap = require('gulp-tap');
 var cleanCSS = require('gulp-clean-css');
 var header = require('gulp-header');

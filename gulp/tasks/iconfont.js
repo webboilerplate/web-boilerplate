@@ -2,20 +2,19 @@ var gulp = require('gulp');
 var iconfont = require('gulp-iconfont');
 var iconfontCss = require('gulp-iconfont-css');
 
-var config = require('../config');
-var fontName = 'icons';
+var config = require('../config/iconfont');
 
-gulp.task('iconfont', function(){
-  return gulp.src(['src/assets/iconfont/*.svg'])
+gulp.task('iconfont', function() {
+  return gulp.src(config.src)
     .pipe(iconfontCss({
-      fontName: fontName,
-      path: 'lib/_iconfont.scss',
-      targetPath: '../sass/_iconfont.scss',
-      fontPath: '../fonts/'
+      fontName: config.fontName,
+      path: config.template,
+      targetPath: config.targetPath,
+      fontPath: config.fontPath
     }))
     .pipe(iconfont({
-      formats: ['ttf', 'eot', 'woff','woff2', 'svg'],
-      fontName: fontName
-     }))
-    .pipe(gulp.dest('build/assets/fonts/'));
+      formats: config.formats,
+      fontName: config.fontName
+    }))
+    .pipe(gulp.dest(config.dest));
 });

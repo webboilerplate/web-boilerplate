@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var jscs = require('gulp-jscs');
 var foreach = require('gulp-foreach');
 var changed = require('gulp-changed');
-var rimraf = require('gulp-rimraf');
+// var rimraf = require('gulp-rimraf');
 var config = require('../config');
 var flatmap = require('gulp-flatmap');
 

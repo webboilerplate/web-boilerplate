@@ -5,7 +5,7 @@ var config = require('./');
 module.exports = {
   watch: config.path.src + '/' + config.path.sketch + '/**/*.sketch',
   src: config.path.src + '/' + config.path.sketch + '/**/*.sketch',
-  dest: config.path.build + '/' + config.path.icons,
+  dest: config.path.build + '/' + config.path.iconfont,
   settings: {
     export: 'artboards', //pages,artboards,slices
     formats: 'svg', // png,jpg,pdf,eps,svg
